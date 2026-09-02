@@ -4,7 +4,7 @@
 
 "Asistente para clasificación y recomendación de vinilos"
 
-## 2. Problema (2-3 frases)
+## 2. Problema
 
 Gestionar una colección de vinilos y encontrar nuevas adquisiciones compatibles con los intereses del usuario es una tarea que requiere revisar grandes volúmenes de información. Se necesita un asistente que clasifique automáticamente los discos y entregue recomendaciones personalizadas según la colección y las preferencias del coleccionista.
 
