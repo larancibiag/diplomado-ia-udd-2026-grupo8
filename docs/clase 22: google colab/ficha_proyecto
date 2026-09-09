@@ -23,19 +23,3 @@ Coleccionistas y melómanos que necesitan catalogar su música física automáti
 1.⁠ ⁠GPT-4o / GPT-4o-mini
 2.⁠ ⁠Claude 3.5 Sonnet:
 3.⁠ ⁠Gemini 1.5 Flash / Pro
-
-## 6. Roadmap del proyecto (se completa clase a clase)
-
-- [ ] Clase 23 — Datasheet del dataset (`docs/datasheet_v1.md`)
-- [ ] Clase 24 — Hallazgos NotebookLM (`docs/hallazgos_notebooklm.md`)
-- [ ] Clase 25 — System prompt (`docs/system_prompt_v3.md`)
-- [ ] Clase 26 — Modelos HF candidatos (`docs/modelos_hf_candidatos.md`)
-- [ ] Clase 27 — Sistema visual (`docs/sistema_visual.md`)
-- [ ] Clase 28 — Arquitectura del agente (`docs/arquitectura_agente.md`)
-- [ ] Clase 29 — Video generativo (`docs/video_generativo.md`)
-- [ ] Clase 30 — Casos de uso Hermes (`docs/hermes_casos_uso.md`)
-- [ ] Clase 31 — Antigravity Loop + cierre (`docs/antigravity_loop.md`)
-
-## 7. Notas para Mauricio (Unidad 4)
-
-Qué necesita saber quien reciba este proyecto en la próxima unidad:
