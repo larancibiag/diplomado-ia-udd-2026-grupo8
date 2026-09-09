@@ -6,15 +6,16 @@ Unidad 3: IA Afectiva, neurocognitiva y psicosocial de la tecnología aplicada a
 
 Integrantes: GRUPO 8: Luis ARANCIBIA · Bianca GONZÁLEZ · Fanny HOFFENBERG
 
-PROYECTO
+---
+#### I. PROYECTO
+---
 
 X
 
 ---
-
-ENTREGABLES
-
-CLASE 22: Google Colab
+#### II. ENTREGABLES
+---
+#### CLASE 22: Google Colab
 
   ¿Qué hicimos?
   X
@@ -24,7 +25,7 @@ CLASE 22: Google Colab
 
 ---
 
-CLASE 23: Data Sheet
+#### CLASE 23: Data Sheet
 
   ¿Qué hicimos?
   X
@@ -34,7 +35,7 @@ CLASE 23: Data Sheet
 
 ---
 
-CLASE 24: Notebook LM
+#### CLASE 24: Notebook LM
 
   ¿Qué hicimos?
   X
@@ -44,7 +45,7 @@ CLASE 24: Notebook LM
 
 ---
 
-CLASE 25: GPT, Claude & DeepSeek
+#### CLASE 25: GPT, Claude & DeepSeek
 
   ¿Qué hicimos?
   X
@@ -54,7 +55,7 @@ CLASE 25: GPT, Claude & DeepSeek
 
 ---
 
-CLASE 26: Hugging Face
+#### CLASE 26: Hugging Face
 
   ¿Qué hicimos?
   X
@@ -64,7 +65,7 @@ CLASE 26: Hugging Face
 
 ---
 
-CLASE 27: Gemini Nano Banana
+#### CLASE 27: Gemini Nano Banana
 
   ¿Qué hicimos?
   X
@@ -74,7 +75,7 @@ CLASE 27: Gemini Nano Banana
 
 ---
 
-CLASE 28: Agentes
+#### CLASE 28: Agentes
 
   ¿Qué hicimos?
   X
@@ -84,7 +85,7 @@ CLASE 28: Agentes
 
 ---
 
-CLASE 29: Hermes
+#### CLASE 29: Hermes
 
   ¿Qué hicimos?
   X
@@ -94,5 +95,24 @@ CLASE 29: Hermes
 
 ---
 
-CONCLUSIONES GENERALES
+#### CLASE 30: Google Flow
+
+  ¿Qué hicimos?
+  X
   
+  Conclusiones
+  X
+
+---
+
+#### CLASE 31: Antigravity
+
+  ¿Qué hicimos?
+  X
+  
+  Conclusiones
+  X
+
+---
+## III. CONCLUSIONES GENERALES
+---
