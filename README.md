@@ -88,11 +88,26 @@ En definitiva, la experiencia demuestra que el verdadero valor de la IA no está
 
 #### CLASE 25: GPT, Claude & DeepSeek
 
-  ¿Qué hicimos?
-  X
+¿Qué hicimos?
+Comparativa de mopdelos:  Claude, Chat GPT y DeepSeek para analizar la performance de cada uno de estas herramientas de inteligencia artificial y como abordan un mismo problema de diseño de maneras muy diferentes. 
   
-  Conclusiones
-  X
+Conclusiones 
+La comparación entre Claude, ChatGPT y DeepSeek permitió comprobar que las herramientas de inteligencia artificial pueden abordar un mismo problema de diseño de maneras muy diferentes. Más que identificar cuál aplicación es “mejor”, la experiencia permitió reconocer que cada modelo tiene fortalezas, limitaciones y formas particulares de interpretar un mismo brief.
+
+Uno de los principales aprendizajes fue comprobar que la calidad del resultado depende en gran medida de la información entregada, de las restricciones establecidas y, especialmente, de la capacidad de formular correctamente las instrucciones. Un buen prompt permite orientar a la IA hacia resultados más pertinentes y cercanos a las necesidades reales del proyecto.
+
+En el desarrollo del estante, por ejemplo, DeepSeek fue capaz de analizar la cantidad de vinilos, realizar estimaciones dimensionales y proponer una distribución por géneros, además de incorporar criterios de accesibilidad y crecimiento futuro. Esto demuestra el potencial de estas herramientas para apoyar no solo la generación de ideas, sino también etapas de análisis y planificación.
+
+Sin embargo, la experiencia también permitió comprobar que una respuesta extensa y aparentemente técnica no necesariamente constituye una solución de diseño correcta. Algunas propuestas deben ser revisadas, ajustadas y evaluadas desde criterios que la IA no necesariamente puede comprender completamente, como la experiencia del usuario, la proporción, la estética, la funcionalidad, la factibilidad constructiva o la coherencia con el contexto.
+
+En el caso del sticker ocurre algo similar: la IA puede desarrollar un concepto, definir una composición, sugerir tipografías, colores e iconografía e incluso generar instrucciones para producirlo. Sin embargo, el diseñador sigue siendo necesario para evaluar si esa propuesta realmente funciona como pieza gráfica y si cumple adecuadamente con criterios de legibilidad, jerarquía, identidad y reproducción.
+
+Por lo tanto, considero que el principal aporte de estas herramientas al diseño no es reemplazar al diseñador, sino modificar su manera de trabajar. La IA puede asumir parte del trabajo exploratorio, analítico y repetitivo, permitiendo que el profesional concentre mayor atención en la interpretación, el criterio, la conceptualización y la toma de decisiones.
+
+La experiencia confirma que el valor del diseñador no desaparece frente a la IA; se desplaza desde la ejecución hacia la capacidad de plantear problemas, dirigir herramientas, evaluar resultados y tomar decisiones de diseño con criterio profesional.
+
+En este sentido, aprender a trabajar con distintas herramientas de IA se convierte en una nueva competencia profesional. El diseñador que sepa utilizarlas críticamente podrá incorporarlas como una extensión de sus propias capacidades, obteniendo procesos más rápidos y exploratorios, sin perder aquello que sigue siendo esencial: el criterio humano.
+
 
 &nbsp;
 
