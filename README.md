@@ -10,7 +10,6 @@ Integrantes: GRUPO 8: Luis ARANCIBIA · Bianca GONZÁLEZ · Fanny HOFFENBERG
 
 ---
 ## **1\. Proyecto**
----
 
 X
 
@@ -18,7 +17,7 @@ X
 
 ---
 ## **2\. Entregables**
----
+
 &nbsp;
 
 #### CLASE 22: Google Colab
@@ -160,4 +159,3 @@ Conclusión:
 
 ---
 ## **3\. Conclusiones generales**
----
