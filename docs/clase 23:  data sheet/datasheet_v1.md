@@ -50,10 +50,6 @@ Sí.
 
 * Estrategia 2: Agregar columnas como notas históricas personales, puntuaciones externas para que momento se podrìa escuchar según notas del coleccionista.
 
-&nbsp;
-
-&nbsp;
-
 ## **6\. Uso recomendado / desaconsejado**
 
 * Para qué SÍ debería usarse:
