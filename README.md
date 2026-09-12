@@ -156,11 +156,18 @@ La precisión en el prompt, la sensibilidad estética y el criterio para curar, 
 
 #### CLASE 28: Agentes
 
-  ¿Qué hicimos?
-  X
+¿Qué hicimos?
+ 
+Configuramos y desplegamos un agente conversacional en Claude Projects utilizando una arquitectura provista en el curso. Para lograrlo:
+
+Definición del Agente: Cargamos el system prompt con las instrucciones de la arquitectura del asistente especializado en vinilos.
+
+Contexto e Inventario: Proporcionamos conocimiento contextual subiendo la base de datos de la colección de vinilos y un dossier de soporte en IA.
+
+Ejecución del Flujo: Validamos la capacidad del agente para procesar un escenario específico (tarde soleada de sábado/diseñadora trabajando) ejecutando un flujo multitarea que incluyó: recomendación personalizada, notas contextuales editoriales, verificación exacta de datos en inventario, generación e integración de prompts e ilustraciones visuales, sugerencias por similitud sonora y la maquetación final estructurada de una "ficha de track" en PDF.
   
-  Conclusiones
-  X
+Conclusiones
+Al integrar nuestra propia base de datos cdentro de la base de conocimiento en claude, logramos que el asistente pueda consultar el inventario, verificando conteos por artista y género sin alucinar datos. Además, el agente demostró una gran versatilidad para adaptarse al contexto y tono solicitados (diseñadora, tarde soleada de sábado), conectando la recomendación musical con la redacción editorial y la generación de ideas visuales. Lo más destacado fue su capacidad para orquestar en un solo flujo la lectura de datos duros, la creación de contenido sintético y el diseño gráfico, estructurando todo de manera coherente en un entregable final listo para usar como la ficha de track en PDF.
 
 &nbsp;
 
