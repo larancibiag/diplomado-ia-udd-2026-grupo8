@@ -47,6 +47,11 @@ Analizamos los gráficos de distribución y longitud de textos para detectar ano
 Conclusión: 
 Identificar estos patrones de sesgo permite evitar que el modelo aprenda atajos erróneos, como usar la longitud del texto en lugar del contenido real para predecir las calificaciones.
 
+*
+Clase más representada: La de 5 estrellas, con más de 300 reviews en total.
+Clase menos representada: La de 3 estrellas, con apenas unas 90 reviews.
+Sí, las reseñas de 1 estrella son mucho más largas que el resto, lo que representa un sesgo en el que un modelo predictivo podría usar la longitud del texto como pista falsa en lugar de evaluar el contenido real.
+
 Ejercicio 3 y 4:
 Creamos el archivo datashhet con datos reales del proyecto. Archivo: datasheet\_v1.md
 Subimos el notebook trabajado a notebooks/Clase\_23.ipynb. Actualizar README.
