@@ -188,6 +188,13 @@ Abrimos el HTML resultante y revisarlo. (capturas)
 Pedimos un segundo cambio de estilo (colores, tipografía)(capturas)
 
 
+
+
+&nbsp;
+
+---
+## **3\. Conclusiones generales**
+
 Conclusiones de grupo
 
 A lo largo de esta unidad pudimos observar que la inteligencia artificial no es solamente una herramienta para generar contenido, sino una nueva capa que puede incorporarse transversalmente al proceso de diseño: desde la exploración y análisis de datos, la investigación y generación de insights, hasta la conceptualización, prototipado, evaluación y comunicación de soluciones.
@@ -200,8 +207,3 @@ El diseñador pasa de ser ejecutor a director del proceso, y el criterio humano 
 Quizá no necesitamos ser programadores, pero sí entender lo básico sobre datos, sesgos, límites y privacidad de estas herramientas.
 Esta unidad nos permitió ver a la IA no como un reemplazo del diseñador ni solo como una herramienta de productividad, sino una invitación a cambiar de mindser de como deberiamos a usar la IA de  forma crítica y estratégica para explorar y aprender y ejecutar  más rápido, sin delegar en ella nuestra vision integral y humana , el buen gusto, el criterio, la empatía y la creatividad que definen nuestro aporte como  profesionales del diseño.
 
-
-&nbsp;
-
----
-## **3\. Conclusiones generales**
