@@ -9,7 +9,7 @@ Integrantes: GRUPO 8: Luis ARANCIBIA · Bianca GONZÁLEZ · Fanny HOFFENBERG
 &nbsp;
 
 ---
-#### I. PROYECTO
+## **1\. Proyecto**
 ---
 
 X
@@ -17,7 +17,7 @@ X
 &nbsp;
 
 ---
-#### II. ENTREGABLES
+## **2\. Entregables**
 ---
 &nbsp;
 
@@ -159,5 +159,5 @@ Conclusión:
 &nbsp;
 
 ---
-## III. CONCLUSIONES GENERALES
+## **3\. Conclusiones generales**
 ---
