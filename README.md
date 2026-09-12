@@ -117,6 +117,11 @@ En este sentido, aprender a trabajar con distintas herramientas de IA se convier
 
 ¿Qué hicimos?
 Explorar hugging face para probar e integrar modelos avanzados de IA generativa de imagen y prototipado visual sin depender exclusivamente de plataformas cerradas de suscripción.
+
+meta-llama/Llama-3.2-1B-Instruct: El estándar más moderno para prototipar respuestas rápidas y fluidas en aplicaciones móviles.
+DeepESP/gpt2-spanish: Un clásico ligero, ideal para correr experimentos web ultrarrápidos sin hardware dedicado.
+somosnlp/es-inclusivo-translator
+
   
 Conclusiones
 
@@ -129,7 +134,6 @@ Principales ventajas identificadas:
 3. Personalización y control de estilos (LoRAs y ControlNet): Facilita el acceso a miles de adaptadores visuales creados por la comunidad para aplicar estilos gráficos específicos (editorial, 3D, branding) o guiar la generación a partir de bocetos y wireframes.
 
 4. Independencia, privacidad y licencias claras: Proporciona mayor control sobre las imágenes generadas y la posibilidad de integrar los modelos en pipelines profesionales o plugins locales (como ComfyUI o Figma).
-
 
 &nbsp;
 
