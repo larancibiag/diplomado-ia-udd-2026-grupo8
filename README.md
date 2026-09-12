@@ -142,7 +142,18 @@ Subimos el notebook trabajado a notebooks/Clase\_23.ipynb. Actualizar README.
 #### CLASE 31: Antigravity
 
   ¿Qué hicimos?
-  X
+  
+  Ejercicio 1:
+
+  Ejercicio 2:
+
+  Ejercicio 3:
+
+  Ejercicio 4:
+
+  Ejercicio 5:
+
+  Ejercicio 6:
   
   Conclusiones
   X
