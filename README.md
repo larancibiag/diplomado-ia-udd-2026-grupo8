@@ -1,3 +1,4 @@
+¡
 # Diplomado IA UDD 2026
 
 Diplomado de Inteligencia Artificial Aplicada al Diseño
