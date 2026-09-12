@@ -148,15 +148,15 @@ Subimos el notebook trabajado a notebooks/Clase\_23.ipynb. Actualizar README.
 
 ¿Qué hicimos?
 
-Crear una carpeta nueva con un archivo `hallazgos.md` 
-Abrir la carpeta en Antigravity y pedirle un HTML simple, minimalista y responsive con esos hallazgos.
+Creamos una carpeta nueva con un archivo `hallazgos.md` 
+Abrimos la carpeta en Antigravity y le pedimos un HTML simple, minimalista y responsive con esos hallazgos.
 
 *
 Necesito una página HTML simple que muestre los principales hallazgos de mi proyecto de diseño. Los datos están en `hallazgos.md`. Genera un HTML con estilo minimalista, responsive, en español.
 *
 
-Abrir el HTML resultante y revisarlo.
-Pedir un segundo cambio de estilo (colores, tipografía) y ver cómo el agente vuelve a correr el Loop sobre lo ya hecho.
+Abrimos el HTML resultante y revisarlo. (capturas)
+Pedimos un segundo cambio de estilo (colores, tipografía)(capturas)
 
   Conclusiones
   X
