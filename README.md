@@ -18,8 +18,6 @@ X
 ---
 ## **2\. Entregables**
 
-&nbsp;
-
 #### CLASE 22: Google Colab
 
 ¿Qué hicimos?
