@@ -47,13 +47,10 @@ Analizamos los gráficos de distribución y longitud de textos para detectar ano
 Conclusión: 
 Identificar estos patrones de sesgo permite evitar que el modelo aprenda atajos erróneos, como usar la longitud del texto en lugar del contenido real para predecir las calificaciones.
 
-Ejercicio 3:
-x
-
-Conclusión: 
-
-Ejercicio 4:
-x
+Ejercicio 3 y 4:
+Creamos el archivo datashhet con datos reales del proyecto. Archivo: datasheet\_v1.md
+Subimos el notebook trabajado a notebooks/Clase\_23.ipynb.
+Actualizar README,
 
 Conclusión: 
 
