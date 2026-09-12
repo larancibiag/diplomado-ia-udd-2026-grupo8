@@ -146,20 +146,18 @@ Subimos el notebook trabajado a notebooks/Clase\_23.ipynb. Actualizar README.
 
 #### CLASE 31: Antigravity
 
-  ¿Qué hicimos?
-  
-  Ejercicio 1:
+¿Qué hicimos?
 
-  Ejercicio 2:
+Crear una carpeta nueva con un archivo `hallazgos.md` 
+Abrir la carpeta en Antigravity y pedirle un HTML simple, minimalista y responsive con esos hallazgos.
 
-  Ejercicio 3:
+*
+Necesito una página HTML simple que muestre los principales hallazgos de mi proyecto de diseño. Los datos están en `hallazgos.md`. Genera un HTML con estilo minimalista, responsive, en español.
+*
 
-  Ejercicio 4:
+Abrir el HTML resultante y revisarlo.
+Pedir un segundo cambio de estilo (colores, tipografía) y ver cómo el agente vuelve a correr el Loop sobre lo ya hecho.
 
-  Ejercicio 5:
-
-  Ejercicio 6:
-  
   Conclusiones
   X
 
