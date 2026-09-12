@@ -7,15 +7,21 @@ Unidad 3: IA Afectiva, neurocognitiva y psicosocial de la tecnología aplicada a
 
 Integrantes: GRUPO 8: Luis ARANCIBIA · Bianca GONZÁLEZ · Fanny HOFFENBERG
 
+&nbsp;
+
 ---
 #### I. PROYECTO
 ---
 
 X
 
+&nbsp;
+
 ---
 #### II. ENTREGABLES
 ---
+&nbsp;
+
 #### CLASE 22: Google Colab
 
 ¿Qué hicimos?
@@ -23,6 +29,8 @@ En Google Colab calculamos la matriz de similitud entre diferentes conceptos med
   
 Conclusión
 Interesante conocer como las inteligencias artificiales entienden el lenguaje agrupando conceptos por cercanía de significado y no solo por coincidencia de palabras.
+
+&nbsp;
 
 ---
 
@@ -53,6 +61,8 @@ x
 
 Conclusión: 
 
+&nbsp;
+
 ---
 
 #### CLASE 24: Notebook LM
@@ -62,6 +72,8 @@ Conclusión:
   
   Conclusiones
   X
+
+&nbsp;
 
 ---
 
@@ -73,6 +85,8 @@ Conclusión:
   Conclusiones
   X
 
+&nbsp;
+
 ---
 
 #### CLASE 26: Hugging Face
@@ -82,6 +96,8 @@ Conclusión:
   
   Conclusiones
   X
+
+&nbsp;
 
 ---
 
@@ -93,6 +109,8 @@ Conclusión:
   Conclusiones
   X
 
+&nbsp;
+
 ---
 
 #### CLASE 28: Agentes
@@ -102,6 +120,8 @@ Conclusión:
   
   Conclusiones
   X
+
+&nbsp;
 
 ---
 
@@ -113,6 +133,8 @@ Conclusión:
   Conclusiones
   X
 
+&nbsp;
+
 ---
 
 #### CLASE 30: Google Flow
@@ -123,6 +145,8 @@ Conclusión:
   Conclusiones
   X
 
+&nbsp;
+
 ---
 
 #### CLASE 31: Antigravity
@@ -132,6 +156,8 @@ Conclusión:
   
   Conclusiones
   X
+
+&nbsp;
 
 ---
 ## III. CONCLUSIONES GENERALES
