@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guía Neo-Punk 'For Dummies': Cómo hackear la Inteligencia Artificial para que no te robe el ritual del vinilo. Spinstack Human-AI Project.">
+  <title>⚡ SPINSTACK // GUÍA NEO-PUNK FOR DUMMIES ⚡</title>
+  
+  <!-- Tipografía Futurista Neo-Punk: Chakra Petch + Space Mono + Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Space+Grotesk:wght@500;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Paleta Futurista Neo-Punk */
+      --bg-void: #090a0f;           /* Fondo negro abismo con matiz cian */
+      --bg-panel: #11131b;          /* Tarjetas cyberdeck */
+      --bg-panel-hover: #181a26;
+      --bg-terminal: #07080c;
+      
+      --neon-yellow: #f5ee38;       /* Amarillo advertencia radioactivo */
+      --neon-orange: #ff5500;       /* Naranja sobrecalentado */
+      --neon-cyan: #00f0ff;         /* Cian cibernético */
+      --neon-pink: #ff0055;         /* Rosa neón glitch */
+      --neon-green: #10b981;        /* Verde terminal operativo */
+      
+      --text-main: #f3f4f6;
+      --text-dim: #9ca3af;
+      --text-mono: #00f0ff;
+      
+      --border-cyber: rgba(0, 240, 255, 0.25);
+      --border-glitch: rgba(255, 0, 85, 0.4);
+      --border-warn: rgba(245, 238, 56, 0.35);
+      
+      --glow-orange: 0 0 16px rgba(255, 85, 0, 0.4);
+      --glow-cyan: 0 0 16px rgba(0, 240, 255, 0.4);
+      --glow-pink: 0 0 16px rgba(255, 0, 85, 0.4);
+      
+      --clip-corner: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+      --clip-corner-sm: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+      
+      --transition: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-void);
+      color: var(--text-main);
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      line-height: 1.65;
+      padding: 2rem 1.25rem 6rem;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(255, 85, 0, 0.07) 0%, transparent 40%),
+        radial-gradient(circle at 85% 60%, rgba(0, 240, 255, 0.06) 0%, transparent 45%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    /* Barra Superior Terminal / Cyber HUD */
+    .cyber-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      margin-bottom: 3.5rem;
+      border-bottom: 1px solid var(--border-cyber);
+      position: relative;
+    }
+
+    .cyber-header::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 140px;
+      height: 3px;
+      background: var(--neon-cyan);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .brand-hud {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cyber-vinyl-rig {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #00f0ff 16%, #090a0f 18%, #1c1e2e 45%, var(--neon-orange) 46%, var(--neon-orange) 54%, #090a0f 55%);
+      box-shadow: 0 0 18px rgba(255, 85, 0, 0.6);
+      cursor: pointer;
+      animation: spinVinyl 12s linear infinite paused;
+      border: 2px solid var(--neon-yellow);
+      transition: transform var(--transition);
+      flex-shrink: 0;
+    }
+
+    .cyber-vinyl-rig:hover {
+      animation-play-state: running;
+      transform: scale(1.12);
+    }
+
+    @keyframes spinVinyl {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .brand-titles h1 {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-titles h1 span {
+      color: var(--neon-cyan);
+    }
+
+    .brand-titles p {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.76rem;
+      color: var(--neon-yellow);
+      letter-spacing: 0.05em;
+    }
+
+    .hud-badge-dummies {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: #000000;
+      color: var(--neon-yellow);
+      border: 1px solid var(--neon-yellow);
+      padding: 0.4rem 0.9rem;
+      clip-path: var(--clip-corner-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      box-shadow: 0 0 12px rgba(245, 238, 56, 0.2);
+    }
+
+    /* Hero / Manifiesto Neo-Punk */
+    .hero-glitch-box {
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .status-stamp {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--neon-pink);
+      background: rgba(255, 0, 85, 0.12);
+      border: 1px solid var(--neon-pink);
+      padding: 0.35rem 0.85rem;
+      display: inline-block;
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      box-shadow: var(--glow-pink);
+    }
+
+    .hero-glitch-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-glitch-title .hl-cyan {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+    }
+
+    .hero-glitch-title .hl-orange {
+      color: var(--neon-orange);
+      text-shadow: 0 0 12px rgba(255, 85, 0, 0.5);
+    }
+
+    .hero-glitch-lead {
+      font-size: 1.25rem;
+      line-height: 1.7;
+      color: var(--text-dim);
+      max-width: 840px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-glitch-lead strong {
+      color: #ffffff;
+    }
+
+    /* Panel de Telemetría HUD (Ficha Rápida) */
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-cyber);
+      padding: 1.5rem;
+      clip-path: var(--clip-corner);
+      margin-bottom: 3rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .telemetry-node {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      border-left: 2px solid var(--neon-cyan);
+      padding-left: 1rem;
+    }
+
+    .telemetry-node.warn {
+      border-left-color: var(--neon-orange);
+    }
+
+    .telemetry-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--neon-yellow);
+    }
+
+    .telemetry-val {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    /* Manifiesto 'En Fácil' Box */
+    .manifesto-box {
+      background: linear-gradient(135deg, rgba(255, 85, 0, 0.15) 0%, rgba(17, 19, 27, 0.9) 100%);
+      border: 1px solid var(--neon-orange);
+      clip-path: var(--clip-corner);
+      padding: 2rem 2.25rem;
+      margin-bottom: 4rem;
+      box-shadow: var(--glow-orange);
+    }
+
+    .manifesto-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--neon-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .manifesto-text {
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: #ffffff;
+    }
+
+    .manifesto-text strong {
+      color: var(--neon-yellow);
+    }
+
+    /* ==========================================================================
+       LÁMINA INFOGRÁFICA CYBER-PUNK (FIGURA 01)
+       ========================================================================== */
+    .cyber-chart-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-cyber);
+      clip-path: var(--clip-corner);
+      padding: 2.25rem;
+      margin-bottom: 4.5rem;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .cyber-chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .chart-title-hud h3 {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #ffffff;
+    }
+
+    .chart-title-hud p {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--neon-cyan);
+    }
+
+    .cyber-tabs {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .cyber-tab-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: #000000;
+      color: var(--text-dim);
+      border: 1px solid var(--border-cyber);
+      padding: 0.55rem 1.1rem;
+      clip-path: var(--clip-corner-sm);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .cyber-tab-btn:hover {
+      color: #ffffff;
+      border-color: var(--neon-cyan);
+    }
+
+    .cyber-tab-btn.active {
+      background: var(--neon-cyan);
+      color: #000000;
+      border-color: var(--neon-cyan);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .cyber-canvas-frame {
+      background: var(--bg-terminal);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 1.25rem 0.5rem;
+      margin: 1.25rem 0 1.5rem;
+      position: relative;
+    }
+
+    .cyber-canvas-frame svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Terminal de Diagnóstico al hacer clic en el Gráfico */
+    .cyber-diag-terminal {
+      background: #000000;
+      border: 1px solid var(--neon-orange);
+      border-left: 4px solid var(--neon-orange);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      box-shadow: var(--glow-orange);
+    }
+
+    .diag-head {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--neon-yellow);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .diag-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .diag-body {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text-dim);
+    }
+
+    .diag-body strong {
+      color: var(--neon-cyan);
+    }
+
+    /* Menú / Botonera de Navegación Rápida */
+    .cyber-pills-nav {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      padding-bottom: 0.75rem;
+      margin-bottom: 3.5rem;
+      scrollbar-width: none;
+    }
+
+    .cyber-pills-nav::-webkit-scrollbar { display: none; }
+
+    .cyber-pill {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-cyber);
+      color: var(--text-dim);
+      padding: 0.65rem 1.25rem;
+      clip-path: var(--clip-corner-sm);
+      white-space: nowrap;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+
+    .cyber-pill:hover, .cyber-pill.active {
+      background: var(--neon-orange);
+      color: #ffffff;
+      border-color: var(--neon-orange);
+      box-shadow: var(--glow-orange);
+    }
+
+    /* Módulos de Hallazgo Neo-Punk */
+    .cyber-module {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-cyber);
+      clip-path: var(--clip-corner);
+      padding: 2.75rem;
+      margin-bottom: 3.25rem;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+
+    @media (max-width: 640px) {
+      .cyber-module {
+        padding: 1.75rem 1.25rem;
+      }
+    }
+
+    .module-code-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--neon-cyan);
+      padding: 0.25rem 0.75rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .module-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.25;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .module-lead {
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+    }
+
+    .module-lead strong {
+      color: #ffffff;
+    }
+
+    /* Duelo: Spotify Zombi vs Spinstack Rebelde */
+    .duel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 720px) {
+      .duel-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .duel-side {
+      padding: 1.75rem;
+      clip-path: var(--clip-corner-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .duel-side.zombie {
+      background: rgba(255, 0, 85, 0.08);
+      border: 1px solid var(--neon-pink);
+    }
+
+    .duel-side.rebel {
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid var(--neon-cyan);
+    }
+
+    .duel-side-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .duel-side.zombie .duel-side-title { color: var(--neon-pink); }
+    .duel-side.rebel .duel-side-title { color: var(--neon-cyan); }
+
+    .duel-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .duel-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+
+    .duel-list li::before {
+      position: absolute;
+      left: 0;
+      font-weight: 800;
+    }
+
+    .duel-side.zombie li::before { content: "✕"; color: var(--neon-pink); }
+    .duel-side.rebel li::before { content: "►"; color: var(--neon-cyan); }
+
+    /* Fichas de Trampas Algorítmicas */
+    .traps-deck {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .trap-module-card {
+      background: var(--bg-terminal);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      clip-path: var(--clip-corner-sm);
+      padding: 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .trap-mod-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--neon-yellow);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .trap-mod-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .trap-mod-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 680px) {
+      .trap-mod-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .trap-column strong {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .trap-column.error strong { color: var(--neon-pink); }
+    .trap-column.cheat strong { color: var(--neon-yellow); }
+
+    .trap-column p {
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: var(--text-dim);
+    }
+
+    .trap-solution-box {
+      background: rgba(0, 240, 255, 0.07);
+      border-left: 3px solid var(--neon-cyan);
+      padding: 0.9rem 1.2rem;
+      font-size: 0.96rem;
+    }
+
+    .trap-solution-box strong {
+      color: var(--neon-cyan);
+      font-family: 'Chakra Petch', sans-serif;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Prototipo de Interfaz Cyber-Deck */
+    .cyberdeck-player {
+      background: #0d0f17;
+      border: 1px solid var(--neon-orange);
+      clip-path: var(--clip-corner);
+      padding: 2.25rem;
+      max-width: 520px;
+      margin: 2rem auto 0;
+      box-shadow: var(--glow-orange);
+    }
+
+    .deck-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .deck-pill-weather {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--neon-yellow);
+      background: #000;
+      border: 1px solid var(--neon-yellow);
+      padding: 0.25rem 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .deck-affinity {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+    }
+
+    .deck-album-name {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .deck-artist-name {
+      font-size: 0.95rem;
+      color: var(--neon-orange);
+      margin-bottom: 1.25rem;
+    }
+
+    .deck-reason-box {
+      background: #050608;
+      border-left: 3px solid var(--neon-orange);
+      padding: 1rem 1.25rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-dim);
+      margin-bottom: 1.5rem;
+    }
+
+    .deck-reason-box strong {
+      color: var(--neon-yellow);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .deck-action-row {
+      display: flex;
+      gap: 0.85rem;
+    }
+
+    @media (max-width: 480px) {
+      .deck-action-row {
+        flex-direction: column;
+      }
+    }
+
+    .btn-cyber-primary {
+      flex: 1;
+      background: var(--neon-orange);
+      color: #ffffff;
+      border: none;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.85rem 1rem;
+      clip-path: var(--clip-corner-sm);
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0 0 16px rgba(255, 85, 0, 0.4);
+      transition: all var(--transition);
+    }
+
+    .btn-cyber-primary:hover {
+      background: #ff7700;
+      box-shadow: 0 0 24px rgba(255, 85, 0, 0.7);
+    }
+
+    .btn-cyber-secondary {
+      flex: 1;
+      background: #000000;
+      color: var(--neon-cyan);
+      border: 1px solid var(--neon-cyan);
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.85rem 1rem;
+      clip-path: var(--clip-corner-sm);
+      cursor: pointer;
+      text-align: center;
+      transition: all var(--transition);
+    }
+
+    .btn-cyber-secondary:hover {
+      background: rgba(0, 240, 255, 0.15);
+      box-shadow: var(--glow-cyan);
+    }
+
+    /* Señales: Lo que la pantalla ve vs la realidad */
+    .cyber-signals-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 720px) {
+      .cyber-signals-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cyber-signal-card {
+      background: var(--bg-terminal);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      clip-path: var(--clip-corner-sm);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .signal-cyber-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .sig-status-box {
+      font-size: 0.94rem;
+      line-height: 1.55;
+      padding: 0.8rem 1rem;
+    }
+
+    .sig-status-box.bad {
+      background: rgba(255, 0, 85, 0.1);
+      border-left: 3px solid var(--neon-pink);
+      color: #fca5a5;
+    }
+
+    .sig-status-box.good {
+      background: rgba(0, 240, 255, 0.1);
+      border-left: 3px solid var(--neon-cyan);
+      color: #bae6fd;
+    }
+
+    .sig-fix-label {
+      font-size: 0.92rem;
+      color: var(--text-dim);
+      border-top: 1px dotted rgba(255, 255, 255, 0.15);
+      padding-top: 0.75rem;
+      margin-top: auto;
+    }
+
+    .sig-fix-label strong {
+      color: var(--neon-yellow);
+      font-family: 'Space Mono', monospace;
+      display: block;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+
+    /* Mitos Silicon Valley */
+    .cyber-myths-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .myth-cyber-row {
+      background: var(--bg-terminal);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      clip-path: var(--clip-corner-sm);
+      padding: 1.75rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 1.75rem;
+      align-items: center;
+    }
+
+    @media (max-width: 720px) {
+      .myth-cyber-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    .myth-left-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--neon-pink);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .myth-left-text {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.15rem;
+      color: #6b7280;
+      text-decoration: line-through;
+      line-height: 1.4;
+    }
+
+    .myth-right-box {
+      background: rgba(0, 240, 255, 0.06);
+      border: 1px solid var(--neon-cyan);
+      padding: 1.1rem 1.35rem;
+    }
+
+    .myth-right-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .myth-right-text {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: #ffffff;
+    }
+
+    /* Reglas de Fuego */
+    .fire-rules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 700px) {
+      .fire-rules-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .fire-rule-card {
+      padding: 2rem;
+      clip-path: var(--clip-corner-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .fire-rule-card.allowed {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid var(--neon-green);
+    }
+
+    .fire-rule-card.denied {
+      background: rgba(255, 0, 85, 0.08);
+      border: 1px solid var(--neon-pink);
+    }
+
+    .fire-rule-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .fire-rule-card.allowed .fire-rule-title { color: var(--neon-green); }
+    .fire-rule-card.denied .fire-rule-title { color: var(--neon-pink); }
+
+    .fire-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .fire-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+
+    .fire-list li::before {
+      position: absolute;
+      left: 0;
+      font-weight: 800;
+    }
+
+    .fire-rule-card.allowed li::before { content: "✓"; color: var(--neon-green); }
+    .fire-rule-card.denied li::before { content: "✕"; color: var(--neon-pink); }
+
+    /* Footer Cyber */
+    footer {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-cyber);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .footer-links a {
+      color: var(--neon-cyan);
+      text-decoration: none;
+      font-weight: 700;
+      margin-left: 1.25rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--neon-orange);
+      text-shadow: var(--glow-orange);
+    }
+
+    /* Cyber Toast */
+    .cyber-toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #000000;
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.85rem 1.4rem;
+      clip-path: var(--clip-corner-sm);
+      box-shadow: var(--glow-cyan);
+      display: none;
+      z-index: 1000;
+      animation: glitchPop 0.2s ease;
+    }
+
+    @keyframes glitchPop {
+      from { transform: translateY(12px) scale(0.95); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Barra Superior Cyber-HUD -->
+    <header class="cyber-header">
+      <div class="brand-hud">
+        <div class="cyber-vinyl-rig" id="cyberVinyl" title="¡Haz clic para activar el tocadiscos cyberdeck!"></div>
+        <div class="brand-titles">
+          <h1>SPINSTACK <span>//</span> PROTOCOLO ANÁLOGO</h1>
+          <p>&gt; GUÍA NEO-PUNK PARA NO-HUMILDES (FOR DUMMIES)</p>
+        </div>
+      </div>
+      <span class="hud-badge-dummies">[ MODO FOR DUMMIES: ON ]</span>
+    </header>
+
+    <!-- Hero / Manifiesto -->
+    <section class="hero-glitch-box">
+      <span class="status-stamp">⚡ MANIFIESTO DE REBELIÓN HUMANO–IA ⚡</span>
+      <h2 class="hero-glitch-title">
+        CÓMO HACKEAR LA <span class="hl-cyan">IA</span> SIN CONVERTIRTE EN UN <span class="hl-orange">ZOMBI</span> DE SPOTIFY
+      </h2>
+      <p class="hero-glitch-lead">
+        Silicon Valley te vendió el cuento de que <em>«la mejor tecnología es la que piensa por ti»</em>. <strong>Mentira.</strong> Si dejas que el algoritmo maneje tus vinilos, te va a recomendar siempre los mismos 4 discos seguros para no fallar. Spinstack es el diseño rebelde: la IA como copiloto que sugiere, mientras <strong>tú conservas el 100% del poder de decisión</strong>.
+      </p>
+
+      <!-- Panel de Telemetría Rápida -->
+      <div class="telemetry-grid">
+        <div class="telemetry-node">
+          <span class="telemetry-label">[ HACKER / DISEÑO ]</span>
+          <span class="telemetry-val">Luis Ángel Arancibia</span>
+        </div>
+        <div class="telemetry-node">
+          <span class="telemetry-label">[ AUDIENCIA ]</span>
+          <span class="telemetry-val">Coleccionistas de Vinilos</span>
+        </div>
+        <div class="telemetry-node warn">
+          <span class="telemetry-label">[ SEGURIDAD ]</span>
+          <span class="telemetry-val">100% On-Device (Cero Nube)</span>
+        </div>
+        <div class="telemetry-node warn">
+          <span class="telemetry-label">[ LEY SUPREMA ]</span>
+          <span class="telemetry-val">Fricción Constructiva</span>
+        </div>
+      </div>
+
+      <!-- Caja Manifiesto -->
+      <div class="manifesto-box">
+        <span class="manifesto-tag">// LA REGLA PUNK EN 15 SEGUNDOS //</span>
+        <p class="manifesto-text">
+          Compraste vinilos porque te gusta levantarte del sillón, tocar la carátula, sentir el olor a cartón y poner la aguja en el surco. <strong>Eso no es un error de diseño; es el alma del ritual.</strong> Spinstack no viene a automatizar tu placer: viene a ayudarte a desempolvar joyas perdidas sin tocar jamás el tocadiscos por ti.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         LÁMINA INFOGRÁFICA CYBER-PUNK INTERACTIVA (FIGURA 01)
+         ========================================================================== -->
+    <section class="cyber-chart-card" id="radar-cyber">
+      <div class="cyber-chart-header">
+        <div class="chart-title-hud">
+          <h3 id="cyberChartTitle">RADAR DIALÉCTICO: ¿QUIÉN TIENE EL CONTROL DEL RITUAL?</h3>
+          <p id="cyberChartSub">&gt; HAZ CLIC EN LOS PUNTOS PARA DESENMASCARAR CADA ALGORITMO</p>
+        </div>
+        <div class="cyber-tabs">
+          <button class="cyber-tab-btn active" id="btnCyber2D">Fig 1A · Matriz 2D</button>
+          <button class="cyber-tab-btn" id="btnCyberRadar">Fig 1B · Radar de Combate</button>
+        </div>
+      </div>
+
+      <!-- Lienzo SVG Cyberpunk -->
+      <div class="cyber-canvas-frame">
+        
+        <!-- VISTA 1: PLANO CARTESIANO NEO-PUNK -->
+        <svg id="cyberView2D" viewBox="0 0 760 450" xmlns="http://www.w3.org/2000/svg">
+          <!-- Retícula Cyberpunk Dotted -->
+          <pattern id="cyberGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+            <circle cx="15" cy="15" r="1" fill="#1e293b"/>
+          </pattern>
+          <rect x="90" y="45" width="630" height="355" fill="url(#cyberGrid)" />
+
+          <!-- Zonas delimitadas con luz -->
+          <rect x="90" y="45" width="315" height="177" fill="rgba(255, 255, 255, 0.01)" stroke="#334155" stroke-dasharray="3 3"/>
+          <rect x="405" y="45" width="315" height="177" fill="rgba(255, 85, 0, 0.06)" stroke="#ff5500" stroke-width="1.5"/>
+          <rect x="90" y="222" width="315" height="178" fill="rgba(0, 0, 0, 0.3)" stroke="#334155" stroke-dasharray="3 3"/>
+          <rect x="405" y="222" width="315" height="178" fill="rgba(255, 0, 85, 0.08)" stroke="#ff0055" stroke-width="1.5"/>
+
+          <!-- Textos de Cuadrantes -->
+          <text x="105" y="70" font-family="Chakra Petch" font-size="11" font-weight="700" fill="#64748b">[ CUADRANTE 01: RITUAL 100% ANALÓGICO ]</text>
+          <text x="105" y="86" font-family="Space Mono" font-size="9.5" fill="#475569">Mucho romanticismo, pero te cuesta elegir qué poner</text>
+
+          <text x="420" y="70" font-family="Chakra Petch" font-size="11" font-weight="700" fill="#ff5500">[ CUADRANTE 02: FRICCIÓN CONSTRUCTIVA (SPINSTACK) ]</text>
+          <text x="420" y="86" font-family="Space Mono" font-size="9.5" fill="#fdba74">La IA te propone ideas brillantes y TÚ tienes la última palabra</text>
+
+          <text x="105" y="246" font-family="Chakra Petch" font-size="11" font-weight="700" fill="#475569">[ CUADRANTE 03: EL TEDIO DE ANOTAR A MANO ]</text>
+          <text x="105" y="262" font-family="Space Mono" font-size="9.5" fill="#334155">Llevar un cuaderno de notas termina cansando</text>
+
+          <text x="420" y="246" font-family="Chakra Petch" font-size="11" font-weight="700" fill="#ff0055">[ CUADRANTE 04: LA CÁMARA DE ECO (SPOTIFY) ]</text>
+          <text x="420" y="262" font-family="Space Mono" font-size="9.5" fill="#f43f5e">El algoritmo decide todo, te encasilla y aburre</text>
+
+          <!-- Ejes Neon -->
+          <line x1="90" y1="400" x2="720" y2="400" stroke="#00f0ff" stroke-width="2"/>
+          <line x1="90" y1="400" x2="90" y2="40" stroke="#00f0ff" stroke-width="2"/>
+
+          <!-- Puntas de Flecha -->
+          <polyline points="712,395 722,400 712,405" fill="none" stroke="#00f0ff" stroke-width="2"/>
+          <polyline points="85,48 90,38 95,48" fill="none" stroke="#00f0ff" stroke-width="2"/>
+
+          <!-- Etiquetas de Ejes -->
+          <text x="405" y="432" font-family="Chakra Petch" font-size="11" font-weight="700" fill="#00f0ff" text-anchor="middle">¿CUÁNTO SE METE LA IA? (0% MANUAL ──► 100% PILOTO AUTOMÁTICO)</text>
+          <text x="-220" y="30" font-family="Chakra Petch" font-size="11" font-weight="700" fill="#00f0ff" transform="rotate(-90)" text-anchor="middle">¿QUIÉN TIENE EL PODER? (0% ZOMBI ──► 100% TÚ MANDAS)</text>
+
+          <!-- Curva Spotify (Cae al abismo) -->
+          <path d="M 120 300 C 240 270, 420 310, 670 375" fill="none" stroke="#ff0055" stroke-width="2.5" stroke-dasharray="6 4"/>
+          <text x="675" y="390" font-family="Space Mono" font-size="9" font-weight="700" fill="#ff0055" text-anchor="end">Abandono del ritual (Spotify)</text>
+
+          <!-- Curva Spinstack (Sube y triunfa) -->
+          <path d="M 120 300 C 220 180, 360 85, 460 95 C 530 102, 590 120, 660 140" fill="none" stroke="#ff5500" stroke-width="3.5"/>
+          <text x="480" y="80" font-family="Chakra Petch" font-size="12" font-weight="700" fill="#ff5500">CÚSPIDE SPINSTACK (PUNTO DULCE)</text>
+
+          <!-- Nodos Interactivos con Glow -->
+          <g class="cyber-node" data-point="1" transform="translate(450, 115)" style="cursor: pointer;">
+            <circle cx="0" cy="0" r="16" fill="#ff5500" opacity="0.25"/>
+            <circle cx="0" cy="0" r="7" fill="#ff5500" stroke="#fff" stroke-width="2"/>
+            <text x="14" y="4" font-family="Space Mono" font-size="10" font-weight="700" fill="#ffffff">HACK 01: Feed Explicable</text>
+          </g>
+
+          <g class="cyber-node" data-point="2" transform="translate(530, 108)" style="cursor: pointer;">
+            <circle cx="0" cy="0" r="16" fill="#ff5500" opacity="0.25"/>
+            <circle cx="0" cy="0" r="7" fill="#ff5500" stroke="#fff" stroke-width="2"/>
+            <text x="14" y="4" font-family="Space Mono" font-size="10" font-weight="700" fill="#ffffff">HACK 02: Romper Bucle</text>
+          </g>
+
+          <g class="cyber-node" data-point="3" transform="translate(370, 92)" style="cursor: pointer;">
+            <circle cx="0" cy="0" r="16" fill="#ff5500" opacity="0.25"/>
+            <circle cx="0" cy="0" r="7" fill="#ff5500" stroke="#fff" stroke-width="2"/>
+            <text x="-14" y="-8" font-family="Space Mono" font-size="10" font-weight="700" fill="#ffffff" text-anchor="end">HACK 03: Perfil Libre</text>
+          </g>
+
+          <g class="cyber-node" data-point="4" transform="translate(660, 370)" style="cursor: pointer;">
+            <circle cx="0" cy="0" r="16" fill="#ff0055" opacity="0.3"/>
+            <circle cx="0" cy="0" r="7" fill="#ff0055" stroke="#fff" stroke-width="2"/>
+            <text x="-14" y="16" font-family="Space Mono" font-size="10" font-weight="700" fill="#ff0055" text-anchor="end">ZONA ROJA: Spotify</text>
+          </g>
+
+          <g class="cyber-node" data-point="5" transform="translate(135, 300)" style="cursor: pointer;">
+            <circle cx="0" cy="0" r="16" fill="#64748b" opacity="0.3"/>
+            <circle cx="0" cy="0" r="7" fill="#64748b" stroke="#fff" stroke-width="2"/>
+            <text x="14" y="14" font-family="Space Mono" font-size="10" font-weight="700" fill="#94a3b8">BASE: 100% Análogo</text>
+          </g>
+        </svg>
+
+        <!-- VISTA 2: RADAR DE COMBATE NEO-PUNK -->
+        <svg id="cyberViewRadar" viewBox="0 0 760 450" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+          <!-- Fondo Radar de Combate -->
+          <polygon points="380,75 530,185 475,355 285,355 230,185" fill="#0d111a" stroke="#1e293b" stroke-width="2"/>
+          <polygon points="380,135 470,201 437,303 323,303 290,201" fill="#07080c" stroke="#334155" stroke-dasharray="3 3"/>
+          <polygon points="380,195 410,217 399,251 361,251 350,217" fill="none" stroke="#334155" stroke-dasharray="2 2"/>
+
+          <!-- Ejes Radiales Cian -->
+          <line x1="380" y1="230" x2="380" y2="75" stroke="#00f0ff" stroke-width="1.5" stroke-opacity="0.4"/>
+          <line x1="380" y1="230" x2="530" y2="185" stroke="#00f0ff" stroke-width="1.5" stroke-opacity="0.4"/>
+          <line x1="380" y1="230" x2="475" y2="355" stroke="#00f0ff" stroke-width="1.5" stroke-opacity="0.4"/>
+          <line x1="380" y1="230" x2="285" y2="355" stroke="#00f0ff" stroke-width="1.5" stroke-opacity="0.4"/>
+          <line x1="380" y1="230" x2="230" y2="185" stroke="#00f0ff" stroke-width="1.5" stroke-opacity="0.4"/>
+
+          <!-- Rótulos de Combate -->
+          <text x="380" y="55" font-family="Chakra Petch" font-size="11" font-weight="700" fill="#f5ee38" text-anchor="middle">1. ROTACIÓN DE DISCOS (VARIEDAD)</text>
+          <text x="545" y="185" font-family="Chakra Petch" font-size="11" font-weight="700" fill="#f5ee38" text-anchor="start">2. RESPETO AL RITUAL ANÁLOGO</text>
+          <text x="490" y="375" font-family="Chakra Petch" font-size="11" font-weight="700" fill="#f5ee38" text-anchor="start">3. EXPLICABILIDAD DE LA IA</text>
+          <text x="270" y="375" font-family="Chakra Petch" font-size="11" font-weight="700" fill="#f5ee38" text-anchor="end">4. SOBERANÍA DEL USUARIO</text>
+          <text x="215" y="185" font-family="Chakra Petch" font-size="11" font-weight="700" fill="#f5ee38" text-anchor="end">5. PRIVACIDAD 100% LOCAL</text>
+
+          <!-- Polígono B: Spotify (Derrotado) -->
+          <polygon points="380,175 402,222 398,255 352,267 350,220" fill="rgba(255, 0, 85, 0.25)" stroke="#ff0055" stroke-width="2" stroke-dasharray="5 3"/>
+
+          <!-- Polígono A: Spinstack (Victoria Total) -->
+          <polygon points="380,90 522,187 468,348 293,345 235,185" fill="rgba(255, 85, 0, 0.35)" stroke="#ff5500" stroke-width="3.5"/>
+          
+          <!-- Nodos Spinstack -->
+          <circle cx="380" cy="90" r="6" fill="#ff5500" stroke="#ffffff" stroke-width="2"/>
+          <circle cx="522" cy="187" r="6" fill="#ff5500" stroke="#ffffff" stroke-width="2"/>
+          <circle cx="468" cy="348" r="6" fill="#ff5500" stroke="#ffffff" stroke-width="2"/>
+          <circle cx="293" cy="345" r="6" fill="#ff5500" stroke="#ffffff" stroke-width="2"/>
+          <circle cx="235" cy="185" r="6" fill="#ff5500" stroke="#ffffff" stroke-width="2"/>
+
+          <!-- Leyenda de Combate -->
+          <g transform="translate(130, 420)">
+            <rect x="0" y="-4" width="22" height="8" fill="#ff5500"/>
+            <text x="32" y="4" font-family="Chakra Petch" font-size="11" font-weight="700" fill="#ff5500">SPINSTACK REBELDE (GANA EN LOS 5 EJES)</text>
+
+            <line x1="320" y1="0" x2="342" y2="0" stroke="#ff0055" stroke-width="2" stroke-dasharray="4 2"/>
+            <text x="352" y="4" font-family="Chakra Petch" font-size="11" font-weight="700" fill="#ff0055">STREAMING GENÉRICO (SPOTIFY)</text>
+          </g>
+        </svg>
+
+      </div>
+
+      <!-- Terminal de Diagnóstico Interactivo -->
+      <div class="cyber-diag-terminal" id="diagTerminal">
+        <div class="diag-head">
+          <span id="diagSig">&gt; NODO DE COMBATE: P1_FEED_EXPLICABLE</span>
+          <span id="diagCoords">COORDS: 58% AUTO // 87% PODER HUMANO</span>
+        </div>
+        <h4 class="diag-title" id="diagTitle">HACK 01 // LA RECOMENDACIÓN EXPLICADA</h4>
+        <p class="diag-body" id="diagDesc">
+          <strong>¿Cómo te hackea la app normal?</strong> Te dice <em>«Escucha esto»</em> sin dar explicaciones para que te acostumbres a no pensar.<br>
+          <strong>El contraataque Spinstack:</strong> Te declara sus motivos (<em>«Te lo sugiero porque está lloviendo»</em>) y te entrega un botón para agitar el teléfono y rescatar un vinilo olvidado de tu estante.
+        </p>
+      </div>
+    </section>
+
+    <!-- Menú de Pistas Rápidas -->
+    <nav class="cyber-pills-nav" aria-label="Navegación de hallazgos neo-punk">
+      <a href="#np1" class="cyber-pill active">01. Guerra al Streaming</a>
+      <a href="#np2" class="cyber-pill">02. 3 Trampas Hackeadas</a>
+      <a href="#np3" class="cyber-pill">03. Freno de Mano Punk</a>
+      <a href="#np4" class="cyber-pill">04. El Algoritmo es Ciego</a>
+      <a href="#np5" class="cyber-pill">05. Mitos Destruidos</a>
+      <a href="#np6" class="cyber-pill">06. Leyes de Seguridad</a>
+    </nav>
+
+    <!-- CUERPO DE LOS 6 HALLAZGOS NEO-PUNK FOR DUMMIES -->
+    <main>
+
+      <!-- Hallazgo 01 -->
+      <article class="cyber-module" id="np1">
+        <span class="module-code-badge">// HACK 01 · EL CHOQUE DE MUNDOS //</span>
+        <h3 class="module-title">EL VINILO NO ES SPOTIFY: POR QUÉ EL STREAMING TE ENTIERRA EN LA MISMA MÚSICA</h3>
+        <p class="module-lead">
+          Spotify y Apple Music están programados para una sola cosa: <strong>retención pasiva</strong>. Quieren que pongas la música de fondo y te olvides de que existe. Pero tú compraste discos de vinilo por todo lo contrario: para disfrutar el arte de la carátula, poner la aguja y <strong>hacer girar tu colección completa</strong>.
+        </p>
+
+        <div class="duel-grid">
+          <div class="duel-side zombie">
+            <h4 class="duel-side-title"><span>⚠️</span> El Modo Spotify (Caja Negra)</h4>
+            <ul class="duel-list">
+              <li><strong>El bucle de repetición:</strong> Te sugiere siempre lo más famoso porque los algoritmos le temen al riesgo.</li>
+              <li><strong>Muerte de tu repisa:</strong> Los discos raros de tu colección quedan juntando polvo para siempre.</li>
+              <li><strong>Comportamiento NPC:</strong> Deja que una corporación decida la banda sonora de tu día.</li>
+            </ul>
+          </div>
+
+          <div class="duel-side rebel">
+            <h4 class="duel-side-title"><span>⚡</span> El Modo Spinstack (Rebelde)</h4>
+            <ul class="duel-list">
+              <li><strong>Desempolva tu catálogo:</strong> Prioriza discos que llevan 6 u 8 meses sin sonar en tu tornamesa.</li>
+              <li><strong>Protege el ritual:</strong> La música no suena sola por arte de magia; el acto físico lo haces tú.</li>
+              <li><strong>IA Copiloto:</strong> Te redacta notas históricas y curiosidades mientras gira el Lado A.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Hallazgo 02 -->
+      <article class="cyber-module" id="np2">
+        <span class="module-code-badge">// HACK 02 · AUDITORÍA DE SESGOS //</span>
+        <h3 class="module-title">LAS 3 TRAMPAS ALGORÍTMICAS (Y CÓMO NO CAER COMO NOVATO)</h3>
+        <p class="module-lead">
+          Cuando una pantalla te muestra un número con el 95% de afinidad, tu cerebro se relaja y asume que la máquina "sabe más que tú". Desarmamos las 3 trampas clásicas:
+        </p>
+
+        <div class="traps-deck">
+          
+          <!-- Trampa 1 -->
+          <div class="trap-module-card">
+            <span class="trap-mod-num">&gt; TRAMPA 01 // EN EL FEED DE ENTRADA</span>
+            <h4 class="trap-mod-title">«La IA dice que esto es lo óptimo, así que no miro mi estante»</h4>
+            <div class="trap-mod-grid">
+              <div class="trap-column error">
+                <strong>Tu error humano:</strong>
+                Confiar ciegamente en la tarjeta destacada de la pantalla y volverte flojo para hojear tus vinilos.
+              </div>
+              <div class="trap-column cheat">
+                <strong>La pillería del algoritmo:</strong>
+                Te recomienda lo que escuchas siempre porque optimiza la probabilidad de que no te quejes.
+              </div>
+            </div>
+            <div class="trap-solution-box">
+              <strong>🛠️ El Hack Spinstack:</strong>
+              Pausa explicativa obligatoria: la app te canta la razón y te da el botón para agitar y sacar un disco fuera de tu zona segura.
+            </div>
+          </div>
+
+          <!-- Trampa 2 -->
+          <div class="trap-module-card">
+            <span class="trap-mod-num">&gt; TRAMPA 02 // EN TUS REPORTES DE ESCUCHA</span>
+            <h4 class="trap-mod-title">«La app dice que solo escucho Jazz, así que no pondré Punk»</h4>
+            <div class="trap-mod-grid">
+              <div class="trap-column error">
+                <strong>Tu error humano:</strong>
+                Creer que un gráfico de pastel resume toda tu alma melómana y forzarte a cumplir esa etiqueta.
+              </div>
+              <div class="trap-column cheat">
+                <strong>La pillería del algoritmo:</strong>
+                Solo computa las últimas semanas y retroalimenta el mismo género en bucle infinito.
+              </div>
+            </div>
+            <div class="trap-solution-box">
+              <strong>🛠️ El Hack Spinstack:</strong>
+              Control <strong>«Romper el bucle»</strong>: un interruptor para mandarle una patada al historial reciente y forzar álbumes de géneros olvidados.
+            </div>
+          </div>
+
+          <!-- Trampa 3 -->
+          <div class="trap-module-card">
+            <span class="trap-mod-num">&gt; TRAMPA 03 // EN LA ETIQUETA DE TU PERFIL</span>
+            <h4 class="trap-mod-title">«La app me calificó de 'principiante' porque mis discos no son caros»</h4>
+            <div class="trap-mod-grid">
+              <div class="trap-column error">
+                <strong>Tu error humano:</strong>
+                Gastar plata que no tienes comprando primeras ediciones para que un software te considere "coleccionista pro".
+              </div>
+              <div class="trap-column cheat">
+                <strong>La pillería del algoritmo:</strong>
+                Usa el precio en Discogs como atajo falso de "calidad melómana".
+              </div>
+            </div>
+            <div class="trap-solution-box">
+              <strong>🛠️ El Hack Spinstack:</strong>
+              Perfil 100% libre: tú defines tus etiquetas y tienes un botón para apagar cualquier clasificación pública. La app no es tu juez.
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- Hallazgo 03 -->
+      <article class="cyber-module" id="np3">
+        <span class="module-code-badge">// HACK 03 · EL FRENO DE MANO //</span>
+        <h3 class="module-title">FRICCIÓN CONSTRUCTIVA: POR QUÉ UNA IA 'INVISIBLE' ES UNA TRAMPA</h3>
+        <p class="module-lead">
+          En las conferencias de tecnología repiten como loros: <em>«La mejor IA es la invisible, la que hace todo sin fricción»</em>. En Spinstack descubrimos que <strong>la invisibilidad produce desconfianza y sensación de caja negra</strong>. La fricción constructiva es desacelerar a propósito: que la app te explique y te pida permiso.
+        </p>
+
+        <!-- Cyberdeck Player -->
+        <div class="cyberdeck-player">
+          <div class="deck-top-row">
+            <span class="deck-pill-weather" id="deckContext">☁️ DOMINGO // LLUVIA // 14°C</span>
+            <span class="deck-affinity" id="deckMatch">&gt; COINCIDENCIA: 94%</span>
+          </div>
+
+          <h4 class="deck-album-name" id="deckTitle">Kind of Blue</h4>
+          <p class="deck-artist-name" id="deckArtist">Miles Davis · Columbia Records (1959, 180g)</p>
+
+          <div class="deck-reason-box">
+            <strong>// MOTIVACIÓN ALGORÍTMICA //</strong>
+            <span id="deckReason">Sugerido porque tu historial asocia Modal Jazz con tardes frías, y este vinilo lleva 21 días sin rotar en tu tornamesa.</span>
+          </div>
+
+          <div class="deck-action-row">
+            <button class="btn-cyber-primary" id="btnCyberConfirm">¡Acepto sugerencia!</button>
+            <button class="btn-cyber-secondary" id="btnCyberShake">🔀 Agitar repisa (Disco olvidado)</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Hallazgo 04 -->
+      <article class="cyber-module" id="np4">
+        <span class="module-code-badge">// HACK 04 · SEÑALES DESACOPLADAS //</span>
+        <h3 class="module-title">LO QUE VE LA PANTALLA VS LA REALIDAD EN TU CASA: EL ALGORITMO ES CIEGO</h3>
+        <p class="module-lead">
+          Una app solo registra toques y clics, pero no sabe qué demonios pasa en tu living. Comprobamos que <strong>la IA malinterpreta el comportamiento de los coleccionistas todo el tiempo</strong>:
+        </p>
+
+        <div class="cyber-signals-grid">
+          
+          <div class="cyber-signal-card">
+            <h4 class="signal-cyber-title">📻 Disco sin registrar por 6 meses</h4>
+            <div class="sig-status-box bad">
+              <strong>Lo que la IA tontamente asume:</strong>
+              «El usuario odia este vinilo o se arrepintió de comprarlo. Lo borraré de las sugerencias».
+            </div>
+            <div class="sig-status-box good">
+              <strong>La realidad analógica:</strong>
+              ¡Lo escuchas todos los viernes con tus amigos, solo que no sacas el teléfono para anotarlo!
+            </div>
+            <div class="sig-fix-label">
+              <strong>🛠️ Solución Spinstack:</strong>
+              Módulo "Joyas Olvidadas" que pregunta con cortesía: <em>«¿Ha estado guardado o lo escuchaste sin registrar?»</em>.
+            </div>
+          </div>
+
+          <div class="cyber-signal-card">
+            <h4 class="signal-cyber-title">⏩ Saltas 5 sugerencias seguidas (Swipes)</h4>
+            <div class="sig-status-box bad">
+              <strong>Lo que la IA tontamente asume:</strong>
+              «¡Fallo crítico! El modelo de gustos colapsó, voy a recalcular todo agresivamente».
+            </div>
+            <div class="sig-status-box good">
+              <strong>La realidad analógica:</strong>
+              Solo estás buscando una vibra con más energía porque te pusiste a cocinar.
+            </div>
+            <div class="sig-fix-label">
+              <strong>🛠️ Solución Spinstack:</strong>
+              Pausa explicativa con selector rápido de Mood en pantalla para que elijas tu onda en 1 segundo.
+            </div>
+          </div>
+
+          <div class="cyber-signal-card">
+            <h4 class="signal-cyber-title">✍️ Reintentas generar notas históricas</h4>
+            <div class="sig-status-box bad">
+              <strong>Lo que la IA tontamente asume:</strong>
+              «Todo el texto narrativo fue rechazado, inventaré una historia completamente nueva».
+            </div>
+            <div class="sig-status-box good">
+              <strong>La realidad analógica:</strong>
+              La crónica estaba perfecta, solo le erró en un dato historiográfico puntual.
+            </div>
+            <div class="sig-fix-label">
+              <strong>🛠️ Solución Spinstack:</strong>
+              Controles de tono («Más Histórico / Más Personal») y botón para corregir la frase con Discogs.
+            </div>
+          </div>
+
+          <div class="cyber-signal-card">
+            <h4 class="signal-cyber-title">☕ Solo registras vinilos el domingo</h4>
+            <div class="sig-status-box bad">
+              <strong>Lo que la IA tontamente asume:</strong>
+              «Al usuario solo le gusta la música los domingos por la mañana, le daré lo mismo siempre».
+            </div>
+            <div class="sig-status-box good">
+              <strong>La realidad analógica:</strong>
+              Es el único momento de la semana con tiempo para sentarse con un café a leer la carátula.
+            </div>
+            <div class="sig-fix-label">
+              <strong>🛠️ Solución Spinstack:</strong>
+              Divergencia controlada: sugerir alternativas sonoras frescas para no encasillarte.
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- Hallazgo 05 -->
+      <article class="cyber-module" id="np5">
+        <span class="module-code-badge">// HACK 05 · DEMOLICIÓN DE DOGMAS //</span>
+        <h3 class="module-title">3 MITOS DE SILICON VALLEY QUE TUVIMOS QUE MANDAR A LA BASURA</h3>
+        <p class="module-lead">
+          Al diseñar interfaces con IA aplicada al mundo real, aprendes que las fórmulas fáciles de las Big Tech fallan estrepitosamente:
+        </p>
+
+        <div class="cyber-myths-stack">
+          
+          <div class="myth-cyber-row">
+            <div>
+              <span class="myth-left-tag">// DOGMA DESTRUÍDO 01 //</span>
+              <p class="myth-left-text">«Mientras más cosas haga la máquina por ti, más feliz serás»</p>
+            </div>
+            <div class="myth-right-box">
+              <span class="myth-right-tag">⚡ REALIDAD COMPROBADA</span>
+              <p class="myth-right-text">Falso. Si la app elige todo, pone el disco y lee por ti, anula el ritual. En experiencias afectivas, la fricción humana es el verdadero placer.</p>
+            </div>
+          </div>
+
+          <div class="myth-cyber-row">
+            <div>
+              <span class="myth-left-tag">// DOGMA DESTRUÍDO 02 //</span>
+              <p class="myth-left-text">«La IA no se debe notar para que todo sea fluido»</p>
+            </div>
+            <div class="myth-right-box">
+              <span class="myth-right-tag">⚡ REALIDAD COMPROBADA</span>
+              <p class="myth-right-text">Falso. La invisibilidad produce desconfianza y sensación de caja negra. La fluidez real descansa en transparentar por qué te propone cada cosa.</p>
+            </div>
+          </div>
+
+          <div class="myth-cyber-row">
+            <div>
+              <span class="myth-left-tag">// DOGMA DESTRUÍDO 03 //</span>
+              <p class="myth-left-text">«El usuario sabe qué escuchar o acepta cualquier sugerencia»</p>
+            </div>
+            <div class="myth-right-box">
+              <span class="myth-right-tag">⚡ REALIDAD COMPROBADA</span>
+              <p class="myth-right-text">Falso. El coleccionista oscila entre quedarse pegado mirando la estantería y aceptar por flojera. La IA debe ser un trampolín de exploración refutable.</p>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- Hallazgo 06 -->
+      <article class="cyber-module" id="np6">
+        <span class="module-code-badge">// HACK 06 · PROTOCOLO DE FUEGO //</span>
+        <h3 class="module-title">LAS REGLAS DE ORO: LO QUE LA IA TIENE PERMITIDO Y PROHIBIDO</h3>
+        <p class="module-lead">
+          Para que el sistema no se convierta en una amenaza invasiva ni trafique tus hábitos, fijamos un firewall inviolable:
+        </p>
+
+        <div class="fire-rules-grid">
+          <div class="fire-rule-card allowed">
+            <h4 class="fire-rule-title">✓ LO QUE LA IA SÍ PUEDE HACER</h4>
+            <ul class="fire-list">
+              <li>Escanear carátulas para sincronizar el prensaje exacto con Discogs.</li>
+              <li>Insinuar vinilos olvidados cruzando hora, clima y tiempo sin sonar.</li>
+              <li>Redactar borradores históricos para las notas del libreto (AI Liner Notes).</li>
+              <li>Generar reportes analíticos de rotación de catálogo en el año.</li>
+            </ul>
+          </div>
+
+          <div class="fire-rule-card denied">
+            <h4 class="fire-rule-title">✕ LO QUE LA IA TIENE PROHIBIDO</h4>
+            <ul class="fire-list">
+              <li><strong>JAMÁS sonar música sola:</strong> La aguja física es monopolio humano exclusivo.</li>
+              <li><strong>JAMÁS subir datos a la nube:</strong> Cómputo 100% On-Device (Apple Intelligence local).</li>
+              <li><strong>JAMÁS asumir estados de ánimo:</strong> Prohibido etiquetar emociones sin confirmación tuya.</li>
+              <li><strong>JAMÁS publicar nada sin tu visto bueno:</strong> Toda crónica requiere tu edición previa.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- Footer Cyberpunk -->
+    <footer>
+      <div>
+        <span>PROYECTO SPINSTACK // DISEÑO HUMANO–IA</span> · Luis Ángel Arancibia (UDD Diseño, 2026)
+      </div>
+      <div class="footer-links">
+        <a href="hallazgos.md">&gt; hallazgos.md</a>
+        <a href="Dossier_Humano_IA_Spinstack.txt">&gt; Dossier Técnico</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Toast Cyberpunk -->
+  <div class="cyber-toast" id="cyberToast"></div>
+
+  <!-- Lógica Interactiva Neo-Punk -->
+  <script>
+    // 1. Alternar vistas del Gráfico (2D vs Radar)
+    const btnCyber2D = document.getElementById('btnCyber2D');
+    const btnCyberRadar = document.getElementById('btnCyberRadar');
+    const cyberView2D = document.getElementById('cyberView2D');
+    const cyberViewRadar = document.getElementById('cyberViewRadar');
+    const cyberChartTitle = document.getElementById('cyberChartTitle');
+    const cyberChartSub = document.getElementById('cyberChartSub');
+    const diagSig = document.getElementById('diagSig');
+    const diagCoords = document.getElementById('diagCoords');
+    const diagTitle = document.getElementById('diagTitle');
+    const diagDesc = document.getElementById('diagDesc');
+
+    btnCyber2D.addEventListener('click', () => {
+      btnCyber2D.classList.add('active');
+      btnCyberRadar.classList.remove('active');
+      cyberView2D.style.display = 'block';
+      cyberViewRadar.style.display = 'none';
+      cyberChartTitle.textContent = "RADAR DIALÉCTICO: ¿QUIÉN TIENE EL CONTROL DEL RITUAL?";
+      cyberChartSub.textContent = "> HAZ CLIC EN LOS PUNTOS PARA DESENMASCARAR CADA ALGORITMO";
+      setDiagNode(1);
+    });
+
+    btnCyberRadar.addEventListener('click', () => {
+      btnCyberRadar.classList.add('active');
+      btnCyber2D.classList.remove('active');
+      cyberView2D.style.display = 'none';
+      cyberViewRadar.style.display = 'block';
+      cyberChartTitle.textContent = "RADAR DE COMBATE: SPINSTACK REBELDE VS. SPOTIFY CORP";
+      cyberChartSub.textContent = "> POLÍGONO DE SUPERIORIDAD EN 5 EJES CLAVE";
+
+      diagSig.textContent = "> TELEMETRÍA // RADAR_PENTADIMENSIONAL";
+      diagCoords.textContent = "ESTADO: VICTORIA HUMANA";
+      diagTitle.textContent = "ANÁLISIS DE COMBATE EN 5 EJES";
+      diagDesc.innerHTML = "<strong>Diagnóstico de Batalla:</strong> Mientras Spotify optimiza que no toques nada y te tragues su publicidad algorítmica, Spinstack gana por goleada en <strong>respeto al ritual analógico</strong>, <strong>transparencia explicativa</strong> y <strong>privacidad 100% local en tu teléfono</strong>.";
+    });
+
+    // 2. Nodos del Gráfico Interactivos (Explicados For Dummies)
+    const cyberNodesData = {
+      1: {
+        sig: "> NODO DE COMBATE: P1_FEED_EXPLICABLE",
+        coords: "COORDS: 58% AUTO // 87% PODER HUMANO",
+        title: "HACK 01 // LA RECOMENDACIÓN EXPLICADA",
+        desc: "<strong>¿Cómo te hackea la app normal?</strong> Te dice <em>«Escucha esto»</em> sin dar explicaciones para que te acostumbres a no pensar.<br><strong>El contraataque Spinstack:</strong> Te declara sus motivos (<em>«Te lo sugiero porque está lloviendo»</em>) y te entrega un botón para agitar el teléfono y rescatar un vinilo olvidado de tu estante."
+      },
+      2: {
+        sig: "> NODO DE COMBATE: P2_DETONAR_EL_BUCLE",
+        coords: "COORDS: 68% AUTO // 89% PODER HUMANO",
+        title: "HACK 02 // SALIR DEL BUCLE INFINITO",
+        desc: "<strong>El peligro:</strong> El algoritmo tiende a volverse aburrido recomendando siempre los mismos 3 artistas que ya conoces.<br><strong>El contraataque Spinstack:</strong> Botón <strong>«Romper el Bucle»</strong>. Un toque y el sistema manda al tacho el historial reciente para obligarte a escuchar cosas divergentes."
+      },
+      3: {
+        sig: "> NODO DE COMBATE: P3_PERFIL_SOBERANO",
+        coords: "COORDS: 48% AUTO // 94% PODER HUMANO",
+        title: "HACK 03 // TU PERFIL SIN ETIQUETAS TÓXICAS",
+        desc: "<strong>El peligro:</strong> Apps que te llaman 'coleccionista novato' solo porque no tienes discos de $200 dólares en Discogs.<br><strong>El contraataque Spinstack:</strong> Perfil reconfigurable. Tú eres quien manda sobre tus datos, personalizas tus rasgos y puedes apagar la clasificación pública cuando quieras."
+      },
+      4: {
+        sig: "> NODO ENEMIGO: P4_ZONA_ROJA_SPOTIFY",
+        coords: "COORDS: 89% AUTO // 22% PODER HUMANO",
+        title: "ALERTA // EL POZO ZOMBI DE SPOTIFY",
+        desc: "<strong>Colapso del Ritual:</strong> Dejar que la máquina elija el 100% de lo que suena es muy cómodo, pero convierte una pasión de colección en música de ascensor mientras miras el techo con la mente apagada."
+      },
+      5: {
+        sig: "> NODO BASE: P5_RITUAL_100_MANUAL",
+        coords: "COORDS: 5% AUTO // 48% PODER HUMANO",
+        title: "LÍNEA BASE // EL DILEMA DEL ESTANTE LLENO",
+        desc: "<strong>Parálisis de Elección:</strong> Hacer todo a mano es el ritual puro, pero cuando tienes más de 200 discos, quedarte mirando el lomo de los álbumes sin saber qué poner aburre. La IA aquí es tu trampolín de ideas."
+      }
+    };
+
+    function setDiagNode(num) {
+      const data = cyberNodesData[num];
+      if (!data) return;
+      diagSig.textContent = data.sig;
+      diagCoords.textContent = data.coords;
+      diagTitle.textContent = data.title;
+      diagDesc.innerHTML = data.desc;
+    }
+
+    const cyberNodes = document.querySelectorAll('.cyber-node');
+    cyberNodes.forEach(node => {
+      node.addEventListener('click', () => {
+        const id = node.getAttribute('data-point');
+        setDiagNode(id);
+      });
+      node.addEventListener('mouseenter', () => {
+        const id = node.getAttribute('data-point');
+        setDiagNode(id);
+      });
+    });
+
+    // 3. Prototipo Cyberdeck Interactivo
+    const cyberCatalogue = [
+      {
+        title: "A Love Supreme",
+        artist: "John Coltrane · Impulse! (1965)",
+        context: "☕ DOMINGO // SESIÓN INTROSPECTIVA",
+        match: "> AFINIDAD: 89%",
+        reason: "Lleva 8 meses descansando en la repisa. Es el antídoto perfecto para desacelerar la mente este domingo con café en mano."
+      },
+      {
+        title: "Rumours",
+        artist: "Fleetwood Mac · Warner (1977)",
+        context: "☀️ MATINÉ LUMINOSA // 22°C",
+        match: "> AFINIDAD: 92%",
+        reason: "Pilar absoluto de tu colección con nula rotación en todo el mes. Ideal para musicalizar mientras te mueves por la casa."
+      },
+      {
+        title: "The Dark Side of the Moon",
+        artist: "Pink Floyd · Harvest (1973)",
+        context: "🌙 NOCHE CONTEMPLATIVA",
+        match: "> AFINIDAD: 95%",
+        reason: "Sugerencia divergente fuera de tu rutina para que apagues la luz y desempolves una obra maestra en vinilo grueso."
+      },
+      {
+        title: "Kind of Blue",
+        artist: "Miles Davis · Columbia (1959)",
+        context: "☁️ DOMINGO // LLUVIA // 14°C",
+        match: "> COINCIDENCIA: 94%",
+        reason: "Sugerido porque tu historial asocia Modal Jazz con tardes frías, y este vinilo lleva 21 días sin rotar en tu tornamesa."
+      }
+    ];
+
+    let currentCyberIdx = 0;
+    const deckTitle = document.getElementById('deckTitle');
+    const deckArtist = document.getElementById('deckArtist');
+    const deckContext = document.getElementById('deckContext');
+    const deckMatch = document.getElementById('deckMatch');
+    const deckReason = document.getElementById('deckReason');
+    const btnCyberConfirm = document.getElementById('btnCyberConfirm');
+    const btnCyberShake = document.getElementById('btnCyberShake');
+    const cyberToast = document.getElementById('cyberToast');
+
+    function flashToast(msg) {
+      cyberToast.textContent = msg;
+      cyberToast.style.display = 'block';
+      setTimeout(() => {
+        cyberToast.style.display = 'none';
+      }, 3200);
+    }
+
+    btnCyberShake.addEventListener('click', () => {
+      currentCyberIdx = (currentCyberIdx + 1) % cyberCatalogue.length;
+      const alb = cyberCatalogue[currentCyberIdx];
+
+      deckTitle.textContent = alb.title;
+      deckArtist.textContent = alb.artist;
+      deckContext.textContent = alb.context;
+      deckMatch.textContent = alb.match;
+      deckReason.textContent = alb.reason;
+
+      flashToast(`⚡ ¡REPISA AGITADA! SUGERENCIA: "${alb.title.toUpperCase()}"`);
+    });
+
+    btnCyberConfirm.addEventListener('click', () => {
+      flashToast(`🔥 CONFIRMADO: Anda al mueble, busca "${deckTitle.textContent}" y baja la aguja.`);
+    });
+
+    // 4. Giro del Vinilo al hacer click
+    const cyberVinyl = document.getElementById('cyberVinyl');
+    cyberVinyl.addEventListener('click', () => {
+      const isRunning = cyberVinyl.style.animationPlayState === 'running';
+      cyberVinyl.style.animationPlayState = isRunning ? 'paused' : 'running';
+      flashToast(isRunning ? '⏸️ TOCADISCOS CYBERDECK EN PAUSA' : '⚡ VINILO GIRANDO A 33 RPM...');
+    });
+  </script>
+</body>
+</html>
