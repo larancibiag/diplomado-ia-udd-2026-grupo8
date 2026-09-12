@@ -49,10 +49,7 @@ Identificar estos patrones de sesgo permite evitar que el modelo aprenda atajos 
 
 Ejercicio 3 y 4:
 Creamos el archivo datashhet con datos reales del proyecto. Archivo: datasheet\_v1.md
-Subimos el notebook trabajado a notebooks/Clase\_23.ipynb.
-Actualizar README,
-
-Conclusión: 
+Subimos el notebook trabajado a notebooks/Clase\_23.ipynb. Actualizar README.
 
 &nbsp;
 
