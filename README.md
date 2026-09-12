@@ -137,41 +137,20 @@ Principales ventajas identificadas:
 
 #### CLASE 27: Gemini Nano Banana
 
-  ¿Qué hicimos?
-  X
+¿Qué hicimos?
+Experimentar con Nano Banana.
   
-  Conclusiones
-  X
+Conclusiones
+
+La experiencia con Nano Banana confirma que la inteligencia artificial no sustituye a la dirección de arte, sino que amplifica su alcance. Aunque la plataforma ofrece un control de nivel estudio con ediciones localizadas, iluminación, profundidad de campo e integración de hasta más de 10 fuentes visuales, es la visión del creador la que otorga sentido a la pieza.
+
+La precisión en el prompt, la sensibilidad estética y el criterio para curar, seleccionar y armonizar los elementos de la escena siguen siendo aportes insustituibles de la mente humana.
 
 &nbsp;
 
 ---
 
 #### CLASE 28: Agentes
-
-  ¿Qué hicimos?
-  X
-  
-  Conclusiones
-  X
-
-&nbsp;
-
----
-
-#### CLASE 29: Hermes
-
-  ¿Qué hicimos?
-  X
-  
-  Conclusiones
-  X
-
-&nbsp;
-
----
-
-#### CLASE 30: Google Flow
 
   ¿Qué hicimos?
   X
