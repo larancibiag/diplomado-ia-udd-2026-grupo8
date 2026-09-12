@@ -8,11 +8,11 @@
 
 Lo usaré para gestionar una colección de vinilos y poder encontrar nuevas adquisiciones compatibles con los intereses del usuario ya que es una tarea que requiere revisar grandes volúmenes de información.
 
-&nbsp;
-
 * ¿Quién lo creó originalmente?
 
 Yo creé la base de datos con mi colección de vinilos.
+
+&nbsp;
 
 ## **2\. Composición**
 
@@ -23,6 +23,8 @@ Tabla
 * Cantidad de instancias:
 
 Cantante, Disco, Color, Formato, canciones.
+
+&nbsp;
 
 ## **3\. Recolección**
 
@@ -38,17 +40,23 @@ Entre Mayo de 2023 y Diciembre 2025
 
 Sí.
 
+&nbsp;
+
 ## **4\. Sesgos identificados (mínimo 2\)**
 
 * Sesgo 1: Recomendar siempre los discos mejor rankeados o más escuchados, dejando fuera discos para redescubrir sin la puntuación otorgada
 
 * Sesgo 2: Aceptar la primera sugerencia creyendo que es la opción perfecta, dejando de explorar la colección.
 
+&nbsp;
+
 ## **5\. Estrategias de mitigación (mínimo 2\)**
 
 * Estrategia 1: Explicar por qué se sugiere cada disco entregando razones por las cuales se entregó la propuesta de escucha.
 
 * Estrategia 2: Agregar columnas como notas históricas personales, puntuaciones externas para que momento se podrìa escuchar según notas del coleccionista.
+
+&nbsp;
 
 ## **6\. Uso recomendado / desaconsejado**
 
