@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Principales hallazgos del proyecto de diseño Spinstack: IA aplicada al coleccionismo de vinilos, auditoría de sesgos y fricción constructiva.">
+  <title>Hallazgos de Diseño · Spinstack Humano–IA</title>
+  
+  <!-- Tipografía Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #0d0f12;
+      --bg-secondary: #14171d;
+      --bg-card: #1a1e26;
+      --bg-card-hover: #222733;
+      --bg-badge: #232a36;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(235, 148, 60, 0.35);
+      
+      --text-main: #f0f2f5;
+      --text-muted: #9ba3b0;
+      --text-dim: #656d7d;
+      
+      --accent-vinyl: #eb943c;
+      --accent-vinyl-glow: rgba(235, 148, 60, 0.15);
+      --accent-teal: #2dd4bf;
+      --accent-indigo: #818cf8;
+      --accent-rose: #f43f5e;
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Modo Claro Opcional */
+    body.light-mode {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --bg-badge: #e2e8f0;
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      --border-accent: rgba(217, 119, 6, 0.4);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --accent-vinyl: #d97706;
+      --accent-vinyl-glow: rgba(217, 119, 6, 0.12);
+      --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color var(--transition-smooth), color var(--transition-smooth);
+      min-height: 100vh;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+
+    /* Encabezado y Barra Superior */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .brand-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .vinyl-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #2a2e39 25%, #111 26%, #111 50%, var(--accent-vinyl) 51%, var(--accent-vinyl) 56%, #111 57%);
+      box-shadow: 0 0 12px var(--accent-vinyl-glow);
+      animation: spin 16s linear infinite paused;
+      cursor: pointer;
+    }
+
+    .vinyl-icon:hover {
+      animation-play-state: running;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .theme-toggle-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all var(--transition-fast);
+    }
+
+    .theme-toggle-btn:hover {
+      color: var(--text-main);
+      border-color: var(--accent-vinyl);
+    }
+
+    /* Hero / Título Principal */
+    .hero {
+      margin-bottom: 3.5rem;
+    }
+
+    .tag-dossier {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-vinyl-glow);
+      border: 1px solid var(--border-accent);
+      color: var(--accent-vinyl);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.1rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-desc {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      max-width: 780px;
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .meta-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .meta-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Filtros Rápidos */
+    .nav-filters {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      margin-bottom: 2.5rem;
+      scrollbar-width: none;
+    }
+
+    .nav-filters::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 0.6rem 1.1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .filter-btn:hover {
+      color: var(--text-main);
+      background: var(--bg-card-hover);
+    }
+
+    .filter-btn.active {
+      background: var(--accent-vinyl);
+      color: #fff;
+      border-color: var(--accent-vinyl);
+    }
+
+    /* Secciones de Contenido */
+    .section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-subtle);
+      transition: border-color var(--transition-smooth), transform var(--transition-fast);
+    }
+
+    .section-card:hover {
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .section-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      color: var(--accent-vinyl);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .section-badge {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      background: var(--bg-badge);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Grilla de Tensión: Streaming vs Análogo */
+    .tension-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .tension-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tension-col {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+
+    .tension-col.streaming {
+      border-top: 3px solid var(--accent-rose);
+    }
+
+    .tension-col.analogo {
+      border-top: 3px solid var(--accent-teal);
+    }
+
+    .tension-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .tension-heading.streaming { color: var(--accent-rose); }
+    .tension-heading.analogo { color: var(--accent-teal); }
+
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 1.25rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent-vinyl);
+      font-weight: bold;
+    }
+
+    /* Matriz de Decisiones & Sesgos */
+    .audit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .audit-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .audit-step-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-vinyl);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .audit-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .bias-chip-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+      font-size: 0.85rem;
+    }
+
+    .bias-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 0.6rem 0.75rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .bias-chip-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text-dim);
+      margin-bottom: 0.2rem;
+    }
+
+    .bias-solution {
+      background: var(--accent-vinyl-glow);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem;
+      margin-top: auto;
+    }
+
+    .bias-solution-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-vinyl);
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .bias-solution p {
+      font-size: 0.82rem;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    /* Bloque Destacado de Fricción Constructiva */
+    .feature-highlight {
+      background: linear-gradient(135deg, rgba(235, 148, 60, 0.08) 0%, rgba(20, 23, 29, 0.95) 100%);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature-highlight h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent-vinyl);
+    }
+
+    .feature-highlight p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .ui-prototype-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      max-width: 480px;
+      margin: 0 auto;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .ui-tag-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+    }
+
+    .ui-context-pill {
+      background: rgba(235, 148, 60, 0.2);
+      color: var(--accent-vinyl);
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+    }
+
+    .ui-match {
+      color: var(--accent-teal);
+      font-weight: 700;
+    }
+
+    .ui-album-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .ui-album-artist {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .ui-explainer {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      background: var(--bg-secondary);
+      padding: 0.65rem 0.85rem;
+      border-radius: var(--radius-sm);
+      border-left: 2px solid var(--accent-vinyl);
+    }
+
+    .ui-actions {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 0.25rem;
+    }
+
+    .ui-btn-primary {
+      flex: 1;
+      background: var(--accent-vinyl);
+      color: #fff;
+      border: none;
+      padding: 0.6rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: opacity var(--transition-fast);
+    }
+
+    .ui-btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    .ui-btn-secondary {
+      flex: 1;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 0.6rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all var(--transition-fast);
+    }
+
+    .ui-btn-secondary:hover {
+      color: var(--text-main);
+      border-color: var(--text-muted);
+    }
+
+    /* Signal Map */
+    .signals-table-wrap {
+      overflow-x: auto;
+      margin-top: 1.25rem;
+    }
+
+    .signals-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      text-align: left;
+    }
+
+    .signals-table th {
+      padding: 0.9rem 1rem;
+      background: var(--bg-secondary);
+      color: var(--text-dim);
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .signals-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      vertical-align: top;
+    }
+
+    .signals-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-main);
+    }
+
+    .signals-table td strong {
+      color: var(--text-main);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    /* Supuestos Revisados: Antes / Después */
+    .assumptions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .assumption-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .assumption-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-rose);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .assumption-old {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-decoration: line-through;
+      opacity: 0.75;
+    }
+
+    .assumption-divider {
+      height: 1px;
+      background: var(--border-subtle);
+      width: 100%;
+    }
+
+    .assumption-new-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .assumption-new {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Matriz Humano-IA: Límites */
+    .limits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .limits-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .limits-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+
+    .limits-card.does {
+      border-left: 3px solid var(--accent-teal);
+    }
+
+    .limits-card.never {
+      border-left: 3px solid var(--accent-rose);
+    }
+
+    .limits-card h4 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .limits-card.does h4 { color: var(--accent-teal); }
+    .limits-card.never h4 { color: var(--accent-rose); }
+
+    /* Footer */
+    footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .footer-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-link:hover {
+      color: var(--accent-vinyl);
+    }
+
+    /* Modal / Feedback toast */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--accent-vinyl);
+      color: var(--text-main);
+      padding: 0.8rem 1.2rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Barra Superior de Navegación -->
+    <header class="top-bar">
+      <div class="brand-meta">
+        <div class="vinyl-icon" id="vinylIcon" title="Girar vinilo"></div>
+        <div>
+          <h1 class="brand-title">Spinstack · AI Experience Design</h1>
+          <p class="brand-subtitle">Universidad del Desarrollo · Facultad de Diseño</p>
+        </div>
+      </div>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Cambiar tema">
+        <span id="themeIcon">☀️</span> Modo Claro
+      </button>
+    </header>
+
+    <!-- Encabezado / Hero -->
+    <section class="hero" id="inicio">
+      <span class="tag-dossier">Dossier Humano–IA · Síntesis Ejecutiva</span>
+      <h2 class="hero-title">Principales Hallazgos del Proyecto de Diseño</h2>
+      <p class="hero-desc">
+        Un análisis crítico sobre la intersección entre el coleccionismo análogo de vinilos y la inteligencia artificial: cómo evitar la trampa de la optimización algorítmica y devolver la soberanía al oyente mediante la <strong>fricción constructiva</strong>.
+      </p>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">Autor</span>
+          <span class="meta-value">Luis Ángel Arancibia G.</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Disciplina</span>
+          <span class="meta-value">Customer Experience &amp; AI Design</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Arquitectura</span>
+          <span class="meta-value">100% On-Device (Apple Intel.)</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Paradigma Clave</span>
+          <span class="meta-value">Fricción Constructiva</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filtro de Categorías -->
+    <nav class="nav-filters" aria-label="Filtros de contenido">
+      <button class="filter-btn active" data-filter="all">Todos los hallazgos</button>
+      <button class="filter-btn" data-filter="tension">1. Tensión Central</button>
+      <button class="filter-btn" data-filter="sesgos">2. Auditoría de Sesgos</button>
+      <button class="filter-btn" data-filter="friccion">3. Fricción Constructiva</button>
+      <button class="filter-btn" data-filter="senales">4. Mapa de Señales</button>
+      <button class="filter-btn" data-filter="supuestos">5. Supuestos Revisados</button>
+      <button class="filter-btn" data-filter="limites">6. Límites y Agencia</button>
+    </nav>
+
+    <main id="contentArea">
+
+      <!-- 1. Tensión Central -->
+      <article class="section-card" data-category="tension" id="tension-central">
+        <div class="section-header">
+          <div>
+            <div class="section-number">Hallazgo 01</div>
+            <h3 class="section-title">La Tensión Central: Optimización vs. Ritual Físico</h3>
+          </div>
+          <span class="section-badge">Contradicción de Paradigmas</span>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">
+          Al cruzar las capas de usuario, decisiones algorítmicas y experiencia afectiva, el principal conflicto detectado fue la contradicción entre la <strong>lógica de streaming digital</strong> y el <strong>valor afectivo del ritual análogo</strong>.
+        </p>
+
+        <div class="tension-grid">
+          <div class="tension-col streaming">
+            <div class="tension-heading streaming">
+              <span>⚠️</span> Lógica Streaming (Genérica)
+            </div>
+            <ul class="bullet-list">
+              <li><strong>Popularity Bias:</strong> Optimiza la retención sugiriendo discos seguros de alta rotación previa.</li>
+              <li><strong>Cámara de Eco:</strong> Ignora el catálogo durmiente y relega los álbumes menos reproducidos.</li>
+              <li><strong>Hiperautomatización:</strong> Asume que cualquier fricción es un defecto de experiencia que debe eliminarse.</li>
+            </ul>
+          </div>
+
+          <div class="tension-col analogo">
+            <div class="tension-heading analogo">
+              <span>✨</span> Lógica Spinstack (Ritual Análogo)
+            </div>
+            <ul class="bullet-list">
+              <li><strong>Rescate del Catálogo:</strong> El valor emocional radica en desempolvar joyas olvidadas de la estantería.</li>
+              <li><strong>Ritual Físico:</strong> El acto de levantarse, seleccionar el vinilo y ponerlo en el plato es irremplazable.</li>
+              <li><strong>Copiloto sin imposición:</strong> La IA sugiere y contextualiza datos sin decidir jamás por el usuario.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. Auditoría de Sesgos -->
+      <article class="section-card" data-category="sesgos" id="auditoria-sesgos">
+        <div class="section-header">
+          <div>
+            <div class="section-number">Hallazgo 02</div>
+            <h3 class="section-title">Auditoría de Sesgos y Decisiones Críticas</h3>
+          </div>
+          <span class="section-badge">Bias &amp; Decision Audit</span>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">
+          Se mapearon tres decisiones críticas del sistema, identificando el sesgo cognitivo que activan en el coleccionista y la respuesta proyectual para neutralizarlos:
+        </p>
+
+        <div class="audit-grid">
+          
+          <!-- Decisión 1 -->
+          <div class="audit-card">
+            <div>
+              <div class="audit-step-tag">Decisión 01 · Feed Principal</div>
+              <h4 class="audit-title">Sugerencia del vinilo para la siguiente escucha</h4>
+              <div class="bias-chip-group">
+                <div class="bias-chip">
+                  <div class="bias-chip-title">Sesgo del Usuario</div>
+                  <strong>Automation Bias / Anchoring:</strong> Asumir que la sugerencia del feed es la elección "óptima".
+                </div>
+                <div class="bias-chip">
+                  <div class="bias-chip-title">Sesgo del Algoritmo</div>
+                  <strong>Optimización Segura:</strong> Prioriza discos con alta rotación previa, aislando el resto.
+                </div>
+              </div>
+            </div>
+            <div class="bias-solution">
+              <div class="bias-solution-title"><span>💡</span> Solución UX: Pausa Explicativa</div>
+              <p>Exponer el criterio contextual ("Sugerido por tarde de lluvia") y habilitar el gesto de agitar para explorar una alternativa olvidada.</p>
+            </div>
+          </div>
+
+          <!-- Decisión 2 -->
+          <div class="audit-card">
+            <div>
+              <div class="audit-step-tag">Decisión 02 · Analítica &amp; Reportes</div>
+              <h4 class="audit-title">Generación de resúmenes de hábitos (Spin Report)</h4>
+              <div class="bias-chip-group">
+                <div class="bias-chip">
+                  <div class="bias-chip-title">Sesgo del Usuario</div>
+                  <strong>Automation Bias:</strong> Asumir que el reporte refleja la totalidad del universo musical propio.
+                </div>
+                <div class="bias-chip">
+                  <div class="bias-chip-title">Sesgo del Algoritmo</div>
+                  <strong>Feedback Loop:</strong> Analiza únicamente escuchas registradas en pantalla en semanas recientes.
+                </div>
+              </div>
+            </div>
+            <div class="bias-solution">
+              <div class="bias-solution-title"><span>💡</span> Solución UX: "Romper el Bucle"</div>
+              <p>Módulo de verificación activa y control manual para reducir temporalmente el peso del historial reciente.</p>
+            </div>
+          </div>
+
+          <!-- Decisión 3 -->
+          <div class="audit-card">
+            <div>
+              <div class="audit-step-tag">Decisión 03 · Perfil Melómano</div>
+              <h4 class="audit-title">Asignación de etiqueta de perfil de coleccionista</h4>
+              <div class="bias-chip-group">
+                <div class="bias-chip">
+                  <div class="bias-chip-title">Sesgo del Usuario</div>
+                  <strong>Confirmation Bias / Estatus:</strong> Alterar hábitos o forzar compras para encajar en la etiqueta.
+                </div>
+                <div class="bias-chip">
+                  <div class="bias-chip-title">Sesgo del Algoritmo</div>
+                  <strong>Proxy Bias:</strong> Emplear el valor monetario o volumen de la colección como proxy de nivel musical.
+                </div>
+              </div>
+            </div>
+            <div class="bias-solution">
+              <div class="bias-solution-title"><span>💡</span> Solución UX: Perfil Reconfigurable</div>
+              <p>Desglose transparente del cálculo, capacidad de personalizar rasgos o desactivar la categorización pública.</p>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- 3. Fricción Constructiva -->
+      <article class="section-card" data-category="friccion" id="friccion-constructiva">
+        <div class="section-header">
+          <div>
+            <div class="section-number">Hallazgo 03</div>
+            <h3 class="section-title">El Paradigma de la Fricción Constructiva</h3>
+          </div>
+          <span class="section-badge">Estrategia de Interacción</span>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1.25rem;">
+          Contrario al dogma tradicional del diseño digital que promueve una "IA invisible", en Spinstack la invisibilidad genera <strong>opacidad y desconfianza</strong> (efecto de caja negra). La fluidez real se alcanza introduciendo pausas reflexivas y gestos físicos.
+        </p>
+
+        <div class="feature-highlight">
+          <h4>Micro-Demostración: Tarjeta con Fricción Constructiva</h4>
+          <p>La interfaz explicita el razonamiento del modelo y ofrece rutas divergentes para devolver el control al usuario:</p>
+
+          <div class="ui-prototype-card" id="demoCard">
+            <div class="ui-tag-row">
+              <span class="ui-context-pill">☁️ Tarde lluviosa · Domingo</span>
+              <span class="ui-match">94% coincidencia</span>
+            </div>
+            <div>
+              <div class="ui-album-title" id="albumTitle">Kind of Blue</div>
+              <div class="ui-album-artist" id="albumArtist">Miles Davis · Columbia (1959, 180g Reissue)</div>
+            </div>
+            <div class="ui-explainer" id="albumExplainer">
+              <strong>Razón algorítmica:</strong> Sugerido porque sueles escuchar Modal Jazz en días fríos. Lleva 3 semanas sin rotar en tu tornamesa.
+            </div>
+            <div class="ui-actions">
+              <button class="ui-btn-primary" id="btnAcceptSpin">Aceptar sugerencia</button>
+              <button class="ui-btn-secondary" id="btnShakeSpin">🔀 Agitar para disco olvidado</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. Mapa de Señales -->
+      <article class="section-card" data-category="senales" id="mapa-senales">
+        <div class="section-header">
+          <div>
+            <div class="section-number">Hallazgo 04</div>
+            <h3 class="section-title">El Desacople de Señales (Signal Map)</h3>
+          </div>
+          <span class="section-badge">Interpretación vs. Realidad</span>
+        </div>
+
+        <p style="color: var(--text-muted);">
+          Las métricas pasivas registradas en una pantalla no reflejan fielmente el comportamiento análogo del usuario. Malinterpretar estas señales conduce a sobreajustes erráticos del algoritmo.
+        </p>
+
+        <div class="signals-table-wrap">
+          <table class="signals-table">
+            <thead>
+              <tr>
+                <th>Señal Observable en App</th>
+                <th>Lo que el Algoritmo Tiende a Asumir</th>
+                <th>Lo que Realmente Ocurre (Análogo)</th>
+                <th>Respuesta de Diseño UX</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Vinilo inactivo &gt; 6 meses</strong></td>
+                <td>Desinterés total o rechazo del álbum por parte del usuario.</td>
+                <td>El oyente lo reproduce físicamente sin abrir la aplicación.</td>
+                <td>Módulo <em>"Joyas olvidadas"</em> con consulta no intrusiva.</td>
+              </tr>
+              <tr>
+                <td><strong>Swipes continuos de rechazo</strong></td>
+                <td>Fallo global del modelo de recomendación.</td>
+                <td>Búsqueda puntual de un estado de ánimo no declarado.</td>
+                <td>Pausa explicativa con selector rápido de <em>Mood</em>.</td>
+              </tr>
+              <tr>
+                <td><strong>Reintento manual en AI Notes</strong></td>
+                <td>Rechazo general del texto narrativo.</td>
+                <td>Inexactitud en un solo dato historiográfico o tono.</td>
+                <td>Controles de tono y botón <em>"Ajustar precisión"</em> con Discogs.</td>
+              </tr>
+              <tr>
+                <td><strong>Registro concentrado en domingo</strong></td>
+                <td>Preferencia exclusiva por ese día u horario específico.</td>
+                <td>Mayor disponibilidad de tiempo libre para registrar datos.</td>
+                <td>Opción activa <em>"Romper el bucle"</em> para explorar otros géneros.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- 5. Supuestos Revisados -->
+      <article class="section-card" data-category="supuestos" id="supuestos-revisados">
+        <div class="section-header">
+          <div>
+            <div class="section-number">Hallazgo 05</div>
+            <h3 class="section-title">Supuestos del Proyecto Cuestionados y Revisados</h3>
+          </div>
+          <span class="section-badge">Evolución del Criterio</span>
+        </div>
+
+        <div class="assumptions-grid">
+          
+          <div class="assumption-card">
+            <div>
+              <div class="assumption-header"><span>✕</span> Supuesto Inicial</div>
+              <div class="assumption-old">"A mayor automatización, mejor será la experiencia de usuario."</div>
+            </div>
+            <div class="assumption-divider"></div>
+            <div>
+              <div class="assumption-new-header"><span>✓</span> Hallazgo Validado</div>
+              <div class="assumption-new">En experiencias análogas y afectivas, la hiperautomatización anula el ritual. Se necesita fricción constructiva para devolver la agencia.</div>
+            </div>
+          </div>
+
+          <div class="assumption-card">
+            <div>
+              <div class="assumption-header"><span>✕</span> Supuesto Inicial</div>
+              <div class="assumption-old">"La IA debe ser invisible para que la interacción se sienta fluida."</div>
+            </div>
+            <div class="assumption-divider"></div>
+            <div>
+              <div class="assumption-new-header"><span>✓</span> Hallazgo Validado</div>
+              <div class="assumption-new">La invisibilidad produce opacidad ("caja negra") y quiebres de confianza. La verdadera fluidez proviene de la transparencia explicativa.</div>
+            </div>
+          </div>
+
+          <div class="assumption-card">
+            <div>
+              <div class="assumption-header"><span>✕</span> Supuesto Inicial</div>
+              <div class="assumption-old">"El usuario siempre sabe qué escuchar o acepta ciegamente la IA."</div>
+            </div>
+            <div class="assumption-divider"></div>
+            <div>
+              <div class="assumption-new-header"><span>✓</span> Hallazgo Validado</div>
+              <div class="assumption-new">El oyente oscila entre la parálisis de decisión y el sesgo de automatización. El sistema debe operar como un descubrimiento guiado.</div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- 6. Límites y Soberanía -->
+      <article class="section-card" data-category="limites" id="limites-agencia">
+        <div class="section-header">
+          <div>
+            <div class="section-number">Hallazgo 06</div>
+            <h3 class="section-title">Matriz Humano–IA: Soberanía y Privacidad</h3>
+          </div>
+          <span class="section-badge">Gobernanza de la IA</span>
+        </div>
+
+        <p style="color: var(--text-muted);">
+          Para evitar que el sistema invada el ritual de la melomanía, se establecieron fronteras operativas claras procesadas de forma <strong>100% local (On-Device)</strong>:
+        </p>
+
+        <div class="limits-grid">
+          <div class="limits-card does">
+            <h4><span>✓</span> Lo que la IA Hace</h4>
+            <ul class="bullet-list">
+              <li>Estructura metadatos exactos integrando la API de Discogs.</li>
+              <li>Sugiere vinilos contextualizados para mitigar la parálisis de decisión.</li>
+              <li>Redacta borradores históricos para las notas del libreto (AI Liner Notes).</li>
+              <li>Sintetiza tendencias en los reportes periódicos de escucha.</li>
+            </ul>
+          </div>
+
+          <div class="limits-card never">
+            <h4><span>✕</span> Lo que la IA NUNCA Hace</h4>
+            <ul class="bullet-list">
+              <li><strong>Jamás reproduce música automáticamente</strong> ni sustituye el formato análogo.</li>
+              <li><strong>Jamás comparte datos en la nube</strong> (arquitectura local on-device).</li>
+              <li><strong>Jamás asume emociones de forma determinista</strong> sin opción de ajuste.</li>
+              <li><strong>Jamás publica o guarda textos</strong> sin la revisión previa del usuario.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- Pie de Página -->
+    <footer>
+      <div>
+        <strong>Spinstack Dossier Humano–IA</strong> · Luis Ángel Arancibia Galleguillos (UDD 2026)
+      </div>
+      <div class="footer-links">
+        <a href="hallazgos.md" class="footer-link">Ver hallazgos.md</a>
+        <a href="Dossier_Humano_IA_Spinstack.txt" class="footer-link">Ver Dossier Completo</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastMessage"></div>
+
+  <!-- Lógica JavaScript Minimalista -->
+  <script>
+    // 1. Alternar Modo Oscuro / Claro
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      const isLight = document.body.classList.contains('light-mode');
+      themeIcon.textContent = isLight ? '🌙' : '☀️';
+      themeToggle.innerHTML = `<span id="themeIcon">${isLight ? '🌙' : '☀️'}</span> ${isLight ? 'Modo Oscuro' : 'Modo Claro'}`;
+    });
+
+    // 2. Filtro interactivo de Hallazgos
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.section-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        cards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 3. Simulación de Fricción Constructiva (Prototipo UI)
+    const forgottenAlbums = [
+      {
+        title: "A Love Supreme",
+        artist: "John Coltrane · Impulse! (1965, Gatefold Edition)",
+        tag: "☕ Domingo introspectivo",
+        match: "88% afinidad",
+        explainer: "Razón algorítmica: Lleva 8 meses sin reproducirse en tu tornamesa. Coincide con tu búsqueda de sesiones profundas."
+      },
+      {
+        title: "Rumours",
+        artist: "Fleetwood Mac · Warner Bros. (1977, Textured Sleeve)",
+        tag: "☀️ Mañana despejada",
+        match: "91% afinidad",
+        explainer: "Razón algorítmica: Un clásico de tu colección con baja rotación este mes. Ideal para musicalizar tareas cotidianas."
+      },
+      {
+        title: "The Dark Side of the Moon",
+        artist: "Pink Floyd · Harvest (1973, Poster Edition)",
+        tag: "🌙 Noche contemplativa",
+        match: "96% afinidad",
+        explainer: "Razón algorítmica: Recomendado fuera del bucle de Jazz habitual para refrescar la diversidad de tu estantería física."
+      },
+      {
+        title: "Kind of Blue",
+        artist: "Miles Davis · Columbia (1959, 180g Reissue)",
+        tag: "☁️ Tarde lluviosa · Domingo",
+        match: "94% coincidencia",
+        explainer: "Razón algorítmica: Sugerido porque sueles escuchar Modal Jazz en días fríos. Lleva 3 semanas sin rotar en tu tornamesa."
+      }
+    ];
+
+    let currentAlbumIdx = 0;
+    const albumTitle = document.getElementById('albumTitle');
+    const albumArtist = document.getElementById('albumArtist');
+    const albumExplainer = document.getElementById('albumExplainer');
+    const btnShakeSpin = document.getElementById('btnShakeSpin');
+    const btnAcceptSpin = document.getElementById('btnAcceptSpin');
+    const toastMessage = document.getElementById('toastMessage');
+
+    function showToast(msg) {
+      toastMessage.textContent = msg;
+      toastMessage.style.display = 'block';
+      setTimeout(() => {
+        toastMessage.style.display = 'none';
+      }, 3200);
+    }
+
+    btnShakeSpin.addEventListener('click', () => {
+      currentAlbumIdx = (currentAlbumIdx + 1) % forgottenAlbums.length;
+      const album = forgottenAlbums[currentAlbumIdx];
+      
+      albumTitle.textContent = album.title;
+      albumArtist.textContent = album.artist;
+      albumExplainer.innerHTML = `<strong>Razón algorítmica:</strong> ${album.explainer.replace('Razón algorítmica: ', '')}`;
+      
+      showToast(`🔀 Joya rescatada del catálogo: "${album.title}"`);
+    });
+
+    btnAcceptSpin.addEventListener('click', () => {
+      showToast(`✨ Selección confirmada: "${albumTitle.textContent}". ¡A disfrutar el vinilo!`);
+    });
+
+    // 4. Giro del Vinilo al hacer click
+    const vinylIcon = document.getElementById('vinylIcon');
+    vinylIcon.addEventListener('click', () => {
+      vinylIcon.style.animationPlayState = vinylIcon.style.animationPlayState === 'running' ? 'paused' : 'running';
+      showToast("🎶 Vinilo Spinstack en rotación...");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+================================================================================
+DOSSIER HUMANO–IA: APLICACIÓN SPINSTACK
+Universidad del Desarrollo · Facultad de Diseño · Educación Continua
+Inteligencia Artificial Aplicada al Diseño
+Customer Experience y AI Experience Design
+Autor: Luis Ángel Arancibia Galleguillos
+================================================================================
+
+--------------------------------------------------------------------------------
+SECCIÓN 1: USUARIO Y SISTEMA
+--------------------------------------------------------------------------------
+
+[SISTEMA]
+Spinstack: Aplicación de recomendación, catálogo y analítica personal potenciada por IA a partir de la colección del usuario, su historial de escuchas, el clima y su estado de ánimo. La aplicación cruza estos datos para ofrecer recomendaciones diarias personalizadas, estadísticas de uso y resúmenes narrativos con el detalle de cada sesión.
+Sitio web: https://spinstackios.app/
+
+[PERFIL DE USUARIO]
+El usuario es un coleccionista de vinilos que usa la aplicación de 4 a 6 veces por semana en actividades como trabajar, estudiar, cocinar, relajarse o musicalizar momentos sociales.
+Busca digitalizar su experiencia análoga para registrar reproducciones, ver métricas de escucha, identificar ediciones exactas de álbumes y consultar su catálogo al instante para evitar compras repetidas o planificar nuevas adquisiciones.
+
+[AI EXPERIENCE MAP]
+--------------------------------------------------------------------------------
+MOMENTO: Entrada
+  • Usuario: Abre la app al momento de comenzar a escuchar un vinilo o busca cuál seleccionar de su estantería física.
+  • IA: Revisa el historial de reproducciones (spin log), la hora del día y la frecuencia de uso para sugerir álbumes o iniciar el registro pasivo.
+  • Señales: Hora de escucha, intervalo desde el último spin, hábitos de días anteriores y etiquetas de estado de ánimo (moods).
+  • Qué cambia: La estantería física deja de ser estática; la app interpreta el momento e insinúa qué vinilo desempolvar.
+  • Riesgos: Sesgo de hábito (recomendar constantemente los mismos discos o artistas populares, aislando el resto de la colección).
+  • Oportunidades: Descubrimiento guiado (diseñar sugerencias de "álbumes olvidados" o "caras B" para activar partes dormidas de la colección).
+
+MOMENTO: Uso central
+  • Usuario: Consulta la ficha del álbum en reproducción y solicita/lee las notas contextuales (AI Liner Notes).
+  • IA: Genera un texto personalizado (AI Liner Notes) que cruza la historia del disco con la relación y hábitos particulares del usuario.
+  • Señales: Tiempo de permanencia en la pantalla, re-intentos de generación, tiempo de reproducción por cara y clics en referencias.
+  • Qué cambia: El libreto deja de ser un texto genérico de enciclopedia y se convierte en un relato adaptado a la experiencia del oyente.
+  • Riesgos: Alucinación o sesgo (inventar datos historiográficos del álbum o asumir estados emocionales erróneos sobre el usuario).
+  • Oportunidades: Control y co-producción (permitir al usuario corregir datos, ajustar los parámetros de ánimo o agregar notas personales al libreto).
+
+MOMENTO: Resultado
+  • Usuario: Revisa su informe mensual/anual (Spin Report), evalúa la síntesis de sus hábitos y decide si guardarlo o compartirlo.
+  • IA: Sintetiza el registro histórico de escuchas en métricas cualitativas y genera una crónica narrativa (Spin Report).
+  • Señales: Tasa de exportación/compartido, tiempo de lectura del reporte, edición de secciones y marcas de guardado.
+  • Qué cambia: El cierre del período no es una simple lista cuantitativa de conteo, sino una narrativa con valor afectivo sobre su melomanía.
+  • Riesgos: Etiquetado rígido (sentir que el algoritmo encasilla, juzga o simplifica excesivamente el gusto musical de la persona).
+  • Oportunidades: Privacidad y transparencia (ofrecer procesamiento local en el dispositivo [on-device] y un panel de edición previa antes de publicar).
+
+[OBSERVACIONES]
+--------------------------------------------------------------------------------
+• ¿Qué hace el sistema?: El sistema revisa la colección completa. Toma en cuenta la hora, el clima y los últimos discos reproducidos. Con esa información sugiere qué vinilo poner en el tocadiscos. También redacta breves notas con datos sobre los hábitos de escucha.
+• ¿Qué hace el usuario?: El usuario escanea la portada para registrar la edición exacta del vinilo. Presiona un botón para anotar cada reproducción y añade su estado de ánimo. Cuando no sabe qué escuchar, deja la elección en manos de la aplicación. También le permite armar los resúmenes de uso de forma automática.
+• Momentos de confianza: La tranquilidad llega cuando la app identifica sin fallar la versión exacta en Discogs. Da gusto recibir sugerencias acertadas para la lluvia o la noche. La integración se siente fluida y precisa.
+• Momentos de confusión o ruptura: El encanto se rompe cuando la recomendación ignora la energía del momento. Molesta leer un reporte que malinterpreta la forma real de escuchar música. Una nota fuera de lugar arruina la experiencia personal.
+• Decisiones invisibles: El algoritmo asigna peso a datos invisibles para el usuario. Revisa cuánto tiempo lleva un disco en el estante sin sonar. Cruza la hora del día con el pronóstico del tiempo para elegir el vinilo adecuado.
+• Control percibido: El control permanece siempre en manos del usuario. La recomendación es una simple sugerencia que se puede rechazar. Cada escucha se registra de forma manual y la colección se edita sin restricciones.
+• Modelo mental: El usuario siente que la app actúa como un curador personal. Cree que la tecnología entiende su gusto musical. A veces asume que la inteligencia artificial adivina su humor antes de ingresarlo.
+• Nivel de agencia: La herramienta amplía el ritual del formato análogo sin reemplazarlo. No reproduce música por sí sola ni toma decisiones definitivas. Ayuda a desempolvar discos olvidados y a comprar con mejor criterio.
+
+[ANÁLISIS CRÍTICO]
+La IA se vuelve invisible en la experiencia cuando organiza el catálogo por relevancia o sugiere etiquetas según el horario, haciendo que la persona sienta que la presentación del contenido responde directamente a sus propias decisiones. Sin embargo, la lógica del sistema se vuelve difusa cuando sugiere un disco sin una relación clara con las escuchas recientes, dejando al usuario sin una explicación simple de la recomendación. Si el algoritmo falla en estos momentos clave, una sugerencia desalineada rompe el clima y la conexión emocional de la sesión; de ahí la necesidad de incorporar indicadores visuales explícitos que transparenten cuándo un texto lista fue co-creado por la inteligencia artificial.
+
+[LA IA COMO AUDITOR]
+La IA actuó como un motor de propuesta e interpretación que procesa datos, lee señales del contexto y genera borradores o recomendaciones a escala; mientras que el humano conserva el rol irrenunciable de evaluación y decisión, aplicando su juicio crítico para corregir o descartar lo generado, definir los criterios de calidad y mantener el control final y la responsabilidad sobre el resultado.
+En la evaluación de Spinstack, sobre los sesgos cognitivos del usuario, la persona atribuyó una intuición "mágica" a la IA (efecto Barnum), delegó la elección del vinilo a la pantalla (automatización) y validó solo sugerencias habituales (confirmación); respecto a los sesgos algorítmicos del sistema, la plataforma relegó los discos menos escuchados por un bucle de popularidad, vinculó rígidamente clima u hora con emociones (etiquetado determinista) y asumió la falta de registro manual como desinterés; finalmente, como fricción constructiva, el diseño implementó un dial para explorar joyas olvidadas, transparentó sus criterios e integró una ventana de edición previa que permitió corregir el texto generado y resguardar su agencia.
+
+[CO-CREACIÓN HUMANO-IA]
+• Estructura de sesgos y análisis:
+  - IA: Aportó la identificación inicial de los sesgos cognitivos (como el efecto Barnum o el sesgo de automatización) y algorítmicos (como el Popularity Bias).
+  - Humano: Preservación del ritual análogo. Decidí que la app nunca debe reproducir música automáticamente ni sustituir la decisión física del usuario al seleccionar el vinilo de su estantería.
+• Mapeo de fricción y ruptura:
+  - IA: Ayudó a explorar hipótesis sobre los momentos de confusión cuando el algoritmo recomienda un vinilo sin un patrón claro de escuchas recientes.
+  - Humano: Priorización de la agencia. Establecí que las sugerencias algorítmicas y los relatos (AI Liner Notes) son opcionales y siempre editables por el usuario antes de ser guardados o compartidos.
+• Borrador de preguntas analíticas:
+  - IA: Propuso planteamientos iniciales sobre el modelo mental del usuario y los límites de la personalización.
+  - Humano: Diseño de fricción constructiva. Decidí incorporar controles explícitos (como el Discovery Dial para joyas olvidadas y los avisos visuales de co-creación) para evitar que la IA actúe como una "caja negra".
+
+
+--------------------------------------------------------------------------------
+SECCIÓN 2: DECISIONES CRÍTICAS Y SESGOS
+--------------------------------------------------------------------------------
+
+[MATRIZ BIAS & DECISION AUDIT]
+
+1. DECISIÓN CRÍTICA: El feed decide qué vinilo sugerir para la siguiente escucha.
+   • Output de la IA: Tarjeta destacada en la pantalla principal con la sugerencia del álbum y su porcentaje de afinidad (ej. "Sugerido para esta tarde: Kind of Blue — Miles Davis [94% coincidencia]").
+   • Sesgo cognitivo usuario: Automation bias / Anchoring. El usuario asume que la recomendación del feed es la elección "correcta" u óptima para el momento, anclándose a la sugerencia sin explorar el resto de su colección.
+   • Sesgo algorítmico sistema: Sesgo de optimización. El algoritmo optimiza la reproducción segura recomendando discos con alta rotación previa, sobre-ponderando hábitos pasados e ignorando títulos de baja frecuencia.
+   • Riesgo: Cámara de eco musical y subutilización de la colección. El usuario reproduce repetidamente solo un porcentaje mínimo de sus vinilos, perdiendo la diversidad de su catálogo.
+   • Fricción constructiva: Mostrar junto a la sugerencia una pausa explicativa con alternativa activa: "Sugerido por tu hábito habitual de fin de semana. ¿Escuchar este vinilo o agitar para elegir uno 'olvidado'?"
+   • Criterio de diseño: Toda sugerencia directa en el feed debe incluir al menos una señal explicativa del criterio de recomendación y un acceso directo para explorar alternativas no habituales.
+
+2. DECISIÓN CRÍTICA: El sistema analiza las escuchas para generar recomendaciones de reproducción y genera reportes.
+   • Output de la IA: Ranking personalizado de vinilos sugeridos para la sesión y métricas consolidadas en el Spin Report semanal (ej. "80% de escucha en Jazz" o "Listas sugeridas para hoy").
+   • Sesgo cognitivo usuario: Automation bias / Anchoring. El usuario asume que el reporte describe fielmente todo su universo musical y se limita a reproducir únicamente las listas generadas por el sistema.
+   • Sesgo algorítmico sistema: Bucle de retroalimentación. El sistema analiza solo las escuchas registradas recientemente, sobre-ponderando géneros repetitivos y dejando fuera discos que no han sido registrados.
+   • Riesgo: Estancamiento en la diversidad del consumo y abandono inconsciente de vinilos de menor rotación de la colección.
+   • Fricción constructiva: Mostrar en el reporte un módulo de verificación: "¿Refleja este reporte tu hábito real? Ajusta las ponderaciones o activa la opción 'Escuchar discos fuera de tu zona habitual'".
+   • Criterio de diseño: Los reportes y recomendaciones deben exponer claramente el período y las variables analizadas, ofreciendo controles manuales para romper el bucle de recomendación.
+
+3. DECISIÓN CRÍTICA: El sistema evalúa la colección y asigna un perfil de coleccionista.
+   • Output de la IA: Categorización o etiqueta del perfil del usuario dentro de los Spin Reports (ej. "Coleccionista Conservador", "Audiófilo Mainstream" o "Explorador Superficial").
+   • Sesgo cognitivo usuario: Confirmation bias / Overconfidence. El usuario valida la etiqueta del perfil como un juicio objetivo sobre su legitimidad melómana o altera artificialmente sus escuchas para encajar en ella.
+   • Sesgo algorítmico sistema: Proxy / Optimización equivocada. El sistema utiliza la cantidad de discos o el valor estimado comercial (de plataformas como Discogs) como proxy de "calidad o nivel de coleccionista", sesgando la calificación hacia colecciones costosas.
+   • Riesgo: Daño de reconocimiento / estatus, frustración del usuario, estigmatización de gustos personales y comportamiento de compra forzado para "subir de nivel".
+   • Fricción constructiva: Acompañar el perfil con el desglose explícito: "Perfil calculado según variedad de géneros. ¿No te define? Personaliza los rasgos de tu perfil o desactiva la clasificación pública".
+   • Criterio de diseño: Toda clasificación de perfil o estatus debe ser explícita, reconfigurable y opcional para el usuario.
+
+[CO-CREACIÓN HUMANO-IA (SECCIÓN 2)]
+• Output inicial de la IA: La IA identificó correctamente patrones generales como el Automation Bias y sugirió inicialmente el Efecto Barnum para explicar la relación del usuario con la etiqueta de su perfil de coleccionista.
+• Sesgos detectados en la respuesta de la IA: El modelo incurrió en un sesgo de genericidad al analizar Spinstack como si fuera una plataforma de streaming convencional (tipo Spotify), asumiendo que el riesgo principal era el aburrimiento o la pérdida de tiempo. Con esto, la IA pasó por alto el valor económico, la naturaleza física y el ritual de colección que definen al formato análogo.
+• Decisiones y ajustes del diseñador:
+  - Ajuste de sesgos: Se reemplazó el Efecto Barnum por Confirmation Bias y Overconfidence. El riesgo real para el usuario no es la sola identificación con un texto, sino el daño de estatus y la presión de comprar vinilos costosos para "subir de nivel" dentro de la aplicación.
+  - Adaptación de soluciones: Se tomaron los controles propuestos por la IA (la perilla de exploración de catálogo y las explicaciones transparentes de recomendación) y se adaptaron al ritual físico del vinilo, incorporando interacciones como "agitar el teléfono para elegir un disco olvidado".
+
+
+--------------------------------------------------------------------------------
+SECCIÓN 3: EXPERIENCIA EMOCIONAL Y SEÑALES
+--------------------------------------------------------------------------------
+
+[EMOTIONAL AI JOURNEY]
+1. Recomendación inicial (Entrada al feed)
+   • Emoción predominante: Curiosidad / Expectativa.
+   • Expectativa del usuario: "La app me sugerirá un vinilo acorde a mi momento actual sin hacerme perder tiempo".
+   • Qué hace el sistema: Analiza el historial de escucha, hora, clima y frecuencia para destacar un álbum en el feed.
+   • Tensión o riesgo: Sesgo de automatización (el usuario acepta ciegamente la recomendación sin revisar el resto de su estantería física).
+   • Decisión de diseño: Transparencia de alcance. Mostrar el criterio de recomendación ("Sugerido por tarde de lluvia") junto a una opción activa para explorar discos olvidados.
+
+2. Generación de AI Liner Notes (Uso central)
+   • Emoción predominante: Sorpresa / Asombro.
+   • Expectativa del usuario: "El texto me revelará un dato historiográfico valioso conectado con mi experiencia".
+   • Qué hace el sistema: Sintetiza metadatos del álbum con el historial de escuchas del usuario para redactar una crónica.
+   • Tensión o riesgo: Alucinación o sesgo (inventar datos historiográficos o asumir un estado emocional equivocado).
+   • Decisión de diseño: Coproducción y revisión. Botón de "Ajustar precisión" (forzado a metadatos oficiales de Discogs) y campo para editar el texto antes de guardar.
+
+3. Lectura del Spin Report (Resultado)
+   • Emoción predominante: Validez / Orgullo melómano.
+   • Expectativa del usuario: "El reporte reflejará fielmente mi nivel y diversidad como coleccionista".
+   • Qué hace el sistema: Clasifica las métricas del mes y asigna una etiqueta de perfil de coleccionista.
+   • Tensión o riesgo: Etiquetado rígido y daño de estatus (sentir que el algoritmo encasilla o juzga negativamente el gusto musical).
+   • Decisión de diseño: Perfil reconfigurable. Permitir personalizar los rasgos del perfil o desactivar la clasificación pública si no lo representa.
+
+4. Sugerencia fuera de contexto (Momento de ruptura)
+   • Emoción predominante: Frustración / Escepticismo.
+   • Expectativa del usuario: "La app debería entender que no quiero escuchar música enérgica a esta hora".
+   • Qué hace el sistema: Insiste en recomendar un vinilo de alta rotación sin considerar la energía real del usuario.
+   • Tensión o riesgo: Ruptura de la conexión emocional (pérdida de confianza al sentir que la IA es una "caja negra" intrusiva).
+   • Decisión de diseño: Fricción constructiva. Incorporar el gesto de "agitar para sugerir un disco olvidado" y un selector directo de estado de ánimo.
+
+[SIGNAL MAP]
+1. Señal observable: Disco sin reproducir por más de 6 meses (Dato de estantería)
+   • Interpretación posible: Que el vinilo está en el olvido o no es del gusto actual del usuario.
+   • Qué NO se puede afirmar: Que el usuario no lo haya escuchado en formato físico sin registrarlo en la app.
+   • Riesgo de interpretación: Asumir desinterés y ocultar el álbum de las recomendaciones del feed.
+   • Respuesta de diseño: Módulo "Joyas olvidadas" que pregunta de forma no intrusiva: "¿Lleva tiempo guardado o lo escuchaste sin registrar?".
+
+2. Señal observable: Tasa rápida de rechazo de sugerencias (Swipe o saltos continuos)
+   • Interpretación posible: Insatisfacción con el estado de ánimo o género propuesto por la IA.
+   • Qué NO se puede afirmar: Que el usuario esté molesto con la aplicación en su totalidad.
+   • Riesgo de interpretación: Interpretar la búsqueda como un fallo general del algoritmo y sobre-ajustar agresivamente las métricas.
+   • Respuesta de diseño: Activar una pausa explicativa con selector manual rápido de Mood en la pantalla principal.
+
+3. Señal observable: Reintento manual de generación en AI Liner Notes
+   • Interpretación posible: El texto generado contenía un dato erróneo o un tono narrativo inadecuado.
+   • Qué NO se puede afirmar: Qué parte específica del relato provocó el rechazo (si fue la historia o la emoción atribuida).
+   • Riesgo de interpretación: Volver a generar un texto largo sin corregir la fuente de datos.
+   • Respuesta de diseño: Ofrecer controles de tono (ej. "Más histórico / Más personal") e indicador visual de los metadatos consultados.
+
+4. Señal observable: Registro de escuchas concentrado en un solo horario (ej. Domingos en la mañana)
+   • Interpretación posible: Un hábito o ritual de escucha consolidado para momentos de descanso.
+   • Qué NO se puede afirmar: Que ese sea el único momento en que el usuario escucha música en la semana.
+   • Riesgo de interpretación: Encasillar las sugerencias futuras de ese horario a un único género (ej. solo Jazz suave).
+   • Respuesta de diseño: Control "Romper el bucle" para permitir la introducción opcional de álbumes divergentes.
+
+[SIMULACIÓN DE USUARIO CON IA]
+Para construir la dimensión emocional del Journey se utilizó un LLM como simulador de usuario en escenarios de recomendación de vinilos. La IA generó hipótesis verosímiles sobre momentos de frustración y exceso de confianza. No obstante, el equipo de diseño validó críticamente estos outputs, descartando respuestas genéricas y adaptando las decisiones de diseño a las restricciones físicas y afectivas reales de un coleccionista análogo.
+
+
+--------------------------------------------------------------------------------
+SECCIÓN 4: MATRIZ HUMANO–IA
+--------------------------------------------------------------------------------
+
+[MATRIZ HUMANO-IA]
+1. Selección de escucha (What to spin)
+   • Humano (Coleccionista): Define la intención de la sesión, elige o descarta sugerencias y realiza la acción física de poner el vinilo en el plato.
+   • IA (Spinstack Engine): Analiza variables contextuales (historial, hora, clima, moods) y sugiere álbumes para evitar la parálisis de decisión.
+   • Conjunto Humano-IA: Descubrimiento guiado. La IA propone alternativas (como "The B-Side" o vinilos olvidados) y el usuario evalúa si coincide con su momento actual.
+
+2. Catalogación y Registro (Spin Log)
+   • Humano (Coleccionista): Escanea o busca el disco físico, selecciona la edición exacta en Discogs y registra la sesión de reproducción.
+   • IA (Spinstack Engine): Estructura los metadatos de la edición, vincula el disco a la colección digital y calcula estadísticas de frecuencia/uso.
+   • Conjunto Humano-IA: Curaduría del catálogo. La IA detecta vacíos o inconsistencias de metadatos y el usuario confirma/edita los detalles de la edición.
+
+3. Redacción de notas (AI Liner Notes)
+   • Humano (Coleccionista): Proporciona el contexto afectivo (estados de ánimo, notas personales o contexto social de la sesión).
+   • IA (Spinstack Engine): Sintetiza la historia del disco cruzándola con los patrones reales de escucha del usuario para redactar una crónica.
+   • Conjunto Humano-IA: Co-producción narrativa. La IA genera la primera versión del relato y el usuario corrige, ajusta el tono o añade anotaciones al libreto.
+
+4. Reportes y Síntesis (Spin Report)
+   • Humano (Coleccionista): Revisa, valida y decide si guarda o comparte su reporte mensual/anual en sus círculos (Crews).
+   • IA (Spinstack Engine): Agrega datos masivos de escucha y extrae patrones cualitativos para armar la narrativa del período.
+   • Conjunto Humano-IA: Curaduría de la memoria. El usuario edita las secciones del reporte generado para asegurar que representen fielmente su identidad musical.
+
+[LÍMITES DE AGENCIA Y PRIVACIDAD]
+• Lo que hace la IA:
+  - Sugiere álbumes para desempolvar.
+  - Redacta borradores de notas historiográficas.
+  - Analiza patrones de uso en el dispositivo.
+  - Ofrece alternativas fuera del hábito común.
+• Lo que NUNCA hace la IA:
+  - NO reproduce ni reemplaza el formato físico.
+  - NO publica ni comparte datos sin confirmación explícita.
+  - NO asume estados de ánimo sin dar opción de corrección.
+  - NO envía datos fuera del dispositivo (100% On-Device).
+
+[CRITERIOS DE COORDINACIÓN Y TRANSFERENCIA DE CONTROL]
+• Mecanismos de Fricción Constructiva:
+  - Pausa explicativa de recomendación: Al sugerir un disco en el feed, la IA debe mostrar la razón contextual ("Sugerido por tu hábito de domingo por la mañana"). Junto a la recomendación, se ofrece siempre una acción alternativa ("Agitar para sugerir un disco olvidado").
+  - Confirmación de estado emocional: Si la IA infiere una sugerencia basada en la hora o el clima, no asume el mood del usuario; ofrece un selector rápido para que la persona confirme su estado actual antes de generar las AI Liner Notes.
+
+• Control de Veracidad y Transparencia:
+  - Edición previa a la guardada: Ningún texto generado por el modelo (AI Liner Notes o Spin Report) se guarda de forma permanente en la bitácora sin que el usuario haya tenido la oportunidad de revisarlo o editarlo.
+  - Trazabilidad de metadatos: Si el usuario identifica una alucinación o dato incorrecto en el relato de un álbum, un botón de "Ajustar precisión" permite forzar una regeneración basada estrictamente en los datos oficiales del álbum (Discogs).
+
+• Soberanía sobre la Identidad Musical:
+  - Desactivación de bucles: En la sección de analítica, el usuario dispone del control "Romper el bucle", que reduce temporalmente el peso del historial reciente para priorizar discos con baja frecuencia de reproducción o géneros poco explorados dentro de su propia colección.
+
+[MINI MODEL CARD]
+• Nombre y versión: Spinstack AI Engine v1.4
+• Arquitectura: On-Device LLM + Hybrid Collaborative Filtering
+• Privacidad: 100% On-Device (Apple Intelligence / Local Processing)
+• Uso principal: Recomendación de vinilos, redacción de AI Liner Notes y Spin Reports
+• Fuera de alcance: Streaming de música digital o cotización especulativa
+• Fuentes de datos: Discogs API + Registro local de reproducciones, estados de ánimo y clima
+• Indicadores clave: Tasa de aceptación de sugerencias, edición de relatos y retención de catálogo
+• Sesgo principal: Sesgo de hábito / Bucle de recomendación de alta rotación
+• Mitigación UX: Fricción constructiva (módulo "The B-Side") y edición previa de reportes
+
+
+--------------------------------------------------------------------------------
+SECCIÓN 5: REFLEXIONES
+--------------------------------------------------------------------------------
+
+[SECCIÓN 1 · USUARIO Y SISTEMA]
+La experiencia de Spinstack demuestra que la IA no compite con el ritual físico de escucha, sino que lo enriquece: al transformar métricas frías en relatos afectivos y dejar el control y registro en manos del usuario para evitar sesgos, la tecnología actúa como un copiloto que rescata el valor emocional de la colección.
+Al actuar como un "curador y bitácora inteligente", Spinstack es capaz de transformar métricas frías en relatos más personales mediante funciones como las AI Liner Notes y los Spin Reports. Al interpretar variables invisibles como la hora, el clima o los intervalos de inactividad, el sistema anticipa qué vinilo sugerir, construyendo momentos de alta confianza cuando sus recomendaciones coinciden con el contexto del oyente.
+Sin embargo, surgen rupturas cuando la IA sugiere álbumes desalineados con el ánimo actual o incurre en alucinaciones. Para evitar el "sesgo de hábito" o un etiquetado rígido que simplifique la identidad musical, el usuario conserva un alto nivel de control ya que es quien registra manualmente cada reproducción, ajusta los estados de ánimo y edita las notas escritas para garantizar que la información sea exacta y se mantenga "personal".
+En síntesis, la tecnología no decide por la persona ni reemplaza el acto físico, sino que amplía su capacidad promoviendo el descubrimiento guiado de joyas olvidadas. Esta co-creación equilibra el ritual analógico de poner a girar un disco con la inteligencia artificial, dando forma a una experiencia enriquecedora y con verdadero valor afectivo.
+
+[CO-CREACIÓN CON IA (SECCIÓN 1)]
+Durante la elaboración de este mapa, la IA actuó como herramienta analítica para explorar posibles sesgos cognitivos/algorítmicos y estructurar los momentos de ruptura en la experiencia de Spinstack. Por su parte, el diseñador tomó de forma autónoma las decisiones estratégicas de UX, determinando preservar el control directo del usuario sobre su colección, resguardar el control en el ritual análogo y definir los patrones de fricción constructiva (explicabilidad y edición previa) para mitigar la opacidad del algoritmo.
+
+[SECCIÓN 2 · DECISIONES CRÍTICAS Y SESGOS]
+Al tratar el vinilo como un streaming genérico, la IA cae en trampas de optimización que inducen al usuario a sesgos como el Automation y Confirmation Bias, arriesgando el abandono de la colección o presiones financieras innecesarias. Para contrarrestarlo, el diseño plantea una co-creación basada en "fricción constructiva": un enfoque que transparenta decisiones, ofrece controles de edición manual e integra gestos analógicos para devolverle todo el protagonismo al oyente.
+Al analizar las decisiones del sistema, se evidencia que los modelos genéricos de IA tienden a tratar la música como un servicio de streaming tradicional, ignorando la naturaleza física y el ritual del vinilo. Al intentar automatizar qué escuchar o etiquetar al coleccionista, el algoritmo cae en trampas de optimización: genera cámaras de eco que recomiendan siempre lo mismo o mide la "calidad" melómana según el valor comercial de los discos.
+Esta opacidad algorítmica empuja al usuario a confiar a ciegas en el feed (Automation Bias) o a validar las etiquetas del sistema como juicios absolutos sobre su gusto (Confirmation Bias y Overconfidence). El riesgo real excede el simple aburrimiento: se traduce en el abandono de discos valiosos de baja rotación y en la presión financiera de adquirir vinilos costosos solo para "subir de nivel".
+La respuesta desde el diseño fue redefinir el rol de la IA hacia una co-creación transparente mediante "fricción constructiva". En lugar de imponer, el sistema explica sus recomendaciones, permite ajustar ponderaciones manualmente y traduce los controles digitales en gestos vinculados al objeto físico como agitar el teléfono para rescatar un disco olvidado, devolviéndole el protagonismo al oyente.
+
+[CO-CREACIÓN CON IA (SECCIÓN 2)]
+La IA auditó cada una de estas tres decisiones algorítmicas: se vinculó cada acción de la IA con el output que genera, el sesgo cognitivo que activa en la persona, el sesgo algorítmico que arrastra el modelo, el riesgo específico que produce y la solución de UI a través de fricción constructiva y un criterio de diseño.
+
+[SECCIÓN 3 · EXPERIENCIA EMOCIONAL Y SEÑALES]
+El Emotional AI Journey y el Signal Map evidencian que la IA no puede inferir emociones complejas solo con métricas pasivas sin arriesgar la confianza. Para evitar lecturas erróneas, el diseño requiere transparencia, confirmaciones explícitas de estado de ánimo y corrección rápida. Esto convierte las fallas en instancias de control activo que protegen la autonomía del coleccionista y el valor de su ritual.
+El Emotional AI Journey evidencia la fluctuación de confianza del usuario ante el sistema y previene rupturas afectivas causadas por la opacidad algorítmica. Para mitigar estos riesgos, establece respuestas de diseño basadas en la transparencia de alcance, la coproducción de contenido y la configuración del perfil. Así, se transforman los momentos de error en instancias de control activo que preservan la autonomía del coleccionista.
+El Signal Map expone la distancia entre las conductas observables en la interfaz y la vivencia analógica real, evitando lecturas rígidas sobre hábitos como el rechazo continuo de sugerencias. La matriz propone integrar pausas explicativas y controles de tono que consulten la intención del usuario sin invadir su experiencia. De este modo, el sistema previene el encasillamiento algorítmico y resguarda la autenticidad del ritual de escucha.
+
+[CO-CREACIÓN CON IA (SECCIÓN 3)]
+Las emociones del Emotional AI Journey se mapearon simulando interacciones de recomendación de vinilos a través de un LLM, lo que facilitó la anticipación de quiebres de confianza y estados de frustración. En lugar de adoptar estas salidas de forma pasiva, se auditaron los datos, descartaron respuestas genéricas de la IA y alinearon las decisiones de interfaz con el contexto físico y el valor afectivo del coleccionismo en formato análogo.
+
+[SECCIÓN 4 · MATRIZ HUMANO-IA]
+Definir los límites de la IA (procesamiento 100% On-Device y cero sustitución del acto físico) consolida un modelo de colaboración transparente. La mini model card y los criterios de coordinación permiten que un equipo de desarrollo implemente el sistema resguardando la agencia y la privacidad del usuario.
+En el fondo, este marco busca que Spinstack respete al usuario ante todo. Al procesar los datos directamente en el dispositivo y ser transparente con sus sesgos, el sistema no intenta imponerse, sino actuar como un copiloto analítico. La decisión sobre el valor emocional del ritual musical sigue estando en manos de la persona; la inteligencia artificial está ahí para acompañar y dar control, no para condicionar la experiencia.
+Por un lado, el Mini Model Card establece el compromiso ético de procesar los datos localmente y transparentar sesgos. A partir de esto, la Matriz Humano-IA define al sistema como un copiloto analítico que deja la decisión afectiva en el usuario. Esta soberanía se consolida al prohibir la intrusión en el ritual físico y se traduce en la interfaz mediante criterios que priorizan la agencia humana sobre el algoritmo.
+
+[CO-CREACIÓN CON IA (SECCIÓN 4)]
+La IA actuó como un motor analítico encargado de procesar variables contextuales, estructurar metadatos, redactar borradores narrativos y sintetizar reportes cualitativos; mientras tanto, el humano conservó el control físico y afectivo al definir la intención de la sesión, poner el vinilo en el tocadiscos, aportar el contexto emocional y editar o validar cada sugerencia y texto antes de su guardado final.
+
+[CIERRE]
+• Hallazgos y tensiones al cruzar las capas:
+  Al cruzar las capas usuario y sistema, decisiones y sesgos y experiencia emocional y señales, la principal tensión detectada fue la contradicción entre la optimización algorítmica y el valor afectivo del ritual análogo. Mientras el algoritmo tiende naturalmente a optimizar la retención recomendando discos de alta rotación (creando un Popularity Bias y una cámara de eco), la necesidad emocional del coleccionista radica en rescatar la diversidad de su catálogo. Asimismo, el cruce demostró que las métricas pasivas registradas por la interfaz (como un vinilo no registrado en 6 meses) no deben interpretarse como desinterés, ya que el usuario puede estar escuchándolo físicamente sin interactuar con la pantalla.
+
+• Aspectos del usuario y de la experiencia:
+  El proceso permitió comprender que el coleccionista de vinilos no busca una herramienta que reemplace su capacidad de decisión ni que "automatice" la música como un servicio de streaming tradicional (tipo Spotify). El verdadero valor del producto radica en actuar como un curador y archivista personal que extiende el ritual físico. Comprendimos con mayor profundidad que la identidad melómana es sensible al estatus y que imponer etiquetas rígidas (Proxy Bias) o asumir estados de ánimo sin confirmación arruina la conexión emocional con la aplicación.
+
+• Supuestos del proyecto revisados y cuestionados:
+  - 3a. "A mayor automatización, mejor experiencia de usuario": Revisión: En contextos con alta carga afectiva y física, la automatización total destruye el ritual. Se requiere incorporar fricción constructiva para devolver la agencia a la persona.
+  - 3b. "La IA debe ser invisible para sentirse fluida": Revisión: La invisibilidad en la recomendación genera opacidad y desconfianza ("caja negra"). La fluidez se logra con transparencia explicativa (mostrar por qué se sugiere un álbum).
+  - 3c. "El usuario siempre sabe qué quiere escuchar o acepta ciegamente la sugerencia": Revisión: El usuario oscila entre la parálisis de decisión y el Automation Bias. El diseño debe ofrecer un "descubrimiento guiado" reconfigurable.
+
+[APRENDIZAJE]
+• ¿Qué aprendí a partir de este proceso?
+  Aprendí que diseñar con Inteligencia Artificial va mucho más allá de cómo se ve la pantalla (UI). Entendí que la IA no es mágica o tiene la verdad absoluta, sino un motor de sugerencias. Por eso, para que sea realmente útil necesita límites claros, transparencia y la posibilidad de que la persona siempre pueda corregir o tomar la decisión final.
+
+• ¿Qué herramienta, concepto o forma de análisis me resultó más útil?
+  Lo que más me sirvió fue el concepto de fricción constructiva junto con las matrices de auditoría de sesgos (Bias & Decision Audit) y el Signal Map. Me ayudaron a aterrizar problemas abstractos como la opacidad del algoritmo en soluciones concretas de diseño: explicar la razón de una recomendación, dar la opción de agitar el teléfono para rescatar un disco olvidado o incluir el botón "Romper el bucle".
+
+• ¿Cómo aplicaré esta metodología en futuros proyectos de diseño o en mi práctica profesional?
+  Usaré este marco de tres capas (Usuario, Decisiones y Emociones) como una guía en mi trabajo al diseñar productos con IA. Me servirá para auditar sistemas antes de lanzarlos, trabajar mejor con desarrolladores de mi equipo para garantizar que la tecnología siempre esté al servicio nuestro.
+
+
+--------------------------------------------------------------------------------
+SECCIÓN 6: BIBLIOGRAFÍA
+--------------------------------------------------------------------------------
+• Amershi, S., Weld, D., Vorvoreanu, M., Fourney, A., Nushi, B., Collisson, P., Dey, S., Suh, J., Zou, X., Wright, K., Ramos, G., Suh, A., Inkpen, K., & Horvitz, E. (2019). Guidelines for Human-AI Interaction. En Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems (pp. 1–13). Association for Computing Machinery. https://doi.org/10.1145/3290605.3300233
+• Apple Inc. (2024). Apple Intelligence Foundation Language Models. Apple Machine Learning Research. https://machinelearning.apple.com/
+• Discogs. (2024). Discogs API Documentation v2.0. Discogs Developer Portal. https://www.discogs.com/developers/
+• Google PAIR. (2019). People + AI Guidebook. Google. https://pair.withgoogle.com/
+• Kahneman, D. (2012). Pensar rápido, pensar despacio. Editorial Debate.
+• Mitchell, M., Wu, S., Zaldivar, A., Barnes, P., Vasserman, L., Hutchinson, B., Spitzer, E., Raji, I. D., & Gebru, T. (2019). Model cards for model reporting. En Proceedings of the Conference on Fairness, Accountability, and Transparency (pp. 220–229). Association for Computing Machinery. https://doi.org/10.1145/3287560.3287596
+• Parasuraman, R., & Manzey, D. H. (2010). Complacency and bias in human use of automation: An attentional integration. Human Factors, 52(3), 381–410. https://doi.org/10.1177/0018720810376055
+• Ricci, F., Rokach, L., & Shapira, B. (Eds.). (2015). Recommender Systems Handbook (2a ed.). Springer. https://doi.org/10.1007/978-1-4899-7637-6
+================================================================================
