@@ -115,11 +115,21 @@ En este sentido, aprender a trabajar con distintas herramientas de IA se convier
 
 #### CLASE 26: Hugging Face
 
-  ¿Qué hicimos?
-  X
+¿Qué hicimos?
+Explorar hugging face para probar e integrar modelos avanzados de IA generativa de imagen y prototipado visual sin depender exclusivamente de plataformas cerradas de suscripción.
   
-  Conclusiones
-  X
+Conclusiones
+
+Principales ventajas identificadas:
+
+1. Acceso a modelos de código y pesos abiertos (Open Weights): Permite utilizar y comparar modelos de última generación para generación visual y fotorrealismo (como la familia FLUX.1, Krea 2 Turbo y Z Image Turbo).
+
+2. Prototipado rápido sin código (Hugging Face Spaces): Brinda aplicaciones web interactivas listas para usar que permiten a los creativos probar herramientas de texto a imagen, remoción de fondos, edición local e inpainting directamente en el navegador.
+
+3. Personalización y control de estilos (LoRAs y ControlNet): Facilita el acceso a miles de adaptadores visuales creados por la comunidad para aplicar estilos gráficos específicos (editorial, 3D, branding) o guiar la generación a partir de bocetos y wireframes.
+
+4. Independencia, privacidad y licencias claras: Proporciona mayor control sobre las imágenes generadas y la posibilidad de integrar los modelos en pipelines profesionales o plugins locales (como ComfyUI o Figma).
+
 
 &nbsp;
 
