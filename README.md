@@ -156,7 +156,7 @@ La precisión en el prompt, la sensibilidad estética y el criterio para curar, 
 
 #### CLASE 28: Agentes
 
-* ¿Qué hicimos?
+####  ¿Qué hicimos?
  
 Configuramos y desplegamos un agente conversacional en Claude Projects utilizando una arquitectura provista en el curso. Para lograrlo:
 
@@ -166,7 +166,7 @@ Contexto e Inventario: Proporcionamos conocimiento contextual subiendo la base d
 
 Ejecución del Flujo: Validamos la capacidad del agente para procesar un escenario específico (tarde soleada de sábado/diseñadora trabajando) ejecutando un flujo multitarea que incluyó: recomendación personalizada, notas contextuales editoriales, verificación exacta de datos en inventario, generación e integración de prompts e ilustraciones visuales, sugerencias por similitud sonora y la maquetación final estructurada de una "ficha de track" en PDF.
   
-* Conclusiones
+####  Conclusiones
 
 Al integrar nuestra propia base de datos cdentro de la base de conocimiento en claude, logramos que el asistente pueda consultar el inventario, verificando conteos por artista y género sin alucinar datos. Además, el agente demostró una gran versatilidad para adaptarse al contexto y tono solicitados (diseñadora, tarde soleada de sábado), conectando la recomendación musical con la redacción editorial y la generación de ideas visuales. Lo más destacado fue su capacidad para orquestar en un solo flujo la lectura de datos duros, la creación de contenido sintético y el diseño gráfico, estructurando todo de manera coherente en un entregable final listo para usar como la ficha de track en PDF.
 
@@ -176,7 +176,7 @@ Al integrar nuestra propia base de datos cdentro de la base de conocimiento en c
 
 #### CLASE 31: Antigravity
 
-* ¿Qué hicimos?
+#### ¿Qué hicimos?
 
 Creamos una carpeta nueva con un archivo `hallazgos.md` 
 Abrimos la carpeta en Antigravity y le pedimos un HTML simple, minimalista y responsive con esos hallazgos.
@@ -186,7 +186,7 @@ Abrimos la carpeta en Antigravity y le pedimos un HTML simple, minimalista y res
 Abrimos el HTML resultante y revisarlo. (capturas)
 Pedimos un segundo cambio de estilo (colores, tipografía)(capturas)
 
-Conclusiones
+#### Conclusiones
 
 
 
@@ -195,7 +195,7 @@ Conclusiones
 ---
 ## **3\. Conclusiones**
 
-#### **\. Conclusiones de grupo
+#### Conclusiones de grupo
 
 A lo largo de esta unidad pudimos observar que la inteligencia artificial no es solamente una herramienta para generar contenido, sino una nueva capa que puede incorporarse transversalmente al proceso de diseño: desde la exploración y análisis de datos, la investigación y generación de insights, hasta la conceptualización, prototipado, evaluación y comunicación de soluciones.
 
