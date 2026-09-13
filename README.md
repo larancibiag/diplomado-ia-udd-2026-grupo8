@@ -11,7 +11,9 @@ Integrantes: GRUPO 8: Luis ARANCIBIA · Bianca GONZÁLEZ · Fanny HOFFENBERG
 ---
 ## **1\. Proyecto**
 
-X
+Este repositorio documenta el desarrollo práctico y los aprendizajes del Diplomado en Inteligencia Artificial Aplicada al Diseño (UDD 2026). A lo largo de este recorrido, exploramos la inteligencia artificial no como un simple generador automático de contenidos, sino como una capa transversal que transforma cada etapa del proceso de diseño: desde el análisis algorítmico de datos y la prototipación visual, hasta la gestión de bases de conocimiento complejas y la orquestación de agentes especializados.
+Esta introducción sintetiza nuestro enfoque metodológico y la evolución de nuestras experimentaciones con herramientas como Google Colab, NotebookLM, Hugging Face, entornos multi-modelo y agentes conversacionales avanzados, destacando cómo el criterio humano y la dirección estratégica se mantienen al centro frente a la aceleración tecnológica.
+
 
 &nbsp;
 
@@ -203,6 +205,8 @@ Abrimos la carpeta en Antigravity y le pedimos un HTML simple, minimalista y res
 
 Abrimos el HTML resultante y revisarlo. (capturas)
 Pedimos un segundo cambio de estilo (colores, tipografía)(capturas)
+
+Después volvimos a hacer el ejercicio con otros documentos para explorar con otros resultados y "piezas gráficas".
 
 &nbsp;
 
