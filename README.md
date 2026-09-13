@@ -180,15 +180,10 @@ Al integrar nuestra propia base de datos cdentro de la base de conocimiento en c
 Creamos una carpeta nueva con un archivo `hallazgos.md` 
 Abrimos la carpeta en Antigravity y le pedimos un HTML simple, minimalista y responsive con esos hallazgos.
 
-*
-Necesito una página HTML simple que muestre los principales hallazgos de mi proyecto de diseño. Los datos están en `hallazgos.md`. Genera un HTML con estilo minimalista, responsive, en español.
-*
+    " Necesito una página HTML simple que muestre los principales hallazgos de mi proyecto de diseño. Los datos están en `hallazgos.md`. Genera un HTML con estilo minimalista, responsive, en español."
 
 Abrimos el HTML resultante y revisarlo. (capturas)
 Pedimos un segundo cambio de estilo (colores, tipografía)(capturas)
-
-
-
 
 &nbsp;
 
@@ -198,12 +193,16 @@ Pedimos un segundo cambio de estilo (colores, tipografía)(capturas)
 Conclusiones de grupo
 
 A lo largo de esta unidad pudimos observar que la inteligencia artificial no es solamente una herramienta para generar contenido, sino una nueva capa que puede incorporarse transversalmente al proceso de diseño: desde la exploración y análisis de datos, la investigación y generación de insights, hasta la conceptualización, prototipado, evaluación y comunicación de soluciones.
+
 Uno de los principales aprendizajes como grupo fue comprender que el valor de la IA no está únicamente en lo que puede producir, sino en cómo el diseñador es capaz de dirigirla. La calidad de los resultados depende de la información disponible, de las preguntas que formulamos, de las restricciones que definimos y de nuestra capacidad para evaluar críticamente lo que la herramienta entrega. Aprender a diseñar con IA implica también aprender a diseñar las instrucciones, los contextos y los criterios con los que interactuamos con ella.
 Desde nuestra experiencia como diseñadores vinculados a un laboratorio de innovación, esto adquiere especial relevancia. En contextos donde trabajamos con problemas ambiguos, múltiples actores, información incompleta y necesidad de experimentar rápidamente, la IA puede convertirse en un acelerador de ciclos de exploración y aprendizaje. Permite analizar grandes volúmenes de información, encontrar relaciones que podrían pasar inadvertidas, generar múltiples alternativas, prototipar soluciones y testear diferentes caminos en mucho menos tiempo.
+
 Sin embargo, también identificamos un límite importante: la velocidad de generación no equivale necesariamente a calidad de diseño. Una IA puede producir una respuesta técnicamente correcta, visualmente atractiva o muy elaborada, pero eso no garantiza que resuelva el problema correcto ni que sea pertinente para las personas, el negocio o el contexto. El diseñador sigue siendo responsable de interpretar, cuestionar, priorizar y decidir.
+
 Estos ejercicios también nos mostraron que trabajar con IA exige entender los datos que la alimentan, reconocer sesgos y cuestionar los resultados, ya que un modelo puede amplificar patrones existentes y convertir un sesgo en una decisión aparentemente objetiva.
 Además, notamos una transformación en el rol del diseñador: ya no se trata solo de ejecutar cada parte de una solución, sino de orquestar sistemas que combinan información, generación de contenido y producción. 
+
 El diseñador pasa de ser ejecutor a director del proceso, y el criterio humano qué problema resolver, qué preguntas hacer, qué alternativas descartar cobra aún más peso.
+
 Quizá no necesitamos ser programadores, pero sí entender lo básico sobre datos, sesgos, límites y privacidad de estas herramientas.
 Esta unidad nos permitió ver a la IA no como un reemplazo del diseñador ni solo como una herramienta de productividad, sino una invitación a cambiar de mindser de como deberiamos a usar la IA de  forma crítica y estratégica para explorar y aprender y ejecutar  más rápido, sin delegar en ella nuestra vision integral y humana , el buen gusto, el criterio, la empatía y la creatividad que definen nuestro aporte como  profesionales del diseño.
-
