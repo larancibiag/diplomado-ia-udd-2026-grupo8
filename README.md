@@ -212,7 +212,7 @@ Después volvimos a hacer el ejercicio con otros documentos para explorar con ot
 
 #### Conclusiones
 
-
+Es increíble como en pocos minutos hemos podido desarrollar dos propuestas totalmente distintas ya sea una web informativa o una aplicación móvil de la misma temática pero con diferentes objetivos.
 
 &nbsp;
 
