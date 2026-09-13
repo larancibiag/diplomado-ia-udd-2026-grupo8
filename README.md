@@ -20,31 +20,34 @@ X
 
 #### CLASE 22: Google Colab
 
-¿Qué hicimos?
+####  ¿Qué hicimos?
 En Google Colab calculamos la matriz de similitud entre diferentes conceptos mediante embeddings para medir qué tan relacionados están semánticamente.
   
-Conclusión
+####  Conclusión
+
 Interesante conocer como las inteligencias artificiales entienden el lenguaje agrupando conceptos por cercanía de significado y no solo por coincidencia de palabras.
 
 &nbsp;
 
 ---
 
-#### CLASE 23: Data Sheet
+#### CLASE 23: DATA SHEET
 
-¿Qué hicimos?
+####  ¿Qué hicimos?
 
 Ejercicio 1:
 Cargamos un conjunto de datos de reseñas en Google Colab para analizar su estructura y contar cuántas filas existen por cada categoría.
 
-Conclusión: Este análisis exploratorio inicial permite entender la distribución y el volumen de los datos antes de aplicar modelos de inteligencia artificial.
+Conclusión
+Este análisis exploratorio inicial permite entender la distribución y el volumen de los datos antes de aplicar modelos de inteligencia artificial.
 
 Ejercicio 2:
 Analizamos los gráficos de distribución y longitud de textos para detectar anomalías y desvíos en el dataset de reseñas.
-- Patrón raro: Las calificaciones extremas (1 y 5 estrellas) concentran la gran mayoría de los datos (más de 300 reseñas cada una), mientras que el punto medio (3 estrellas) presenta una caída muy marcada (solo 91 reseñas).
-- Sesgo: Sesgo de polarización. Los usuarios rara vez se toman el tiempo de escribir una reseña cuando un producto simplemente cumple de manera estándar o mediocre; solo se motivan a dejar un registro cuando su experiencia es maravillosa o terriblemente decepcionante.
+  - Patrón raro: Las calificaciones extremas (1 y 5 estrellas) concentran la gran mayoría de los datos (más de 300 reseñas cada una), mientras que el punto medio (3 estrellas) presenta una caída muy marcada (solo 91 reseñas).
+  - Sesgo: Sesgo de polarización. Los usuarios rara vez se toman el tiempo de escribir una reseña cuando un producto simplemente cumple de manera estándar o mediocre; solo se motivan a dejar un registro cuando su experiencia es maravillosa o terriblemente decepcionante.
 
-Conclusión: 
+Conclusión
+
 Identificar estos patrones de sesgo permite evitar que el modelo aprenda atajos erróneos, como usar la longitud del texto en lugar del contenido real para predecir las calificaciones.
 
 Clase más representada: La de 5 estrellas, con más de 300 reviews en total.
@@ -59,18 +62,19 @@ Subimos el notebook trabajado a notebooks/Clase\_23.ipynb. Actualizar README.
 
 ---
 
-#### CLASE 24: Notebook LM
+#### CLASE 24: NOTEBOOK LM
 
-¿Qué hicimos?
-
+####  ¿Qué hicimos?
 Hicimos preguntas útiles, preguntas específicas y otras genéricas
-— Elaborar un resumen de la colección
-- ¿Qué artistas tienen la mayor cantidad de álbumes en esta lista?
-- ¿Qué álbumes tengo de rock argentino?
-- ¿Qué álbumes tengo de la década de los 90?
-- ¿Cuáles son mis vinilos dobles?
+  — Elaborar un resumen de la colección
+  - ¿Qué artistas tienen la mayor cantidad de álbumes en esta lista?
+  - ¿Qué álbumes tengo de rock argentino?
+  - ¿Qué álbumes tengo de la década de los 90?
+  - ¿Cuáles son mis vinilos dobles?
 
-Conclusiones
+-
+
+####  Conclusiones
 
 La experiencia con NotebookLM permitió comprobar que su principal aporte no está solamente en generar resúmenes, sino en transformar una fuente de información en una base de conocimiento que puede ser consultada y analizada mediante preguntas. A partir de una misma colección fue posible obtener información sobre artistas, formatos, décadas, géneros y características específicas, demostrando su capacidad para organizar grandes volúmenes de información y facilitar la detección de patrones.
 Uno de los principales aprendizajes fue comprender que la calidad y utilidad de los resultados dependen en gran medida de la capacidad del usuario para formular buenas preguntas. Por lo tanto, el uso de IA requiere desarrollar nuevas habilidades de análisis y de interacción con la herramienta, más que simplemente aprender a utilizar una nueva aplicación.
@@ -86,12 +90,15 @@ En definitiva, la experiencia demuestra que el verdadero valor de la IA no está
 
 ---
 
-#### CLASE 25: GPT, Claude & DeepSeek
+#### CLASE 25: GPT, CLAUDE & DEEPSEEK
 
-¿Qué hicimos?
+####  ¿Qué hicimos?
 Comparativa de mopdelos:  Claude, Chat GPT y DeepSeek para analizar la performance de cada uno de estas herramientas de inteligencia artificial y como abordan un mismo problema de diseño de maneras muy diferentes. 
-  
-Conclusiones 
+
+-
+
+####  Conclusiones 
+
 La comparación entre Claude, ChatGPT y DeepSeek permitió comprobar que las herramientas de inteligencia artificial pueden abordar un mismo problema de diseño de maneras muy diferentes. Más que identificar cuál aplicación es “mejor”, la experiencia permitió reconocer que cada modelo tiene fortalezas, limitaciones y formas particulares de interpretar un mismo brief.
 
 Uno de los principales aprendizajes fue comprobar que la calidad del resultado depende en gran medida de la información entregada, de las restricciones establecidas y, especialmente, de la capacidad de formular correctamente las instrucciones. Un buen prompt permite orientar a la IA hacia resultados más pertinentes y cercanos a las necesidades reales del proyecto.
@@ -113,17 +120,18 @@ En este sentido, aprender a trabajar con distintas herramientas de IA se convier
 
 ---
 
-#### CLASE 26: Hugging Face
+#### CLASE 26: HUGGING FACE
 
-¿Qué hicimos?
+####  ¿Qué hicimos?
 Explorar hugging face para probar e integrar modelos avanzados de IA generativa de imagen y prototipado visual sin depender exclusivamente de plataformas cerradas de suscripción.
 
 meta-llama/Llama-3.2-1B-Instruct: El estándar más moderno para prototipar respuestas rápidas y fluidas en aplicaciones móviles.
 DeepESP/gpt2-spanish: Un clásico ligero, ideal para correr experimentos web ultrarrápidos sin hardware dedicado.
 somosnlp/es-inclusivo-translator
 
-  
-Conclusiones
+-
+
+####  Conclusiones
 
 Principales ventajas identificadas:
 
@@ -139,12 +147,14 @@ Principales ventajas identificadas:
 
 ---
 
-#### CLASE 27: Gemini Nano Banana
+#### CLASE 27: GEMINI NANO BANANA
 
-¿Qué hicimos?
+####  ¿Qué hicimos?
 Experimentar con Nano Banana.
-  
-Conclusiones
+
+-
+
+####  Conclusiones
 
 La experiencia con Nano Banana confirma que la inteligencia artificial no sustituye a la dirección de arte, sino que amplifica su alcance. Aunque la plataforma ofrece un control de nivel estudio con ediciones localizadas, iluminación, profundidad de campo e integración de hasta más de 10 fuentes visuales, es la visión del creador la que otorga sentido a la pieza.
 
@@ -154,18 +164,22 @@ La precisión en el prompt, la sensibilidad estética y el criterio para curar, 
 
 ---
 
-#### CLASE 28: Agentes
+#### CLASE 28: AGENTES
 
 ####  ¿Qué hicimos?
  
-Configuramos y desplegamos un agente conversacional en Claude Projects utilizando una arquitectura provista en el curso. Para lograrlo:
+Configuramos y desplegamos un agente conversacional en Claude Projects utilizando una arquitectura provista en el curso. 
+
+Para lograrlo:
 
 Definición del Agente: Cargamos el system prompt con las instrucciones de la arquitectura del asistente especializado en vinilos.
 
 Contexto e Inventario: Proporcionamos conocimiento contextual subiendo la base de datos de la colección de vinilos y un dossier de soporte en IA.
 
 Ejecución del Flujo: Validamos la capacidad del agente para procesar un escenario específico (tarde soleada de sábado/diseñadora trabajando) ejecutando un flujo multitarea que incluyó: recomendación personalizada, notas contextuales editoriales, verificación exacta de datos en inventario, generación e integración de prompts e ilustraciones visuales, sugerencias por similitud sonora y la maquetación final estructurada de una "ficha de track" en PDF.
-  
+
+-
+
 ####  Conclusiones
 
 Al integrar nuestra propia base de datos cdentro de la base de conocimiento en claude, logramos que el asistente pueda consultar el inventario, verificando conteos por artista y género sin alucinar datos. Además, el agente demostró una gran versatilidad para adaptarse al contexto y tono solicitados (diseñadora, tarde soleada de sábado), conectando la recomendación musical con la redacción editorial y la generación de ideas visuales. Lo más destacado fue su capacidad para orquestar en un solo flujo la lectura de datos duros, la creación de contenido sintético y el diseño gráfico, estructurando todo de manera coherente en un entregable final listo para usar como la ficha de track en PDF.
@@ -177,7 +191,6 @@ Al integrar nuestra propia base de datos cdentro de la base de conocimiento en c
 #### CLASE 31: ANTIGRAVITY
 
 #### ¿Qué hicimos?
-
 Creamos una carpeta nueva con un archivo `hallazgos.md` 
 Abrimos la carpeta en Antigravity y le pedimos un HTML simple, minimalista y responsive con esos hallazgos.
 
