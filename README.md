@@ -174,9 +174,9 @@ Al integrar nuestra propia base de datos cdentro de la base de conocimiento en c
 
 ---
 
-### CLASE 31: ANTIGRAVITY
+#### CLASE 31: ANTIGRAVITY
 
-#### ¿Qué hicimos?
+#### > ¿Qué hicimos?
 
 Creamos una carpeta nueva con un archivo `hallazgos.md` 
 Abrimos la carpeta en Antigravity y le pedimos un HTML simple, minimalista y responsive con esos hallazgos.
