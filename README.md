@@ -195,7 +195,7 @@ Conclusiones
 ---
 ## **3\. Conclusiones**
 
-* Conclusiones de grupo
+#### **\. Conclusiones de grupo
 
 A lo largo de esta unidad pudimos observar que la inteligencia artificial no es solamente una herramienta para generar contenido, sino una nueva capa que puede incorporarse transversalmente al proceso de diseño: desde la exploración y análisis de datos, la investigación y generación de insights, hasta la conceptualización, prototipado, evaluación y comunicación de soluciones.
 
