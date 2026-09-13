@@ -174,7 +174,7 @@ Al integrar nuestra propia base de datos cdentro de la base de conocimiento en c
 
 ---
 
-#### CLASE 31: Antigravity
+### CLASE 31: ANTIGRAVITY
 
 #### ¿Qué hicimos?
 
