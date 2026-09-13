@@ -22,7 +22,9 @@ X
 
 ####  ¿Qué hicimos?
 En Google Colab calculamos la matriz de similitud entre diferentes conceptos mediante embeddings para medir qué tan relacionados están semánticamente.
-  
+
+&nbsp;
+
 ####  Conclusión
 
 Interesante conocer como las inteligencias artificiales entienden el lenguaje agrupando conceptos por cercanía de significado y no solo por coincidencia de palabras.
@@ -41,6 +43,8 @@ Cargamos un conjunto de datos de reseñas en Google Colab para analizar su estru
 Conclusión
 Este análisis exploratorio inicial permite entender la distribución y el volumen de los datos antes de aplicar modelos de inteligencia artificial.
 
+&nbsp;
+
 Ejercicio 2:
 Analizamos los gráficos de distribución y longitud de textos para detectar anomalías y desvíos en el dataset de reseñas.
   - Patrón raro: Las calificaciones extremas (1 y 5 estrellas) concentran la gran mayoría de los datos (más de 300 reseñas cada una), mientras que el punto medio (3 estrellas) presenta una caída muy marcada (solo 91 reseñas).
@@ -53,6 +57,8 @@ Identificar estos patrones de sesgo permite evitar que el modelo aprenda atajos 
 Clase más representada: La de 5 estrellas, con más de 300 reviews en total.
 Clase menos representada: La de 3 estrellas, con apenas unas 90 reviews.
 Sí, las reseñas de 1 estrella son mucho más largas que el resto, lo que representa un sesgo en el que un modelo predictivo podría usar la longitud del texto como pista falsa en lugar de evaluar el contenido real.
+
+&nbsp;
 
 Ejercicio 3 y 4:
 Creamos el archivo datashhet con datos reales del proyecto. Archivo: datasheet\_v1.md
@@ -71,6 +77,7 @@ Hicimos preguntas útiles, preguntas específicas y otras genéricas
   - ¿Qué álbumes tengo de rock argentino?
   - ¿Qué álbumes tengo de la década de los 90?
   - ¿Cuáles son mis vinilos dobles?
+
 &nbsp;
 
 ####  Conclusiones
@@ -93,7 +100,7 @@ En definitiva, la experiencia demuestra que el verdadero valor de la IA no está
 ####  ¿Qué hicimos?
 Comparativa de mopdelos:  Claude, Chat GPT y DeepSeek para analizar la performance de cada uno de estas herramientas de inteligencia artificial y como abordan un mismo problema de diseño de maneras muy diferentes. 
 
--
+&nbsp;
 
 ####  Conclusiones 
 
@@ -127,7 +134,7 @@ meta-llama/Llama-3.2-1B-Instruct: El estándar más moderno para prototipar resp
 DeepESP/gpt2-spanish: Un clásico ligero, ideal para correr experimentos web ultrarrápidos sin hardware dedicado.
 somosnlp/es-inclusivo-translator
 
--
+&nbsp;
 
 ####  Conclusiones
 
@@ -150,7 +157,7 @@ Principales ventajas identificadas:
 ####  ¿Qué hicimos?
 Experimentar con Nano Banana.
 
--
+&nbsp;
 
 ####  Conclusiones
 
@@ -176,7 +183,7 @@ Contexto e Inventario: Proporcionamos conocimiento contextual subiendo la base d
 
 Ejecución del Flujo: Validamos la capacidad del agente para procesar un escenario específico (tarde soleada de sábado/diseñadora trabajando) ejecutando un flujo multitarea que incluyó: recomendación personalizada, notas contextuales editoriales, verificación exacta de datos en inventario, generación e integración de prompts e ilustraciones visuales, sugerencias por similitud sonora y la maquetación final estructurada de una "ficha de track" en PDF.
 
--
+&nbsp;
 
 ####  Conclusiones
 
@@ -197,7 +204,7 @@ Abrimos la carpeta en Antigravity y le pedimos un HTML simple, minimalista y res
 Abrimos el HTML resultante y revisarlo. (capturas)
 Pedimos un segundo cambio de estilo (colores, tipografía)(capturas)
 
-—
+&nbsp;
 
 #### Conclusiones
 
