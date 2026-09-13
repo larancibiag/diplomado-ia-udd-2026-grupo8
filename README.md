@@ -71,8 +71,7 @@ Hicimos preguntas útiles, preguntas específicas y otras genéricas
   - ¿Qué álbumes tengo de rock argentino?
   - ¿Qué álbumes tengo de la década de los 90?
   - ¿Cuáles son mis vinilos dobles?
-
--
+&nbsp;
 
 ####  Conclusiones
 
@@ -84,7 +83,6 @@ También fue importante comprobar que NotebookLM tiene límites: cuando la infor
 Desde la perspectiva del diseño, considero que NotebookLM puede ser especialmente útil en etapas de investigación, análisis y organización de información. Puede permitir que el diseñador dedique menos tiempo a tareas mecánicas de búsqueda y clasificación y más tiempo a interpretar la información, generar conceptos y tomar decisiones estratégicas.
 
 En definitiva, la experiencia demuestra que el verdadero valor de la IA no está necesariamente en que haga el trabajo por nosotros, sino en que puede ayudarnos a trabajar de una manera diferente: más rápida, informada y estratégica, manteniendo al diseñador como responsable del criterio, la interpretación y la decisión final.
-
 
 &nbsp;
 
