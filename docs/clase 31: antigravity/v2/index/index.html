@@ -1,0 +1,2499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Hallazgos de Diseño — Copiloto Curatorial Spinstack</title>
+  <meta name="description" content="Aplicación móvil minimalista que resume los principales hallazgos del proyecto de diseño y curaduría discográfica asistida por IA." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       1. DESIGN TOKENS & VARIABLES
+       ========================================================================== */
+    :root {
+      /* Palette inspired by the pastel holographic vinyl prompt */
+      --bg-canvas: #F8F6F1;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F1EFEA;
+      --bg-card: rgba(255, 255, 255, 0.85);
+      
+      --text-primary: #1A1918;
+      --text-secondary: #63615D;
+      --text-muted: #94918C;
+      --text-inverse: #FFFFFF;
+      
+      --accent-lilac: #8E78DC;
+      --accent-lilac-soft: #ECE8FA;
+      --accent-peach: #FA8C68;
+      --accent-peach-soft: #FEECE5;
+      --accent-aqua: #3FA897;
+      --accent-aqua-soft: #E2F5F1;
+      --accent-amber: #E2A03F;
+      --accent-amber-soft: #FBF1DF;
+      
+      --border-subtle: rgba(0, 0, 0, 0.07);
+      --border-medium: rgba(0, 0, 0, 0.14);
+      --border-focus: rgba(142, 120, 220, 0.5);
+      
+      --shadow-sm: 0 2px 8px rgba(28, 25, 23, 0.04);
+      --shadow-md: 0 8px 24px rgba(28, 25, 23, 0.06);
+      --shadow-lg: 0 16px 36px rgba(28, 25, 23, 0.09);
+      --shadow-vinyl: 0 20px 40px -10px rgba(142, 120, 220, 0.35);
+
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --app-max-width: 440px;
+      --transition-smooth: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg-canvas: #0F0E11;
+      --bg-surface: #17161C;
+      --bg-subtle: #211F27;
+      --bg-card: rgba(28, 26, 34, 0.85);
+
+      --text-primary: #F4F3F7;
+      --text-secondary: #A7A4B0;
+      --text-muted: #6B6875;
+      --text-inverse: #0F0E11;
+
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-medium: rgba(255, 255, 255, 0.16);
+
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.6);
+      --shadow-vinyl: 0 20px 40px -10px rgba(142, 120, 220, 0.25);
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE STYLES
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Desktop framing wrapper */
+    .app-viewport-container {
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      background: radial-gradient(circle at 10% 20%, rgba(236, 232, 250, 0.6) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 80%, rgba(254, 236, 229, 0.5) 0%, transparent 40%),
+                  var(--bg-canvas);
+      padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
+    }
+
+    [data-theme="dark"] .app-viewport-container {
+      background: radial-gradient(circle at 15% 20%, rgba(142, 120, 220, 0.12) 0%, transparent 40%),
+                  radial-gradient(circle at 85% 85%, rgba(250, 140, 104, 0.08) 0%, transparent 40%),
+                  var(--bg-canvas);
+    }
+
+    .mobile-app {
+      width: 100%;
+      max-width: var(--app-max-width);
+      min-height: 100vh;
+      background-color: var(--bg-surface);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      border-left: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
+    }
+
+    /* ==========================================================================
+       3. TOP BAR & BRANDING
+       ========================================================================== */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--accent-lilac), var(--accent-peach), var(--accent-aqua));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(142, 120, 220, 0.35);
+      position: relative;
+    }
+
+    .brand-avatar::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background-color: var(--bg-surface);
+      border-radius: var(--radius-full);
+      box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+    }
+
+    .brand-titles h1 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .brand-titles p {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      transition: var(--transition-smooth);
+    }
+
+    .icon-btn:hover {
+      background: var(--accent-lilac-soft);
+      color: var(--accent-lilac);
+      transform: scale(1.05);
+    }
+
+    .icon-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* ==========================================================================
+       4. NAVIGATION PILLS
+       ========================================================================== */
+    .tab-nav-wrapper {
+      padding: 12px 16px 8px 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 63px;
+      z-index: 35;
+    }
+
+    .tab-nav-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-nav {
+      display: flex;
+      gap: 8px;
+      width: max-content;
+    }
+
+    .tab-pill {
+      border: none;
+      background-color: var(--bg-subtle);
+      color: var(--text-secondary);
+      font-family: var(--font-heading);
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-pill.active {
+      background-color: var(--accent-lilac);
+      color: var(--text-inverse);
+      box-shadow: 0 4px 12px rgba(142, 120, 220, 0.35);
+    }
+
+    /* ==========================================================================
+       5. CONTENT SECTIONS CONTAINER
+       ========================================================================== */
+    .app-content {
+      flex: 1;
+      padding: 20px 18px 100px 18px;
+    }
+
+    .view-section {
+      display: none;
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       6. HERO CARD & VINYL PLAYER
+       ========================================================================== */
+    .hero-recommendation-card {
+      background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-subtle) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 22px 18px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 22px;
+    }
+
+    .hero-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .badge-session {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: var(--accent-lilac-soft);
+      color: var(--accent-lilac);
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .badge-format-btn {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      outline: none;
+    }
+
+    .badge-format-btn:hover {
+      background: var(--accent-lilac-soft);
+      border-color: var(--accent-lilac);
+      color: var(--accent-lilac);
+      transform: translateY(-1px);
+    }
+
+    .badge-format-btn.open {
+      background: var(--accent-lilac-soft);
+      border-color: var(--accent-lilac);
+      color: var(--accent-lilac);
+      box-shadow: 0 2px 8px rgba(142, 120, 220, 0.25);
+    }
+
+    .chevron-tracks {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      color: currentColor;
+    }
+
+    .badge-format-btn.open .chevron-tracks {
+      transform: rotate(180deg);
+    }
+
+    .specs-track-link {
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: inherit;
+      color: var(--accent-lilac);
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: var(--transition-smooth);
+    }
+
+    .specs-track-link:hover {
+      color: #6C52C2;
+    }
+
+    /* Tracklist Drawer */
+    .tracks-drawer {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease, margin-top 0.3s ease;
+      overflow: hidden;
+      margin-top: 0;
+      width: 100%;
+      text-align: left;
+    }
+
+    .tracks-drawer.open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      margin-top: 16px;
+    }
+
+    .tracks-drawer-content {
+      min-height: 0;
+      overflow: hidden;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tracks-header {
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .tracks-header-title-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3px;
+    }
+
+    .tracks-heading {
+      font-family: var(--font-heading);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.02em;
+    }
+
+    .tracks-total-runtime {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--accent-lilac);
+      background: var(--accent-lilac-soft);
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+    }
+
+    .tracks-subheading {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .vinyl-side-section {
+      margin-top: 10px;
+    }
+
+    .side-indicator-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      padding: 0 4px;
+    }
+
+    .side-tag {
+      font-family: var(--font-heading);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      background: var(--bg-subtle);
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .side-duration-info {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .tracklist-items {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .track-row {
+      display: flex;
+      align-items: center;
+      padding: 7px 8px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition-smooth);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .track-row:hover {
+      background: var(--bg-subtle);
+    }
+
+    .track-row:active {
+      transform: scale(0.99);
+    }
+
+    .track-num-col {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      width: 24px;
+      flex-shrink: 0;
+      font-weight: 500;
+    }
+
+    .track-info-col {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .track-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .track-row:hover .track-title {
+      color: var(--accent-lilac);
+    }
+
+    .track-key-tag {
+      font-size: 9px;
+      font-weight: 600;
+      background: var(--accent-peach-soft);
+      color: var(--accent-peach);
+      padding: 1px 6px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+
+    .track-feat-tag {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .track-bonus-tag {
+      font-size: 9px;
+      font-weight: 600;
+      background: var(--accent-aqua-soft);
+      color: var(--accent-aqua);
+      padding: 1px 6px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+
+    .track-duration-col {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-left: 8px;
+      flex-shrink: 0;
+      font-weight: 500;
+    }
+
+    .tracks-footer-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border-subtle);
+      font-size: 11.5px;
+      color: var(--text-secondary);
+    }
+
+    .tracks-footer-summary strong {
+      font-family: var(--font-mono);
+      color: var(--accent-lilac);
+      font-weight: 700;
+    }
+
+    .tracks-header-sub-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .yt-album-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255, 0, 0, 0.08);
+      color: #E02020;
+      border: 1px solid rgba(255, 0, 0, 0.16);
+      border-radius: var(--radius-full);
+      padding: 3px 10px;
+      font-family: var(--font-heading);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    .yt-album-link-btn:hover {
+      background: #FF0000;
+      color: #FFFFFF;
+      border-color: #FF0000;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(255, 0, 0, 0.25);
+    }
+
+    .yt-track-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 0, 0, 0.08);
+      color: #E02020;
+      border: 1px solid rgba(255, 0, 0, 0.14);
+      border-radius: var(--radius-full);
+      padding: 3px 8px;
+      font-family: var(--font-heading);
+      font-size: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      margin-left: 8px;
+      flex-shrink: 0;
+      transition: var(--transition-smooth);
+    }
+
+    .yt-track-action-btn:hover {
+      background: #FF0000;
+      color: #FFFFFF;
+      border-color: #FF0000;
+      transform: scale(1.05);
+      box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+    }
+
+    [data-theme="dark"] .yt-track-action-btn,
+    [data-theme="dark"] .yt-album-link-btn {
+      background: rgba(255, 60, 60, 0.16);
+      color: #FF6E6E;
+      border-color: rgba(255, 60, 60, 0.28);
+    }
+
+    [data-theme="dark"] .yt-track-action-btn:hover,
+    [data-theme="dark"] .yt-album-link-btn:hover {
+      background: #FF2B2B;
+      color: #FFFFFF;
+      border-color: #FF2B2B;
+    }
+
+    .yt-playlist-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #E02020;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    .yt-playlist-btn:hover {
+      color: #FF0000;
+      text-decoration: underline;
+    }
+
+    [data-theme="dark"] .yt-playlist-btn {
+      color: #FF6E6E;
+    }
+
+    /* Vinyl Turntable Visualizer */
+    .turntable-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 10px 0 20px 0;
+      position: relative;
+    }
+
+    .vinyl-wrapper {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      cursor: pointer;
+    }
+
+    .vinyl-record {
+      width: 100%;
+      height: 100%;
+      border-radius: var(--radius-full);
+      background: radial-gradient(circle at center, 
+        #EDE8F8 0%, 
+        #FDEBE4 20%, 
+        #DDF4EE 35%, 
+        #E1D7F5 55%, 
+        #FEEAE2 75%, 
+        #D2EEEC 100%
+      );
+      box-shadow: var(--shadow-vinyl), inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.8s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Concentric grooved rings */
+    .vinyl-record::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border-radius: var(--radius-full);
+      background: repeating-radial-gradient(
+        circle at center,
+        transparent 0,
+        transparent 3px,
+        rgba(142, 120, 220, 0.08) 3.5px,
+        rgba(142, 120, 220, 0.08) 5px
+      );
+      pointer-events: none;
+    }
+
+    .vinyl-record.spinning {
+      animation: spinVinyl 5s linear infinite;
+    }
+
+    @keyframes spinVinyl {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .vinyl-center-label {
+      width: 76px;
+      height: 76px;
+      background: var(--bg-surface);
+      border-radius: var(--radius-full);
+      border: 2px solid rgba(255,255,255,0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6px;
+      z-index: 2;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+
+    .vinyl-center-label span {
+      font-size: 7.5px;
+      font-weight: 700;
+      color: var(--accent-lilac);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .vinyl-spindle-hole {
+      width: 10px;
+      height: 10px;
+      background: var(--text-primary);
+      border-radius: var(--radius-full);
+      margin-top: 4px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.6);
+    }
+
+    /* Tonearm Simulation */
+    .tonearm {
+      position: absolute;
+      top: -12px;
+      right: 15px;
+      width: 44px;
+      height: 110px;
+      pointer-events: none;
+      transform-origin: 32px 10px;
+      transform: rotate(-25deg);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 10;
+    }
+
+    .tonearm.active {
+      transform: rotate(5deg);
+    }
+
+    .tonearm-base {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, #CCC, #888);
+      position: absolute;
+      top: 0;
+      right: 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .tonearm-bar {
+      position: absolute;
+      top: 12px;
+      right: 10px;
+      width: 4px;
+      height: 85px;
+      background: linear-gradient(to right, #DDD, #AAA, #888);
+      border-radius: 2px;
+      transform: rotate(8deg);
+    }
+
+    .tonearm-head {
+      position: absolute;
+      bottom: 6px;
+      right: 18px;
+      width: 14px;
+      height: 20px;
+      background: #333;
+      border-radius: 3px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    /* Album Typography */
+    .album-info {
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .album-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+
+    .album-artist {
+      font-size: 14px;
+      color: var(--accent-lilac);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .album-specs-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    .album-specs-pill span {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background: var(--accent-peach);
+      border-radius: var(--radius-full);
+    }
+
+    /* Audio Play Button */
+    .play-audio-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: linear-gradient(135deg, var(--accent-lilac), #7457C9);
+      color: #FFFFFF;
+      border: none;
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-heading);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(142, 120, 220, 0.4);
+      transition: var(--transition-smooth);
+    }
+
+    .play-audio-trigger:active {
+      transform: scale(0.98);
+    }
+
+    .soundwave {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 14px;
+    }
+
+    .soundwave-bar {
+      width: 3px;
+      background: #FFFFFF;
+      border-radius: 3px;
+      height: 4px;
+      transition: height 0.2s ease;
+    }
+
+    .play-audio-trigger.playing .soundwave-bar:nth-child(1) { animation: wave 1s infinite ease-in-out 0.1s; }
+    .play-audio-trigger.playing .soundwave-bar:nth-child(2) { animation: wave 1s infinite ease-in-out 0.3s; }
+    .play-audio-trigger.playing .soundwave-bar:nth-child(3) { animation: wave 1s infinite ease-in-out 0.5s; }
+    .play-audio-trigger.playing .soundwave-bar:nth-child(4) { animation: wave 1s infinite ease-in-out 0.2s; }
+
+    @keyframes wave {
+      0%, 100% { height: 4px; }
+      50% { height: 14px; }
+    }
+
+    /* ==========================================================================
+       7. EDITORIAL SESSION NOTE
+       ========================================================================== */
+    .editorial-quote-box {
+      background: linear-gradient(135deg, var(--accent-peach-soft), var(--bg-card));
+      border-left: 3px solid var(--accent-peach);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 16px 18px;
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    .editorial-quote-label {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-peach);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .editorial-quote-text {
+      font-family: var(--font-display);
+      font-size: 19px;
+      line-height: 1.45;
+      color: var(--text-primary);
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    .editorial-quote-author {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       8. KEY FINDINGS CARDS (HALLAZGOS CLAVE)
+       ========================================================================== */
+    .section-headline {
+      margin-bottom: 16px;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--accent-lilac);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.25;
+    }
+
+    .findings-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .finding-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-smooth);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .finding-card:hover {
+      border-color: var(--border-medium);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .finding-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .finding-icon-pill {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .icon-lilac { background: var(--accent-lilac-soft); color: var(--accent-lilac); }
+    .icon-peach { background: var(--accent-peach-soft); color: var(--accent-peach); }
+    .icon-aqua  { background: var(--accent-aqua-soft);  color: var(--accent-aqua);  }
+    .icon-amber { background: var(--accent-amber-soft); color: var(--accent-amber); }
+
+    .finding-title-group h3 {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+
+    .finding-category-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .finding-description {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+
+    .finding-highlight-badge {
+      background: var(--bg-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 12px;
+      color: var(--text-primary);
+      border-left: 3px solid var(--accent-lilac);
+      font-weight: 500;
+    }
+
+    /* Strict Data Honesty Box */
+    .honesty-alert {
+      background: linear-gradient(135deg, rgba(63, 168, 151, 0.08), rgba(142, 120, 220, 0.08));
+      border: 1px solid rgba(63, 168, 151, 0.3);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-top: 14px;
+    }
+
+    .honesty-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-aqua);
+      margin-bottom: 6px;
+    }
+
+    .honesty-text {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       9. VISUAL PROMPT & ART VIEW
+       ========================================================================== */
+    .cover-artwork-container {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 18px;
+      position: relative;
+      aspect-ratio: 1 / 1;
+      background-color: var(--bg-subtle);
+    }
+
+    .cover-artwork-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .cover-artwork-container:hover .cover-artwork-img {
+      transform: scale(1.03);
+    }
+
+    .cover-floating-tag {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      background: rgba(25, 23, 29, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #FFFFFF;
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      font-size: 11.5px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+    }
+
+    .prompt-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+
+    .prompt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .prompt-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-lilac);
+      font-weight: 700;
+    }
+
+    .copy-prompt-btn {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: var(--transition-smooth);
+    }
+
+    .copy-prompt-btn:hover {
+      background: var(--accent-lilac-soft);
+      color: var(--accent-lilac);
+    }
+
+    .prompt-code-block {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background-color: var(--bg-subtle);
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      word-break: break-word;
+    }
+
+    /* Color Swatches Grid */
+    .color-swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .swatch-color {
+      width: 100%;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+      margin-bottom: 6px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .swatch-color:hover {
+      transform: scale(1.08);
+    }
+
+    .swatch-name {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       10. COLLECTION & SIMILAR RELEASES
+       ========================================================================== */
+    .collection-artist-stat {
+      background: linear-gradient(135deg, var(--bg-subtle), var(--bg-card));
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .stat-number-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .stat-large-number {
+      font-family: var(--font-heading);
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--accent-lilac);
+      line-height: 1;
+    }
+
+    .stat-large-label {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .artist-albums-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .album-chip {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .album-chip.current {
+      background: var(--accent-lilac-soft);
+      border-color: var(--accent-lilac);
+      color: var(--accent-lilac);
+      font-weight: 600;
+    }
+
+    .similar-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .similar-card {
+      display: flex;
+      gap: 14px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      box-shadow: var(--shadow-sm);
+      align-items: center;
+      transition: var(--transition-smooth);
+    }
+
+    .similar-card:hover {
+      border-color: var(--border-medium);
+      transform: translateY(-2px);
+    }
+
+    .similar-disc-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .disc-black {
+      background: radial-gradient(circle at center, #333 0%, #111 70%);
+      border: 1px solid #444;
+    }
+
+    .disc-pink {
+      background: radial-gradient(circle at center, #FEDCD7 0%, #F89B90 70%);
+      border: 1px solid #F68B7F;
+    }
+
+    .similar-disc-icon::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #FFFFFF;
+      border-radius: var(--radius-full);
+    }
+
+    .similar-details {
+      flex: 1;
+    }
+
+    .similar-title {
+      font-family: var(--font-heading);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .similar-artist {
+      font-size: 12px;
+      color: var(--accent-lilac);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .similar-specs {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .similar-reason {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* ==========================================================================
+       11. ARTIFACT ORIGINAL FICHA PREVIEW
+       ========================================================================== */
+    .artifact-viewer-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .artifact-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-subtle);
+    }
+
+    .artifact-header-title {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .artifact-pdf-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      cursor: zoom-in;
+    }
+
+    .action-btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .secondary-btn {
+      flex: 1;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      padding: 12px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: var(--transition-smooth);
+    }
+
+    .secondary-btn:hover {
+      background: var(--bg-subtle);
+    }
+
+    /* ==========================================================================
+       12. FLOATING BOTTOM BAR / TOAST NOTIFICATION
+       ========================================================================== */
+    .toast-notification {
+      position: fixed;
+      bottom: 84px;
+      left: 50%;
+      transform: translateX(-50%) translateY(50px);
+      background: var(--text-primary);
+      color: var(--text-inverse);
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-notification.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Bottom Quick Bar */
+    .bottom-app-bar {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: var(--app-max-width);
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom)) 12px;
+      z-index: 50;
+    }
+
+    .nav-bar-item {
+      background: none;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-size: 10.5px;
+      font-weight: 600;
+      transition: var(--transition-smooth);
+      flex: 1;
+    }
+
+    .nav-bar-item svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+      stroke: currentColor;
+      fill: none;
+    }
+
+    .nav-bar-item.active {
+      color: var(--accent-lilac);
+    }
+
+    /* Modal for Image Zoom */
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .image-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .image-modal img {
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      object-fit: contain;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: #FFFFFF;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-viewport-container">
+  <main class="mobile-app" id="appMain">
+    
+    <!-- TOP STATUS & BRANDING HEADER -->
+    <header class="top-bar">
+      <div class="brand-meta">
+        <div class="brand-avatar" aria-hidden="true"></div>
+        <div class="brand-titles">
+          <h1>SPINSTACK</h1>
+          <p>Copiloto Curatorial · Hallazgos</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Cambiar tema de color" title="Alternar modo claro / oscuro">
+          <span id="themeIcon">☀️</span>
+        </button>
+        <button class="icon-btn" id="shareBtn" aria-label="Compartir hallazgos" title="Compartir">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- HORIZONTAL QUICK TABS -->
+    <nav class="tab-nav-wrapper" aria-label="Secciones">
+      <div class="tab-nav">
+        <button class="tab-pill active" data-target="view-recomendacion">
+          <span>💿</span> Selección
+        </button>
+        <button class="tab-pill" data-target="view-hallazgos">
+          <span>💡</span> 4 Hallazgos
+        </button>
+        <button class="tab-pill" data-target="view-prompt">
+          <span>🎨</span> Prompt & Arte
+        </button>
+        <button class="tab-pill" data-target="view-catalogo">
+          <span>📊</span> Colección (4)
+        </button>
+        <button class="tab-pill" data-target="view-ficha">
+          <span>📄</span> Ficha PDF
+        </button>
+      </div>
+    </nav>
+
+    <!-- MAIN SCROLLABLE APP BODY -->
+    <div class="app-content">
+
+      <!-- ===================================================================
+           VIEW 1: RECOMENDACIÓN PRINCIPAL & SESIÓN
+           =================================================================== -->
+      <section class="view-section active" id="view-recomendacion">
+        
+        <div class="hero-recommendation-card">
+          <div class="hero-badge-row">
+            <span class="badge-session">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+              Sesión de Sábado
+            </span>
+            <button class="badge-format-btn" id="toggleTracksBtn" aria-expanded="false" aria-controls="albumTracklist" title="Toca para ver los 13 tracks y sus duraciones">
+              <span>Simple · 13 tracks</span>
+              <svg class="chevron-tracks" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </div>
+
+          <!-- Interactive Turntable -->
+          <div class="turntable-container">
+            <div class="vinyl-wrapper" id="vinylTrigger">
+              <div class="vinyl-record" id="vinylRecord">
+                <div class="vinyl-center-label">
+                  <span>DESIRE</span>
+                  <div class="vinyl-spindle-hole"></div>
+                </div>
+              </div>
+              <!-- Simulated Tonearm -->
+              <div class="tonearm" id="tonearmElement">
+                <div class="tonearm-base"></div>
+                <div class="tonearm-bar"></div>
+                <div class="tonearm-head"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Album Specs -->
+          <div class="album-info">
+            <h2 class="album-title">Desire, I Want To Turn Into You</h2>
+            <p class="album-artist">Caroline Polachek</p>
+            <div class="album-specs-pill">
+              <span></span> Prensaje Coloreado <span></span> Dream-Pop / Art-Pop <span></span>
+              <button class="specs-track-link" id="toggleTracksLink" title="Desplegar canciones">13 tracks (45 min) ▾</button>
+            </div>
+
+            <!-- Interactive Web Audio Player -->
+            <button class="play-audio-trigger" id="audioToggleBtn">
+              <svg id="playIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span id="audioBtnLabel">Tocar atmósfera sonora</span>
+              <div class="soundwave">
+                <div class="soundwave-bar"></div>
+                <div class="soundwave-bar"></div>
+                <div class="soundwave-bar"></div>
+                <div class="soundwave-bar"></div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Collapsible Album Tracklist Drawer -->
+          <div class="tracks-drawer" id="albumTracklist" aria-hidden="true">
+            <div class="tracks-drawer-content">
+              <div class="tracks-header">
+                <div class="tracks-header-title-group">
+                  <h4 class="tracks-heading">Canciones del Álbum</h4>
+                  <span class="tracks-total-runtime">⏱️ 45 min 18 s · 13 temas</span>
+                </div>
+                <div class="tracks-header-sub-row">
+                  <p class="tracks-subheading">Prensaje en vinilo simple · 33 ⅓ RPM</p>
+                  <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+Desire+I+Want+To+Turn+Into+You+Full+Album" target="_blank" rel="noopener noreferrer" class="yt-album-link-btn" title="Escuchar álbum completo en YouTube">
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>Álbum completo en YouTube</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- LADO A -->
+              <div class="vinyl-side-section">
+                <div class="side-indicator-row">
+                  <span class="side-tag">Lado A</span>
+                  <span class="side-duration-info">6 temas · 20 min 59 s</span>
+                </div>
+                <div class="tracklist-items">
+                  <div class="track-row" data-track="1" data-title="Welcome to My Island" data-duration="3:52">
+                    <div class="track-num-col">01</div>
+                    <div class="track-info-col">
+                      <span class="track-title">Welcome to My Island</span>
+                      <span class="track-key-tag">Single</span>
+                    </div>
+                    <div class="track-duration-col">3:52 min</div>
+                    <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+Welcome+to+My+Island+Official" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar 'Welcome to My Island' en YouTube" aria-label="Escuchar Welcome to My Island en YouTube">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      <span>Escuchar</span>
+                    </a>
+                  </div>
+
+                  <div class="track-row" data-track="2" data-title="Pretty In Possible" data-duration="3:36">
+                    <div class="track-num-col">02</div>
+                    <div class="track-info-col">
+                      <span class="track-title">Pretty In Possible</span>
+                    </div>
+                    <div class="track-duration-col">3:36 min</div>
+                    <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+Pretty+In+Possible+Audio" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar 'Pretty In Possible' en YouTube" aria-label="Escuchar Pretty In Possible en YouTube">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      <span>Escuchar</span>
+                    </a>
+                  </div>
+
+                  <div class="track-row" data-track="3" data-title="Bunny Is a Rider" data-duration="3:13">
+                    <div class="track-num-col">03</div>
+                    <div class="track-info-col">
+                      <span class="track-title">Bunny Is a Rider</span>
+                      <span class="track-key-tag">Hit</span>
+                    </div>
+                    <div class="track-duration-col">3:13 min</div>
+                    <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+Bunny+Is+a+Rider+Official" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar 'Bunny Is a Rider' en YouTube" aria-label="Escuchar Bunny Is a Rider en YouTube">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      <span>Escuchar</span>
+                    </a>
+                  </div>
+
+                  <div class="track-row" data-track="4" data-title="Sunset" data-duration="2:42">
+                    <div class="track-num-col">04</div>
+                    <div class="track-info-col">
+                      <span class="track-title">Sunset</span>
+                    </div>
+                    <div class="track-duration-col">2:42 min</div>
+                    <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+Sunset+Official" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar 'Sunset' en YouTube" aria-label="Escuchar Sunset en YouTube">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      <span>Escuchar</span>
+                    </a>
+                  </div>
+
+                  <div class="track-row" data-track="5" data-title="Crude Drawing of an Angel" data-duration="3:29">
+                    <div class="track-num-col">05</div>
+                    <div class="track-info-col">
+                      <span class="track-title">Crude Drawing of an Angel</span>
+                    </div>
+                    <div class="track-duration-col">3:29 min</div>
+                    <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+Crude+Drawing+of+an+Angel" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar 'Crude Drawing of an Angel' en YouTube" aria-label="Escuchar Crude Drawing of an Angel en YouTube">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      <span>Escuchar</span>
+                    </a>
+                  </div>
+
+                  <div class="track-row" data-track="6" data-title="I Believe" data-duration="4:07">
+                    <div class="track-num-col">06</div>
+                    <div class="track-info-col">
+                      <span class="track-title">I Believe</span>
+                    </div>
+                    <div class="track-duration-col">4:07 min</div>
+                    <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+I+Believe+Official" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar 'I Believe' en YouTube" aria-label="Escuchar I Believe en YouTube">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      <span>Escuchar</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- LADO B -->
+              <div class="vinyl-side-section" style="margin-top: 14px;">
+                <div class="side-indicator-row">
+                  <span class="side-tag">Lado B</span>
+                  <span class="side-duration-info">7 temas · 24 min 19 s</span>
+                </div>
+                <div class="tracklist-items">
+                  <div class="track-row" data-track="7" data-title="Fly to You" data-duration="4:05">
+                    <div class="track-num-col">07</div>
+                    <div class="track-info-col">
+                      <span class="track-title">Fly to You</span>
+                      <span class="track-feat-tag">ft. Grimes & Dido</span>
+                    </div>
+                    <div class="track-duration-col">4:05 min</div>
+                    <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+Fly+to+You+Grimes+Dido" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar 'Fly to You' en YouTube" aria-label="Escuchar Fly to You en YouTube">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      <span>Escuchar</span>
+                    </a>
+                  </div>
+
+                  <div class="track-row" data-track="8" data-title="Blood and Butter" data-duration="4:28">
+                    <div class="track-num-col">08</div>
+                    <div class="track-info-col">
+                      <span class="track-title">Blood and Butter</span>
+                      <span class="track-key-tag">Destacado</span>
+                    </div>
+                    <div class="track-duration-col">4:28 min</div>
+                    <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+Blood+and+Butter+Official" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar 'Blood and Butter' en YouTube" aria-label="Escuchar Blood and Butter en YouTube">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      <span>Escuchar</span>
+                    </a>
+                  </div>
+
+                  <div class="track-row" data-track="9" data-title="Hopedrunk Everasking" data-duration="3:19">
+                    <div class="track-num-col">09</div>
+                    <div class="track-info-col">
+                      <span class="track-title">Hopedrunk Everasking</span>
+                    </div>
+                    <div class="track-duration-col">3:19 min</div>
+                    <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+Hopedrunk+Everasking" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar 'Hopedrunk Everasking' en YouTube" aria-label="Escuchar Hopedrunk Everasking en YouTube">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      <span>Escuchar</span>
+                    </a>
+                  </div>
+
+                  <div class="track-row" data-track="10" data-title="Butterfly Net" data-duration="4:36">
+                    <div class="track-num-col">10</div>
+                    <div class="track-info-col">
+                      <span class="track-title">Butterfly Net</span>
+                    </div>
+                    <div class="track-duration-col">4:36 min</div>
+                    <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+Butterfly+Net" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar 'Butterfly Net' en YouTube" aria-label="Escuchar Butterfly Net en YouTube">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      <span>Escuchar</span>
+                    </a>
+                  </div>
+
+                  <div class="track-row" data-track="11" data-title="Smoke" data-duration="2:57">
+                    <div class="track-num-col">11</div>
+                    <div class="track-info-col">
+                      <span class="track-title">Smoke</span>
+                    </div>
+                    <div class="track-duration-col">2:57 min</div>
+                    <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+Smoke+Official" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar 'Smoke' en YouTube" aria-label="Escuchar Smoke en YouTube">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      <span>Escuchar</span>
+                    </a>
+                  </div>
+
+                  <div class="track-row" data-track="12" data-title="Billions" data-duration="4:56">
+                    <div class="track-num-col">12</div>
+                    <div class="track-info-col">
+                      <span class="track-title">Billions</span>
+                    </div>
+                    <div class="track-duration-col">4:56 min</div>
+                    <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+Billions+Official" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar 'Billions' en YouTube" aria-label="Escuchar Billions en YouTube">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      <span>Escuchar</span>
+                    </a>
+                  </div>
+
+                  <div class="track-row" data-track="13" data-title="Dang" data-duration="2:45">
+                    <div class="track-num-col">13</div>
+                    <div class="track-info-col">
+                      <span class="track-title">Dang</span>
+                      <span class="track-bonus-tag">Bonus</span>
+                    </div>
+                    <div class="track-duration-col">2:45 min</div>
+                    <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+Dang+Official" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar 'Dang' en YouTube" aria-label="Escuchar Dang en YouTube">
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      <span>Escuchar</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- RESUMEN FINAL -->
+              <div class="tracks-footer-summary">
+                <span>Duración total: <strong>45 min 18 s</strong></span>
+                <a href="https://www.youtube.com/results?search_query=Caroline+Polachek+Desire+I+Want+To+Turn+Into+You+Playlist" target="_blank" rel="noopener noreferrer" class="yt-playlist-btn" title="Ver playlist oficial en YouTube">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                  <span>Playlist en YouTube</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Editorial Note -->
+        <div class="editorial-quote-box">
+          <div class="editorial-quote-label">
+            <span>✍️</span> Nota Contextual de Sesión
+          </div>
+          <blockquote class="editorial-quote-text">
+            “Sábado de primavera, sol entrando por la ventana, manos en el teclado y la mente en modo creativo. 'Desire, I Want To Turn Into You' entra como una capa de color más en tu proceso... No es música para escuchar — es música para trabajar adentro de ella.”
+          </blockquote>
+          <p class="editorial-quote-author">— Copiloto Curatorial Spinstack</p>
+        </div>
+
+        <!-- Brief Rationale -->
+        <div class="finding-card" style="margin-bottom: 20px;">
+          <div class="finding-header">
+            <div class="finding-icon-pill icon-lilac">🎧</div>
+            <div class="finding-title-group">
+              <h3>¿Por qué este disco?</h3>
+              <span class="finding-category-tag">Criterio de Curaduría</span>
+            </div>
+          </div>
+          <p class="finding-description">
+            Combina texturas luminosas de sintetizador con melodías que acompañan sin saturar la mente. Otorga un pulso propulsor constante que evita la fatiga cognitiva de diseño, complementado por el ritual táctil de manipular un vinilo coloreado.
+          </p>
+        </div>
+
+      </section>
+
+      <!-- ===================================================================
+           VIEW 2: LOS 4 HALLAZGOS CLAVE DEL PROYECTO
+           =================================================================== -->
+      <section class="view-section" id="view-hallazgos">
+        
+        <div class="section-headline">
+          <span class="section-eyebrow">Análisis de Diseño</span>
+          <h2 class="section-title">Principales Hallazgos del Asistente</h2>
+        </div>
+
+        <div class="findings-grid">
+
+          <!-- Hallazgo 1 -->
+          <article class="finding-card">
+            <div class="finding-header">
+              <div class="finding-icon-pill icon-peach">1</div>
+              <div class="finding-title-group">
+                <h3>Curaduría Afectiva y Ritual Físico</h3>
+                <span class="finding-category-tag">Experiencia de Usuario</span>
+              </div>
+            </div>
+            <p class="finding-description">
+              El asistente no se limitó a sugerir tracks: entendió el contexto humano (primavera, luz solar, diseño en pantalla) y sincronizó la cualidad tangible del vinilo de color como una pausa ritual que predispone al flujo creativo.
+            </p>
+            <div class="finding-highlight-badge">
+              <strong>Insight:</strong> La IA curatorial agrega valor cuando conecta el espacio físico y el estado mental, no solo el algoritmo musical.
+            </div>
+          </article>
+
+          <!-- Hallazgo 2 -->
+          <article class="finding-card">
+            <div class="finding-header">
+              <div class="finding-icon-pill icon-aqua">2</div>
+              <div class="finding-title-group">
+                <h3>Honestidad de Datos vs. Alucinación</h3>
+                <span class="finding-category-tag">Arquitectura del Agente</span>
+              </div>
+            </div>
+            <p class="finding-description">
+              Al solicitarle calcular discos del "mismo género", el inventario carecía de esa columna. En lugar de inventar categorías arbitrarias, el asistente <strong>transparentó la restricción</strong> y contabilizó estrictamente por artista verificado.
+            </p>
+            <div class="honesty-alert">
+              <div class="honesty-header">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Límite de Arquitectura Cumplido
+              </div>
+              <p class="honesty-text">
+                "Tu inventario no tiene columna de género, así que no puedo calcular 'discos del mismo género' sin inventar una categorización no verificada."
+              </p>
+            </div>
+          </article>
+
+          <!-- Hallazgo 3 -->
+          <article class="finding-card">
+            <div class="finding-header">
+              <div class="finding-icon-pill icon-lilac">3</div>
+              <div class="finding-title-group">
+                <h3>Traducción Multimodal Cruzada</h3>
+                <span class="finding-category-tag">Dirección de Arte con IA</span>
+              </div>
+            </div>
+            <p class="finding-description">
+              Capacidad de traducir sensaciones acústicas y climáticas en un prompt gráfico evocador (luz dorada de primavera, vinilo iridiscente flotante, paleta pastel holográfica y grano analógico) aplicable a Midjourney o DALL-E.
+            </p>
+            <div class="finding-highlight-badge">
+              <strong>Puente creativo:</strong> Música ambient -> Vocabulario visual -> Generación gráfica coherente.
+            </div>
+          </article>
+
+          <!-- Hallazgo 4 -->
+          <article class="finding-card">
+            <div class="finding-header">
+              <div class="finding-icon-pill icon-amber">4</div>
+              <div class="finding-title-group">
+                <h3>Síntesis Editorial Autocontenida</h3>
+                <span class="finding-category-tag">Entregable Spinstack</span>
+              </div>
+            </div>
+            <p class="finding-description">
+              El modelo fue capaz de empaquetar recomendación, justificación, prompt, estadísticas duras de inventario y recomendaciones similares en una ficha de diseño lista para exportar como PDF estructurado.
+            </p>
+            <div class="finding-highlight-badge">
+              <strong>Formato Ficha:</strong> Estructura minimalista tipo magazine con jerarquía tipográfica limpia.
+            </div>
+          </article>
+
+        </div>
+
+      </section>
+
+      <!-- ===================================================================
+           VIEW 3: PROMPT VISUAL & DIRECCIÓN DE ARTE
+           =================================================================== -->
+      <section class="view-section" id="view-prompt">
+        
+        <div class="section-headline">
+          <span class="section-eyebrow">Dirección de Arte</span>
+          <h2 class="section-title">Portada Conceptual Generada</h2>
+        </div>
+
+        <!-- Rendered conceptual artwork -->
+        <div class="cover-artwork-container">
+          <img src="assets/portada_conceptual.jpg" alt="Portada conceptual de vinilo holográfico flotante en estudio soleado" class="cover-artwork-img" id="zoomableCover" />
+          <div class="cover-floating-tag">1:1 Square · Grano Analógico</div>
+        </div>
+
+        <!-- Prompt Card -->
+        <div class="prompt-card">
+          <div class="prompt-header">
+            <span class="prompt-label">PROMPT VISUAL RECOMENDADO</span>
+            <button class="copy-prompt-btn" id="copyPromptBtn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+          <div class="prompt-code-block" id="promptText">Dreamy afternoon studio scene, soft golden spring sunlight streaming through a window onto a desk, translucent iridescent color-gradient vinyl record floating mid-air, holographic pastel color palette (lilac, peach, aqua), liquid glass textures, surreal minimalist composition, warm analog film grain, editorial album cover aesthetic, soft bokeh, feminine dreamlike atmosphere, 1:1 square format.</div>
+
+          <!-- Interactive Color Swatches -->
+          <div class="color-swatches-grid">
+            <div class="swatch-item">
+              <div class="swatch-color" style="background-color: #D6CBF8;" title="Lilac Pastel"></div>
+              <span class="swatch-name">Lilac</span>
+              <span class="swatch-hex">#D6CBF8</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-color" style="background-color: #FDD1BF;" title="Peach Warmth"></div>
+              <span class="swatch-name">Peach</span>
+              <span class="swatch-hex">#FDD1BF</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-color" style="background-color: #BBECE3;" title="Aqua Ethereal"></div>
+              <span class="swatch-name">Aqua</span>
+              <span class="swatch-hex">#BBECE3</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-color" style="background-color: #F8E5B8;" title="Golden Sun"></div>
+              <span class="swatch-name">Sunlight</span>
+              <span class="swatch-hex">#F8E5B8</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===================================================================
+           VIEW 4: CATÁLOGO & DISCOS AFINES
+           =================================================================== -->
+      <section class="view-section" id="view-catalogo">
+        
+        <div class="section-headline">
+          <span class="section-eyebrow">Dato Verificado de Inventario</span>
+          <h2 class="section-title">Colección de Caroline Polachek</h2>
+        </div>
+
+        <!-- Metric card -->
+        <div class="collection-artist-stat">
+          <div class="stat-number-row">
+            <span class="stat-large-number">4</span>
+            <span class="stat-large-label">discos en tu inventario</span>
+          </div>
+          <p style="font-size: 12px; color: var(--text-muted);">
+            Conteo verificado directamente del archivo sin columna de género.
+          </p>
+          <div class="artist-albums-chips">
+            <span class="album-chip">Pang</span>
+            <span class="album-chip current">Desire I Want To Turn Into You ★</span>
+            <span class="album-chip">Standing At The Gate: Remix</span>
+            <span class="album-chip">Arcadia</span>
+          </div>
+        </div>
+
+        <div class="section-headline" style="margin-top: 24px;">
+          <span class="section-eyebrow">Descubrimiento Relacional</span>
+          <h2 class="section-title">También te puede gustar</h2>
+        </div>
+
+        <div class="similar-grid">
+          <!-- Magdalena Bay -->
+          <div class="similar-card">
+            <div class="similar-disc-icon disc-black" title="Prensaje Negro"></div>
+            <div class="similar-details">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                <h3 class="similar-title">Mercurial World</h3>
+                <a href="https://www.youtube.com/results?search_query=Magdalena+Bay+Mercurial+World+Full+Album" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar en YouTube" style="margin: 0;">
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                  <span>YouTube</span>
+                </a>
+              </div>
+              <p class="similar-artist">Magdalena Bay</p>
+              <p class="similar-specs">Black · Simple · 11 canciones</p>
+              <p class="similar-reason">
+                Pop futurista con sintetizadores brillantes y producción hiperdetallada, muy cercano al paisaje sónico de Polachek.
+              </p>
+            </div>
+          </div>
+
+          <!-- Romy -->
+          <div class="similar-card">
+            <div class="similar-disc-icon disc-pink" title="Prensaje Rosado"></div>
+            <div class="similar-details">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                <h3 class="similar-title">Mid Air</h3>
+                <a href="https://www.youtube.com/results?search_query=Romy+Mid+Air+Full+Album" target="_blank" rel="noopener noreferrer" class="yt-track-action-btn" title="Escuchar en YouTube" style="margin: 0;">
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                  <span>YouTube</span>
+                </a>
+              </div>
+              <p class="similar-artist">Romy</p>
+              <p class="similar-specs">Rosado · Simple · 11 canciones</p>
+              <p class="similar-reason">
+                Dance-pop atmosférico, pulso constante y voces cálidas envueltas en reverb para sostener el ritmo de trabajo.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===================================================================
+           VIEW 5: FICHA ORIGINAL & CAPTURA
+           =================================================================== -->
+      <section class="view-section" id="view-ficha">
+        
+        <div class="section-headline">
+          <span class="section-eyebrow">Documento del Asistente</span>
+          <h2 class="section-title">Ficha Generada Original</h2>
+        </div>
+
+        <div class="artifact-viewer-card">
+          <div class="artifact-header">
+            <div class="artifact-header-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Ficha desire caroline polachek · PDF
+            </div>
+            <span style="font-size: 11px; color: var(--accent-lilac); font-weight: 600;">Spinstack Engine</span>
+          </div>
+          <img src="assets/recomendacion_original.jpg" alt="Captura del asistente recomendación de vinilo" class="artifact-pdf-image" id="zoomableOriginal" />
+        </div>
+
+        <div class="action-btn-row">
+          <button class="secondary-btn" id="openImageFullBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            Ver en alta resolución
+          </button>
+          <button class="secondary-btn" id="printReportBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Imprimir Ficha
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast-notification" id="toast">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#56B8A5" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      <span id="toastMsg">Copiado al portapapeles</span>
+    </div>
+
+    <!-- BOTTOM APP BAR (MOBILE NAVIGATION) -->
+    <footer class="bottom-app-bar" aria-label="Navegación principal inferior">
+      <button class="nav-bar-item active" data-nav="view-recomendacion">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Selección</span>
+      </button>
+      <button class="nav-bar-item" data-nav="view-hallazgos">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>Hallazgos</span>
+      </button>
+      <button class="nav-bar-item" data-nav="view-prompt">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Prompt</span>
+      </button>
+      <button class="nav-bar-item" data-nav="view-catalogo">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span>Colección</span>
+      </button>
+      <button class="nav-bar-item" data-nav="view-ficha">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span>Ficha</span>
+      </button>
+    </footer>
+
+  </main>
+</div>
+
+<!-- FULLSCREEN IMAGE MODAL -->
+<div class="image-modal" id="imageModal">
+  <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+  <img src="" alt="Vista ampliada" id="modalImg" />
+</div>
+
+<!-- SCRIPT LOGIC (Web Audio Synth, Tab Switching, Copy & Themes) -->
+<script>
+  // DOM Elements
+  const tabPills = document.querySelectorAll('.tab-pill');
+  const navItems = document.querySelectorAll('.nav-bar-item');
+  const viewSections = document.querySelectorAll('.view-section');
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+  const copyBtn = document.getElementById('copyPromptBtn');
+  const promptText = document.getElementById('promptText');
+  const themeToggle = document.getElementById('themeToggleBtn');
+  const themeIcon = document.getElementById('themeIcon');
+  
+  // Audio & Vinyl Elements
+  const vinylTrigger = document.getElementById('vinylTrigger');
+  const vinylRecord = document.getElementById('vinylRecord');
+  const tonearmElement = document.getElementById('tonearmElement');
+  const audioToggleBtn = document.getElementById('audioToggleBtn');
+  const audioBtnLabel = document.getElementById('audioBtnLabel');
+  const playIcon = document.getElementById('playIcon');
+
+  // Tracklist Drawer Elements
+  const toggleTracksBtn = document.getElementById('toggleTracksBtn');
+  const toggleTracksLink = document.getElementById('toggleTracksLink');
+  const albumTracklist = document.getElementById('albumTracklist');
+
+  function toggleTracklist() {
+    const isCurrentlyOpen = albumTracklist.classList.contains('open');
+    if (isCurrentlyOpen) {
+      albumTracklist.classList.remove('open');
+      albumTracklist.setAttribute('aria-hidden', 'true');
+      if (toggleTracksBtn) {
+        toggleTracksBtn.classList.remove('open');
+        toggleTracksBtn.setAttribute('aria-expanded', 'false');
+      }
+      if (toggleTracksLink) {
+        toggleTracksLink.textContent = '13 tracks (45 min) ▾';
+      }
+      showToast('Lista de tracks oculta');
+    } else {
+      albumTracklist.classList.add('open');
+      albumTracklist.setAttribute('aria-hidden', 'false');
+      if (toggleTracksBtn) {
+        toggleTracksBtn.classList.add('open');
+        toggleTracksBtn.setAttribute('aria-expanded', 'true');
+      }
+      if (toggleTracksLink) {
+        toggleTracksLink.textContent = 'Ocultar tracks ▴';
+      }
+      showToast('Desplegando los 13 tracks (45 min)');
+    }
+  }
+
+  if (toggleTracksBtn) toggleTracksBtn.addEventListener('click', toggleTracklist);
+  if (toggleTracksLink) toggleTracksLink.addEventListener('click', toggleTracklist);
+
+  // Track row click preview and YouTube opening
+  document.querySelectorAll('.track-row').forEach(row => {
+    row.addEventListener('click', (e) => {
+      // If user clicked directly on the anchor, let default link action occur
+      if (e.target.closest('.yt-track-action-btn')) return;
+
+      const title = row.getAttribute('data-title');
+      const dur = row.getAttribute('data-duration');
+      showToast(`Abriendo "${title}" en YouTube...`);
+
+      // Trigger ambient synth if not already playing
+      if (!isPlayingAudio) {
+        initAmbientSynth();
+      }
+
+      // Open the YouTube link for this track in a new tab
+      const ytLink = row.querySelector('.yt-track-action-btn');
+      if (ytLink) {
+        window.open(ytLink.href, '_blank', 'noopener,noreferrer');
+      }
+    });
+  });
+
+  // Modal Elements
+  const imageModal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImg');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const zoomableOriginal = document.getElementById('zoomableOriginal');
+  const zoomableCover = document.getElementById('zoomableCover');
+  const openImageFullBtn = document.getElementById('openImageFullBtn');
+
+  // 1. Navigation switching
+  function switchTab(viewId) {
+    viewSections.forEach(section => {
+      section.classList.toggle('active', section.id === viewId);
+    });
+
+    tabPills.forEach(pill => {
+      pill.classList.toggle('active', pill.dataset.target === viewId);
+    });
+
+    navItems.forEach(item => {
+      item.classList.toggle('active', item.dataset.nav === viewId);
+    });
+
+    // Scroll to top smoothly
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  tabPills.forEach(pill => {
+    pill.addEventListener('click', () => switchTab(pill.dataset.target));
+  });
+
+  navItems.forEach(item => {
+    item.addEventListener('click', () => switchTab(item.dataset.nav));
+  });
+
+  // 2. Toast notification
+  function showToast(message) {
+    toastMsg.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2400);
+  }
+
+  // 3. Copy prompt
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(promptText.textContent.trim());
+        showToast('¡Prompt copiado al portapapeles!');
+      } catch (err) {
+        // Fallback
+        const textarea = document.createElement('textarea');
+        textarea.value = promptText.textContent.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast('¡Prompt copiado!');
+      }
+    });
+  }
+
+  // 4. Color Swatches Copy
+  document.querySelectorAll('.swatch-color').forEach(swatch => {
+    swatch.addEventListener('click', () => {
+      const hex = swatch.nextElementSibling.nextElementSibling.textContent;
+      navigator.clipboard.writeText(hex);
+      showToast(`Color ${hex} copiado`);
+    });
+  });
+
+  // 5. Theme toggle (Light / Dark)
+  let isDark = false;
+  themeToggle.addEventListener('click', () => {
+    isDark = !isDark;
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    themeIcon.textContent = isDark ? '🌙' : '☀️';
+    showToast(isDark ? 'Modo Estudio Nocturno' : 'Modo Sol de Primavera');
+  });
+
+  // 6. Web Audio API Ambient Soundscape Generator (Dreamy Chord Drone)
+  let audioCtx = null;
+  let isPlayingAudio = false;
+  let synthNodes = [];
+
+  function initAmbientSynth() {
+    if (!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+    }
+
+    if (isPlayingAudio) {
+      stopAmbientSynth();
+      return;
+    }
+
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+
+    // Frequencies for a dreamy lush Cmaj9 chord (C3, G3, B3, D4, E4)
+    const chordFrequencies = [130.81, 196.00, 246.94, 293.66, 329.63];
+    synthNodes = [];
+
+    const masterGain = audioCtx.createGain();
+    masterGain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+    masterGain.gain.exponentialRampToValueAtTime(0.18, audioCtx.currentTime + 2);
+    masterGain.connect(audioCtx.destination);
+    synthNodes.push(masterGain);
+
+    chordFrequencies.forEach((freq, i) => {
+      // Warm sine + subtle triangle wave for art-pop shimmer
+      const osc = audioCtx.createOscillator();
+      osc.type = i % 2 === 0 ? 'sine' : 'triangle';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+      // Gentle LFO for breathing texture
+      const lfo = audioCtx.createOscillator();
+      lfo.frequency.setValueAtTime(0.15 + i * 0.05, audioCtx.currentTime);
+      const lfoGain = audioCtx.createGain();
+      lfoGain.gain.setValueAtTime(2.5, audioCtx.currentTime);
+      lfo.connect(lfoGain);
+      lfoGain.connect(osc.frequency);
+      lfo.start();
+      synthNodes.push(lfo, lfoGain);
+
+      const oscGain = audioCtx.createGain();
+      oscGain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+      osc.connect(oscGain);
+      oscGain.connect(masterGain);
+
+      osc.start();
+      synthNodes.push(osc, oscGain);
+    });
+
+    isPlayingAudio = true;
+    updateAudioUI(true);
+    showToast('Reproduciendo atmósfera sonora Caroline Polachek');
+  }
+
+  function stopAmbientSynth() {
+    if (synthNodes.length > 0) {
+      synthNodes.forEach(node => {
+        try {
+          if (node.stop) node.stop();
+          if (node.disconnect) node.disconnect();
+        } catch (e) {}
+      });
+      synthNodes = [];
+    }
+    isPlayingAudio = false;
+    updateAudioUI(false);
+  }
+
+  function updateAudioUI(playing) {
+    if (playing) {
+      vinylRecord.classList.add('spinning');
+      tonearmElement.classList.add('active');
+      audioToggleBtn.classList.add('playing');
+      audioBtnLabel.textContent = 'Pausar atmósfera';
+      playIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    } else {
+      vinylRecord.classList.remove('spinning');
+      tonearmElement.classList.remove('active');
+      audioToggleBtn.classList.remove('playing');
+      audioBtnLabel.textContent = 'Tocar atmósfera sonora';
+      playIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+    }
+  }
+
+  audioToggleBtn.addEventListener('click', initAmbientSynth);
+  vinylTrigger.addEventListener('click', initAmbientSynth);
+
+  // 7. Modal Fullscreen Image Viewer
+  function openModal(src) {
+    modalImg.src = src;
+    imageModal.classList.add('open');
+  }
+
+  if (zoomableOriginal) {
+    zoomableOriginal.addEventListener('click', () => openModal(zoomableOriginal.src));
+  }
+  if (zoomableCover) {
+    zoomableCover.addEventListener('click', () => openModal(zoomableCover.src));
+  }
+  if (openImageFullBtn) {
+    openImageFullBtn.addEventListener('click', () => openModal('assets/recomendacion_original.jpg'));
+  }
+
+  closeModalBtn.addEventListener('click', () => {
+    imageModal.classList.remove('open');
+  });
+
+  imageModal.addEventListener('click', (e) => {
+    if (e.target === imageModal) imageModal.classList.remove('open');
+  });
+
+  // 8. Share Button
+  document.getElementById('shareBtn').addEventListener('click', async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Hallazgos de Diseño — Copiloto Curatorial Spinstack',
+          text: 'Ficha y hallazgos del asistente de diseño para vinilos: Caroline Polachek.',
+          url: window.location.href,
+        });
+      } catch (err) {}
+    } else {
+      showToast('Enlace listo para compartir');
+    }
+  });
+
+  // 9. Print / Export
+  document.getElementById('printReportBtn').addEventListener('click', () => {
+    window.print();
+  });
+</script>
+
+</body>
+</html>
